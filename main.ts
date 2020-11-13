@@ -11,9 +11,15 @@ const fetchPokemon = () => {
 
   Promise.all(promises).then((results) => {
     console.log(results);
-    // results.map((data) => {
-    // })
-  })
+    const pokeData = results.map((data) => (
+      `<li>
+        <img src="${data.sprites.front_default}" />
+        <div>${data.id}</div>
+        <div>${data.name}</div>
+      </li>`
+    ));
+    $('ol#poke-grid').html(pokeData);
+  });
 };
 
 fetchPokemon();

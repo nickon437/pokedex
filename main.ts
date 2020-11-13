@@ -1,5 +1,4 @@
 const fetchPokemon = () => {
-  // const abc = 2;
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
   const NUM_OF_POKEMON = 151;
   const promises = [];

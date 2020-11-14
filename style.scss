@@ -25,6 +25,11 @@ html, body, #root {
   height: 100%;
 }
 
+.hflex {
+  display: flex;
+  gap: 0.5rem;
+}
+
 ol#poke-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
@@ -49,14 +54,26 @@ ol#poke-grid {
       bottom: 1rem;
       right: 10%;
     }
-
-    img[name="pokeball"] {
-      position: absolute;
-      height: 20rem;
-      bottom: -5rem;
-      right: -5rem;
-      opacity: 40%;
-      transform: rotate(10deg);
+    
+    div[name="background-patterns"] {
+      img[name="pokeball"] {
+        position: absolute;
+        height: 20rem;
+        bottom: -5rem;
+        right: -5rem;
+        opacity: 40%;
+        transform: rotate(10deg);
+      }
+      svg[name="dots-1"] {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 0.5rem;
+        transform: rotate(90deg);
+        fill: white;
+        height: 5rem;
+        opacity: 20%;
+        // background-color: white;
+      }
     }
     
     div {
@@ -72,6 +89,19 @@ ol#poke-grid {
       font-weight: bold;
       // font-size: 'Roboto';
       
+    }
+
+    div[name="pokeTypes"] {
+      margin: 0.5rem 0;
+      div {
+        font-size: 0.75rem;
+        border-radius: 30px;
+        background-color: rgba($color: #fff, $alpha: 0.5);
+        padding: 0.5rem;
+        font-weight: bold;
+        width: 5rem;
+        text-align: center;
+      }
     }
   }
 }

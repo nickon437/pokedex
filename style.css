@@ -26,6 +26,13 @@ html, body, #root {
   height: 100%;
 }
 
+.hflex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.5rem;
+}
+
 ol#poke-grid {
   display: -ms-grid;
   display: grid;
@@ -56,7 +63,7 @@ ol#poke-grid li img[name="pokemon"] {
   right: 10%;
 }
 
-ol#poke-grid li img[name="pokeball"] {
+ol#poke-grid li div[name="background-patterns"] img[name="pokeball"] {
   position: absolute;
   height: 20rem;
   bottom: -5rem;
@@ -64,6 +71,17 @@ ol#poke-grid li img[name="pokeball"] {
   opacity: 40%;
   -webkit-transform: rotate(10deg);
           transform: rotate(10deg);
+}
+
+ol#poke-grid li div[name="background-patterns"] svg[name="dots-1"] {
+  position: absolute;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  fill: white;
+  height: 5rem;
+  opacity: 20%;
 }
 
 ol#poke-grid li div {
@@ -76,5 +94,19 @@ ol#poke-grid li div[name="pokeId"] {
 
 ol#poke-grid li div[name="pokeName"] {
   font-weight: bold;
+}
+
+ol#poke-grid li div[name="pokeTypes"] {
+  margin: 0.5rem 0;
+}
+
+ol#poke-grid li div[name="pokeTypes"] div {
+  font-size: 0.75rem;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem;
+  font-weight: bold;
+  width: 5rem;
+  text-align: center;
 }
 /*# sourceMappingURL=style.css.map */

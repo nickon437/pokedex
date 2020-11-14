@@ -1,7 +1,8 @@
 {
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jquery": true
     },
     "extends": [
         "airbnb-base"
@@ -15,5 +16,8 @@
         "@typescript-eslint"
     ],
     "rules": {
+        "linebreak-style": "off",
+        "no-console": "warn",
+        "no-plusplus": "off"
     }
 }

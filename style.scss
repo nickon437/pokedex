@@ -30,6 +30,17 @@ html, body, #root {
   gap: 0.5rem;
 }
 
+header {
+  height: 6rem;
+  width: 100%;
+  // background-color: #ef5350;
+  background-color: white;
+  box-shadow: 0 0 5px grey;
+  padding: 1rem 3rem;
+  font-size: 3rem;
+  font-weight: bold;
+}
+
 ol#poke-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
@@ -82,6 +93,7 @@ ol#poke-grid {
     }
     
     div[name="pokeId"] {
+      font-size: 1.5rem;
       font-family: 'Nova Mono';
     }
     

@@ -98,8 +98,7 @@ ol#poke-grid li img[name="pokemon"] {
   right: 10%;
 }
 
-ol#poke-grid li div[name="background-patterns"] img[name="pokeball"] {
-  position: absolute;
+ol#poke-grid li img[name="pokeball"] {
   height: 20rem;
   bottom: -5rem;
   right: -5rem;
@@ -108,8 +107,7 @@ ol#poke-grid li div[name="background-patterns"] img[name="pokeball"] {
           transform: rotate(10deg);
 }
 
-ol#poke-grid li div[name="background-patterns"] svg[name="dots-1"] {
-  position: absolute;
+ol#poke-grid li svg[name="dots-1"] {
   bottom: 0.5rem;
   left: 0.5rem;
   -webkit-transform: rotate(90deg);
@@ -126,9 +124,9 @@ div#detail-view {
 div#detail-view #overview {
   height: 20rem;
   width: 100%;
-  background-color: coral;
+  background-color: #ef5350;
   position: relative;
-  color: #202020;
+  color: white;
 }
 
 div#detail-view #overview img {
@@ -136,6 +134,24 @@ div#detail-view #overview img {
   height: 25rem;
   bottom: -5rem;
   left: 10%;
+}
+
+div#detail-view #overview img[name="pokeball"] {
+  height: 25rem;
+  opacity: 0.4;
+}
+
+div#detail-view #overview svg[name="dots-1"] {
+  right: 1rem;
+  fill: white;
+  opacity: 0.2;
+}
+
+div#detail-view #overview svg[name="dots-2"] {
+  fill: white;
+  opacity: 0.15;
+  height: 20rem;
+  right: 40%;
 }
 
 @media screen and (max-width: 1000px) {
@@ -154,5 +170,18 @@ div#detail-view #overview div[name="basic-data"] {
   position: absolute;
   right: 10%;
   padding: 5rem;
+}
+
+.background-patterns {
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  overflow: none;
+}
+
+.background-patterns * {
+  position: absolute;
 }
 /*# sourceMappingURL=style.css.map */

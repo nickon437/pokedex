@@ -15,7 +15,7 @@ var fetchPokemon = function () {
                 zeros += '0';
             }
             var pokeId = "#" + zeros + data.id;
-            return "<li>\n          <img src=\"" + data.sprites.other['official-artwork'].front_default + "\" />\n          <div name=\"pokeId\">" + pokeId + "</div>\n          <div name=\"pokeName\">" + (data.name.charAt(0).toUpperCase() + data.name.slice(1)) + "</div>\n      </li>";
+            return "<li>\n          <img src=\"./resources/img/pokeball.svg\" name=\"pokeball\"/>\n          <img src=\"" + data.sprites.other['official-artwork'].front_default + "\" name=\"pokemon\"/>\n          <div name=\"pokeId\">" + pokeId + "</div>\n          <div name=\"pokeName\">" + (data.name.charAt(0).toUpperCase() + data.name.slice(1)) + "</div>\n          <div name=\"types\">\n            <div></div>\n            <div></div>\n          </div>\n      </li>";
         });
         $('ol#poke-grid').html(pokeData.join(''));
     });

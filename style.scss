@@ -38,15 +38,25 @@ ol#poke-grid {
     background-color: #ef5350;
     color: white;
     padding: 2rem 10%;
-    border-radius: 7px;
+    border-radius: 10px;
     height: 15rem;
     position: relative;
+    overflow: hidden;
 
-    img {
+    img[name="pokemon"] {
       position: absolute;
       height: 10rem;
       bottom: 1rem;
       right: 10%;
+    }
+
+    img[name="pokeball"] {
+      position: absolute;
+      height: 20rem;
+      bottom: -5rem;
+      right: -5rem;
+      opacity: 40%;
+      transform: rotate(10deg);
     }
     
     div {

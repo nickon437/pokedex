@@ -43,16 +43,27 @@ ol#poke-grid li {
   background-color: #ef5350;
   color: white;
   padding: 2rem 10%;
-  border-radius: 7px;
+  border-radius: 10px;
   height: 15rem;
   position: relative;
+  overflow: hidden;
 }
 
-ol#poke-grid li img {
+ol#poke-grid li img[name="pokemon"] {
   position: absolute;
   height: 10rem;
   bottom: 1rem;
   right: 10%;
+}
+
+ol#poke-grid li img[name="pokeball"] {
+  position: absolute;
+  height: 20rem;
+  bottom: -5rem;
+  right: -5rem;
+  opacity: 40%;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
 }
 
 ol#poke-grid li div {

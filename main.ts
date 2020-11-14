@@ -18,9 +18,14 @@ const fetchPokemon = () => {
 
       const pokeId = `#${zeros}${data.id}`;
       return `<li>
-          <img src="${data.sprites.other['official-artwork'].front_default}" />
+          <img src="./resources/img/pokeball.svg" name="pokeball"/>
+          <img src="${data.sprites.other['official-artwork'].front_default}" name="pokemon"/>
           <div name="pokeId">${pokeId}</div>
           <div name="pokeName">${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
+          <div name="types">
+            <div></div>
+            <div></div>
+          </div>
       </li>`;
     });
     $('ol#poke-grid').html(pokeData.join(''));

@@ -14,7 +14,7 @@ var DetailView = function () {
         for (var i = 0; i < data.types.length; i++) {
             types += "<div>" + data.types[i].type.name.toUpperCase() + "</div>";
         }
-        var detailHtml = "\n        <div id=\"overview\">\n          <img src=\"" + data.sprites.other['official-artwork'].front_default + "\"></img>\n          <div name=\"basic-data\">\n            <div name=\"pokeId\">" + pokeId + "</div>\n              <div name=\"pokeName\">" + (data.name.charAt(0).toUpperCase() + data.name.slice(1)) + "</div>\n              <div name=\"pokeTypes\" class=\"hflex\">\n                " + types + "\n              </div>\n            </div>\n          </div>\n        </div>\n      ";
+        var detailHtml = "\n        <div id=\"overview\">\n          <img src=\"" + data.sprites.other['official-artwork'].front_default + "\"></img>\n          <div name=\"basic-data\">\n            <div class=\"pokeId\">" + pokeId + "</div>\n              <div class=\"pokeName\">" + (data.name.charAt(0).toUpperCase() + data.name.slice(1)) + "</div>\n              <div class=\"pokeTypes hflex\">\n                " + types + "\n              </div>\n            </div>\n          </div>\n        </div>\n      ";
         $('#detail-view').html(detailHtml);
     });
 };

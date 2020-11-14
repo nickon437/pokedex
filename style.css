@@ -124,17 +124,30 @@ div#detail-view {
 }
 
 div#detail-view #overview {
-  height: 15rem;
+  height: 20rem;
   width: 100%;
   background-color: coral;
   position: relative;
+  color: #202020;
 }
 
 div#detail-view #overview img {
   position: absolute;
-  height: 15rem;
-  bottom: -3rem;
+  height: 25rem;
+  bottom: -5rem;
   left: 10%;
+}
+
+@media screen and (max-width: 1000px) {
+  div#detail-view #overview img {
+    height: 35vw;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  div#detail-view #overview img {
+    height: 13rem;
+  }
 }
 
 div#detail-view #overview div[name="basic-data"] {

@@ -18,9 +18,9 @@ const DetailView = () => {
         <div id="overview">
           <img src="${data.sprites.other['official-artwork'].front_default}"></img>
           <div name="basic-data">
-            <div name="pokeId">${pokeId}</div>
-              <div name="pokeName">${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
-              <div name="pokeTypes" class="hflex">
+            <div class="pokeId">${pokeId}</div>
+              <div class="pokeName">${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
+              <div class="pokeTypes hflex">
                 ${types}
               </div>
             </div>

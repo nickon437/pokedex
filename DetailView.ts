@@ -1,6 +1,6 @@
-const DetailView = () => {
+const DetailView = (id: Number) => {
   console.log('detail');
-  const BASE_URL = `https://pokeapi.co/api/v2/pokemon/${3}`;
+  const BASE_URL = `https://pokeapi.co/api/v2/pokemon/${id}`;
   fetch(BASE_URL)
     .then((result) => result.json())
     .then((data) => {
@@ -48,4 +48,4 @@ const DetailView = () => {
     });
 };
 
-DetailView();
+export default DetailView;

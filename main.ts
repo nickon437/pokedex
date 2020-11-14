@@ -1,3 +1,5 @@
+import DetailView from './DetailView.js';
+
 const fetchPokemon = () => {
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
   const NUM_OF_POKEMON = 3;
@@ -7,6 +9,7 @@ const fetchPokemon = () => {
     const pokemonUrl = BASE_URL + i;
     promises.push(fetch(pokemonUrl).then((result) => result.json()));
   }
+
 
   Promise.all(promises).then((results) => {
     const pokeData = results.map((data) => {
@@ -21,6 +24,7 @@ const fetchPokemon = () => {
       }
 
       const pokeId = `#${zeros}${data.id}`;
+      // return `<li onclick="DetailView(${data.id})">
       return `<li>
           <div class="background-patterns" name="background-patterns">
             <img src="./resources/img/pokeball.svg" name="pokeball"/>
@@ -39,6 +43,11 @@ const fetchPokemon = () => {
       </li>`;
     });
     $('ol#poke-grid').html(pokeData.join(''));
+
+    const listItems = $('ol#poke-grid > li');
+    for (let i = 0; i < listItems.length; i++) {
+      listItems[i].onclick = () => DetailView(i+1);
+    }
   });
 };
 

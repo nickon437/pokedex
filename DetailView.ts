@@ -1,6 +1,6 @@
 const DetailView = () => {
   console.log('detail');
-  const BASE_URL = `https://pokeapi.co/api/v2/pokemon/${1}`;
+  const BASE_URL = `https://pokeapi.co/api/v2/pokemon/${3}`;
   fetch(BASE_URL)
     .then((result) => result.json())
     .then((data) => {
@@ -30,7 +30,7 @@ const DetailView = () => {
             </svg>
 
           </div>
-          <img src="${data.sprites.other['official-artwork'].front_default}"></img>
+          <img src="${data.sprites.other['official-artwork'].front_default}" name="pokemon"></img>
           <div name="basic-data">
             <div class="pokeId">${pokeId}</div>
             <div class="pokeName">${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
@@ -38,7 +38,11 @@ const DetailView = () => {
               ${types}
             </div>
           </div>
-        </div>
+          
+          </div>
+          <div id="detail-data">
+          
+          </div>
       `;
       $('#detail-view').html(detailHtml);
     });

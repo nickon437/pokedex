@@ -119,17 +119,24 @@ ol#poke-grid li svg[name="dots-1"] {
 
 div#detail-view {
   padding: 5% 10%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  background-color: #ef5350;
 }
 
 div#detail-view #overview {
   height: 20rem;
   width: 100%;
-  background-color: #ef5350;
   position: relative;
   color: white;
 }
 
-div#detail-view #overview img {
+div#detail-view #overview img[name="pokemon"] {
   position: absolute;
   height: 25rem;
   bottom: -5rem;
@@ -155,13 +162,13 @@ div#detail-view #overview svg[name="dots-2"] {
 }
 
 @media screen and (max-width: 1000px) {
-  div#detail-view #overview img {
-    height: 35vw;
+  div#detail-view #overview img[name="pokemon"] {
+    height: 40vw;
   }
 }
 
-@media screen and (max-width: 750px) {
-  div#detail-view #overview img {
+@media screen and (max-width: 500px) {
+  div#detail-view #overview img[name="pokemon"] {
     height: 13rem;
   }
 }
@@ -170,6 +177,10 @@ div#detail-view #overview div[name="basic-data"] {
   position: absolute;
   right: 10%;
   padding: 5rem;
+}
+
+img[name="pokemon"] {
+  z-index: 10;
 }
 
 .background-patterns {
@@ -183,5 +194,12 @@ div#detail-view #overview div[name="basic-data"] {
 
 .background-patterns * {
   position: absolute;
+}
+
+#detail-data {
+  height: 10rem;
+  background-color: white;
+  border-radius: 20px;
+  z-index: 5;
 }
 /*# sourceMappingURL=style.css.map */

@@ -39,7 +39,7 @@ const fetchPokemon = () => {
         $('ol#poke-grid').html(pokeData.join(''));
         const listItems = $('ol#poke-grid > li');
         for (let i = 0; i < listItems.length; i++) {
-            listItems[i].onclick = () => DetailView(i + 1);
+            listItems[i].onclick = () => DetailView(results[i]);
         }
     });
 };

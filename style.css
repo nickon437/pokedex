@@ -81,6 +81,19 @@ ol#poke-grid {
   padding: 5%;
 }
 
+@media screen and (max-width: 500px) {
+  ol#poke-grid {
+    -ms-grid-columns: (1fr)[1];
+        grid-template-columns: repeat(1, 1fr);
+  }
+  ol#poke-grid .pokeTypes.hflex {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+}
+
 ol#poke-grid li {
   background-color: #ef5350;
   color: white;
@@ -89,6 +102,12 @@ ol#poke-grid li {
   height: 15rem;
   position: relative;
   overflow: hidden;
+  cursor: pointer;
+}
+
+ol#poke-grid li:hover {
+  -webkit-filter: brightness(0.9);
+          filter: brightness(0.9);
 }
 
 ol#poke-grid li img[name="pokemon"] {

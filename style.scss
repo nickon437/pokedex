@@ -74,6 +74,16 @@ ol#poke-grid {
   margin: 0;
   padding: 5%;
 
+  
+  @media screen and (max-width: 500px) {
+    grid-template-columns: repeat(1, 1fr);
+
+    .pokeTypes.hflex {
+      flex-direction: column;
+    }
+
+  }
+
   li {
     background-color: #ef5350;
     color: white;
@@ -82,6 +92,12 @@ ol#poke-grid {
     height: 15rem;
     position: relative;
     overflow: hidden;
+    cursor: pointer;
+
+    &:hover {
+      // opacity: 0.9;
+      filter: brightness(0.9);
+    }
 
     img[name="pokemon"] {
       position: absolute;

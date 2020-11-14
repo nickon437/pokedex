@@ -10,7 +10,6 @@ const fetchPokemon = () => {
     promises.push(fetch(pokemonUrl).then((result) => result.json()));
   }
 
-
   Promise.all(promises).then((results) => {
     const pokeData = results.map((data) => {
       let zeros = '';
@@ -46,7 +45,7 @@ const fetchPokemon = () => {
 
     const listItems = $('ol#poke-grid > li');
     for (let i = 0; i < listItems.length; i++) {
-      listItems[i].onclick = () => DetailView(i+1);
+      listItems[i].onclick = () => DetailView(results[i]);
     }
   });
 };

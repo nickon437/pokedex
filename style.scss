@@ -33,12 +33,36 @@ html, body, #root {
 header {
   height: 6rem;
   width: 100%;
-  // background-color: #ef5350;
   background-color: white;
   box-shadow: 0 0 5px grey;
-  padding: 1rem 3rem;
+  padding: 1rem 5%;
   font-size: 3rem;
   font-weight: bold;
+}
+
+
+    
+.pokeId {
+  font-size: 1.5rem;
+  font-family: 'Nova Mono';
+}
+
+.pokeName {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.pokeTypes {
+  margin: 0.5rem 0;
+  div {
+    font-size: 0.75rem;
+    border-radius: 30px;
+    background-color: rgba($color: #fff, $alpha: 0.5);
+    padding: 0.5rem;
+    font-weight: bold;
+    width: 5rem;
+    text-align: center;
+  }
 }
 
 ol#poke-grid {
@@ -48,7 +72,7 @@ ol#poke-grid {
   gap: 2rem;
   list-style-type: none;
   margin: 0;
-  padding: 3rem;
+  padding: 5%;
 
   li {
     background-color: #ef5350;
@@ -75,6 +99,7 @@ ol#poke-grid {
         opacity: 40%;
         transform: rotate(10deg);
       }
+
       svg[name="dots-1"] {
         position: absolute;
         bottom: 0.5rem;
@@ -83,37 +108,32 @@ ol#poke-grid {
         fill: white;
         height: 5rem;
         opacity: 20%;
-        // background-color: white;
       }
     }
-    
-    div {
-      font-size: 1.75rem;
-      // font-family: 'Nova Mono';
-    }
-    
-    div[name="pokeId"] {
-      font-size: 1.5rem;
-      font-family: 'Nova Mono';
-    }
-    
-    div[name="pokeName"] {
-      font-weight: bold;
-      // font-size: 'Roboto';
-      
+  }
+}
+
+div#detail-view {
+  padding: 5% 10%;
+
+  #overview {
+    height: 15rem;
+    width: 100%;
+    background-color: coral;
+    position: relative;
+
+    img {
+      position: absolute;
+      height: 15rem;
+      bottom: -3rem;
+      left: 10%;
     }
 
-    div[name="pokeTypes"] {
-      margin: 0.5rem 0;
-      div {
-        font-size: 0.75rem;
-        border-radius: 30px;
-        background-color: rgba($color: #fff, $alpha: 0.5);
-        padding: 0.5rem;
-        font-weight: bold;
-        width: 5rem;
-        text-align: center;
-      }
+    div[name="basic-data"] {
+      position: absolute;
+      right: 10%;
+      padding: 5rem;
+
     }
   }
 }

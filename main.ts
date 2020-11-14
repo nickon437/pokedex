@@ -1,6 +1,6 @@
 const fetchPokemon = () => {
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-  const NUM_OF_POKEMON = 10;
+  const NUM_OF_POKEMON = 3;
   const promises = [];
 
   for (let i = 1; i <= NUM_OF_POKEMON; i++) {
@@ -31,9 +31,9 @@ const fetchPokemon = () => {
             </svg>
           </div>
           <img src="${data.sprites.other['official-artwork'].front_default}" name="pokemon"/>
-          <div name="pokeId">${pokeId}</div>
-          <div name="pokeName">${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
-          <div name="pokeTypes" class="hflex">
+          <div name="pokeId" class="pokeId">${pokeId}</div>
+          <div name="pokeName" class="pokeName">${data.name.charAt(0).toUpperCase() + data.name.slice(1)}</div>
+          <div name="pokeTypes" class="pokeTypes hflex">
             ${types}
           </div>
       </li>`;

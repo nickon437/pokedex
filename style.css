@@ -39,9 +39,33 @@ header {
   background-color: white;
   -webkit-box-shadow: 0 0 5px grey;
           box-shadow: 0 0 5px grey;
-  padding: 1rem 3rem;
+  padding: 1rem 5%;
   font-size: 3rem;
   font-weight: bold;
+}
+
+.pokeId {
+  font-size: 1.5rem;
+  font-family: 'Nova Mono';
+}
+
+.pokeName {
+  font-size: 1.75rem;
+  font-weight: bold;
+}
+
+.pokeTypes {
+  margin: 0.5rem 0;
+}
+
+.pokeTypes div {
+  font-size: 0.75rem;
+  border-radius: 30px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 0.5rem;
+  font-weight: bold;
+  width: 5rem;
+  text-align: center;
 }
 
 ol#poke-grid {
@@ -54,7 +78,7 @@ ol#poke-grid {
   gap: 2rem;
   list-style-type: none;
   margin: 0;
-  padding: 3rem;
+  padding: 5%;
 }
 
 ol#poke-grid li {
@@ -95,30 +119,27 @@ ol#poke-grid li div[name="background-patterns"] svg[name="dots-1"] {
   opacity: 20%;
 }
 
-ol#poke-grid li div {
-  font-size: 1.75rem;
+div#detail-view {
+  padding: 5% 10%;
 }
 
-ol#poke-grid li div[name="pokeId"] {
-  font-size: 1.5rem;
-  font-family: 'Nova Mono';
+div#detail-view #overview {
+  height: 15rem;
+  width: 100%;
+  background-color: coral;
+  position: relative;
 }
 
-ol#poke-grid li div[name="pokeName"] {
-  font-weight: bold;
+div#detail-view #overview img {
+  position: absolute;
+  height: 15rem;
+  bottom: -3rem;
+  left: 10%;
 }
 
-ol#poke-grid li div[name="pokeTypes"] {
-  margin: 0.5rem 0;
-}
-
-ol#poke-grid li div[name="pokeTypes"] div {
-  font-size: 0.75rem;
-  border-radius: 30px;
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 0.5rem;
-  font-weight: bold;
-  width: 5rem;
-  text-align: center;
+div#detail-view #overview div[name="basic-data"] {
+  position: absolute;
+  right: 10%;
+  padding: 5rem;
 }
 /*# sourceMappingURL=style.css.map */

@@ -260,4 +260,10 @@ img[name="pokemon"] {
   width: 100%;
   border-radius: 50px;
 }
+
+.progress-bar-container .progress-bar div {
+  background-color: cornflowerblue;
+  height: 100%;
+  border-radius: inherit;
+}
 /*# sourceMappingURL=style.css.map */

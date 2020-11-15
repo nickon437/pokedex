@@ -46,7 +46,7 @@ const DetailView = async (pkm) => {
       <div class="label">${codifyStatName(pkm.stats[i].stat.name)}</div>
       <div class="figure">${baseStat}</div>
       <div class="progress-bar">
-        <div style="width: ${baseStat / 255}"></div>
+        <div style="width: ${(baseStat / 255) * 100}%"></div>
       </div>`;
     totalStat += baseStat;
   }

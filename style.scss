@@ -243,5 +243,11 @@ img[name="pokemon"] {
     height: 1rem;
     width: 100%;
     border-radius: 50px;
+
+    div {
+      background-color: cornflowerblue; 
+      height: 100%;
+      border-radius: inherit;
+    }
   }
 }

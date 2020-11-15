@@ -28,12 +28,6 @@ const DetailView = async (pkm) => {
     }
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pkm.id}`;
     const pkmSpecies = await fetch(pokemonSpeciesUrl).then((result) => result.json());
-    console.log(pkmSpecies);
-    console.log(pkm);
-    // console.log('end', res);
-    // const pokemonStatUrl = `https://pokeapi.co/api/v2/stat/${pkm.id}`;
-    // const pkmStat = await fetch(pokemonStatUrl).then((result) => result.json());
-    // console.log(pkmStat);
     let statHtml = '';
     let totalStat = 0;
     for (let i = 0; i < pkm.stats.length; i++) {

@@ -185,13 +185,8 @@ div#detail-view #overview svg[name="dots-2"] {
 
 @media screen and (max-width: 1000px) {
   div#detail-view #overview img[name="pokemon"] {
-    height: 40vw;
-  }
-}
-
-@media screen and (max-width: 500px) {
-  div#detail-view #overview img[name="pokemon"] {
-    height: 13rem;
+    height: 35vw;
+    min-height: 13rem;
   }
 }
 
@@ -222,7 +217,21 @@ img[name="pokemon"] {
   background-color: white;
   border-radius: 20px;
   z-index: 5;
-  padding: 5%;
+  padding: 5rem 5%;
+}
+
+#detail-data .progress-bar-container {
+  -ms-grid-columns: (max-content max-content auto)[2];
+      grid-template-columns: repeat(2, -webkit-max-content -webkit-max-content auto);
+      grid-template-columns: repeat(2, max-content max-content auto);
+}
+
+@media screen and (max-width: 500px) {
+  #detail-data .progress-bar-container {
+    -ms-grid-columns: max-content max-content auto;
+        grid-template-columns: -webkit-max-content -webkit-max-content auto;
+        grid-template-columns: max-content max-content auto;
+  }
 }
 
 .progress-bar-container {
@@ -237,13 +246,18 @@ img[name="pokemon"] {
           column-gap: 1rem;
 }
 
+.progress-bar-container .label {
+  font-weight: 600;
+}
+
 .progress-bar-container .figure {
   text-align: right;
 }
 
 .progress-bar-container .progress-bar {
-  background-color: #aaa;
+  background-color: #e6e6e6;
   height: 1rem;
   width: 100%;
+  border-radius: 50px;
 }
 /*# sourceMappingURL=style.css.map */

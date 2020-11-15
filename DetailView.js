@@ -1,3 +1,21 @@
+const codifyStatName = (name) => {
+    switch (name) {
+        case 'hp':
+            return 'HP';
+        case 'attack':
+            return 'ATK';
+        case 'defense':
+            return 'DEF';
+        case 'special-attack':
+            return 'SPA';
+        case 'special-defense':
+            return 'SPD';
+        case 'speed':
+            return 'SPE';
+        default:
+            return 'UNKNOWN';
+    }
+};
 const DetailView = async (pkm) => {
     let zeros = '';
     for (let i = 0; i < 3 - pkm.id.toString().length; i++) {
@@ -17,13 +35,16 @@ const DetailView = async (pkm) => {
     // const pkmStat = await fetch(pokemonStatUrl).then((result) => result.json());
     // console.log(pkmStat);
     let statHtml = '';
+    let totalStat = 0;
     for (let i = 0; i < pkm.stats.length; i++) {
+        const baseStat = pkm.stats[i].base_stat;
         statHtml += `
-      <div class="label">${pkm.stats[i].stat.name.toUpperCase()}</div>
-      <div class="figure">${pkm.stats[i].base_stat}</div>
+      <div class="label">${codifyStatName(pkm.stats[i].stat.name)}</div>
+      <div class="figure">${baseStat}</div>
       <div class="progress-bar">
-        <div style="width: ${pkm.stats[i].base_stat / 255}"></div>
+        <div style="width: ${baseStat / 255}"></div>
       </div>`;
+        totalStat += baseStat;
     }
     const detailHtml = `
     <div id="overview">
@@ -42,12 +63,12 @@ const DetailView = async (pkm) => {
     <div id="detail-data">
       <h2>Pokedex entry</h2>
       <div>${pkmSpecies.flavor_text_entries[0].flavor_text}</div>
-      <div>Stats</div>
+      <h2>Stats</h2>
       <div class="progress-bar-container">
         ${statHtml}
+        <div class="label">TOTAL</div>
+        <div class="figure">${totalStat}</div>
       </div>
-      <div>Attack</div>
-      <div>${pkm.stats[1].base_stat}</div>
     </div>`;
     $('#detail-view').html(detailHtml);
 };

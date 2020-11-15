@@ -11,18 +11,18 @@ const fetchPokemon = async () => {
   }
 
   const pokemons = await Promise.all(promises);
-  const pokeData = pokemons.map((pokemon) => {
+  const pokeData = pokemons.map((pkm) => {
     let zeros = '';
-    for (let i = 0; i < 3 - pokemon.id.toString().length; i++) {
+    for (let i = 0; i < 3 - pkm.id.toString().length; i++) {
       zeros += '0';
     }
 
     let types = '';
-    for (let i = 0; i < pokemon.types.length; i++) {
-      types += `<div>${pokemon.types[i].type.name.toUpperCase()}</div>`;
+    for (let i = 0; i < pkm.types.length; i++) {
+      types += `<div>${pkm.types[i].type.name.toUpperCase()}</div>`;
     }
 
-    const pokeId = `#${zeros}${pokemon.id}`;
+    const pokeId = `#${zeros}${pkm.id}`;
     return `<li>
           <div class="background-patterns" name="background-patterns">
             <img src="./resources/img/pokeball.svg" name="pokeball"/>
@@ -32,9 +32,9 @@ const fetchPokemon = async () => {
               <path d="M36.981,41.336c0-2.425,1.968-4.393,4.393-4.393l0,0c2.434,0,4.393,1.968,4.393,4.393l0,0    c0,2.425-1.959,4.393-4.393,4.393l0,0C38.95,45.73,36.981,43.762,36.981,41.336z M0,41.336c0-2.425,1.968-4.393,4.393-4.393l0,0    c2.434,0,4.393,1.968,4.393,4.393l0,0c0,2.425-1.959,4.393-4.393,4.393l0,0C1.968,45.73,0,43.762,0,41.336z M36.981,29.034    c0-2.425,1.968-4.393,4.393-4.393l0,0c2.434,0,4.393,1.968,4.393,4.393l0,0c0,2.425-1.959,4.393-4.393,4.393l0,0    C38.95,33.428,36.981,31.46,36.981,29.034z"/>
             </svg>
           </div>
-          <img src="${pokemon.sprites.other['official-artwork'].front_default}" name="pokemon"/>
+          <img src="${pkm.sprites.other['official-artwork'].front_default}" name="pokemon"/>
           <div name="pokeId" class="pokeId">${pokeId}</div>
-          <div name="pokeName" class="pokeName">${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}</div>
+          <div name="pokeName" class="pokeName">${pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
           <div name="pokeTypes" class="pokeTypes hflex">
             ${types}
           </div>

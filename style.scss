@@ -169,14 +169,15 @@ div#detail-view {
 
     @media screen and (max-width: 1000px) {
         img[name="pokemon"] {
-          height: 40vw;
+          height: 35vw;
+          min-height: 13rem;;
         }
     }
-    @media screen and (max-width: 500px) {
-        img[name="pokemon"] {
-          height: 13rem;
-        }
-    }
+    // @media screen and (max-width: 500px) {
+    //     img[name="pokemon"] {
+    //       height: 13rem;
+    //     }
+    // }
 
     div[name="basic-data"] {
       position: absolute;
@@ -209,7 +210,18 @@ img[name="pokemon"] {
   background-color: white;
   border-radius: 20px;
   z-index: 5;
-  padding: 5%;
+  padding: 5rem 5%;
+
+  .progress-bar-container {
+    grid-template-columns: repeat(2, max-content max-content auto);
+
+  }
+      @media screen and (max-width: 500px) {
+        .progress-bar-container {
+          // background-color: red;
+          grid-template-columns: max-content max-content auto;
+        }
+      }
 }
 
 .progress-bar-container {
@@ -218,14 +230,18 @@ img[name="pokemon"] {
   grid-template-rows: auto;
   column-gap: 1rem;
 
+  .label {
+    font-weight: 600;
+  }
 
   .figure {
     text-align: right;
   }
 
   .progress-bar {
-    background-color: #aaa;
+    background-color: rgba($color: #e6e6e6, $alpha: 1.0);
     height: 1rem;
     width: 100%;
+    border-radius: 50px;
   }
 }

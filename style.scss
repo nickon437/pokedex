@@ -40,6 +40,10 @@ header {
   font-weight: bold;
 }
 
+#main {
+
+}
+
 .pokeId {
   font-size: 1.5rem;
   font-family: 'Nova Mono';
@@ -119,6 +123,57 @@ ol#poke-grid {
       opacity: 20%;
     }
   }
+}
+
+#main.split-view {
+  ol#poke-grid {
+    display: none;
+  }
+
+  ol#poke-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    // gap: 0.25rem;
+    width: 3rem;
+    // background-color: darkblue;;
+
+    li {
+      font-size: 1rem;
+      align-items: center;
+      padding: 0.25rem 0;
+      border-top: 1px solid #aba;
+      cursor: pointer;
+
+      &:first-child {
+        border: none;
+      }
+      
+      .pokeName, .pokeId {
+        font-size: 1rem;
+        font-weight: normal;
+        font-family: 'Nova Mono';;
+      }
+      
+      // .pokeTypes {
+      //   margin: 0;
+      //   div {
+      //     padding: 0.25rem;
+      //   }
+      // }
+      
+      // img {
+        // background-color: #ef5350;
+        // height: 5rem;
+        // border-radius: 50%;
+      // }
+
+    }
+
+  }
+
 }
 
 div#detail-view {

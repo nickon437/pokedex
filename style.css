@@ -136,6 +136,44 @@ ol#poke-grid li svg[name="dots-1"] {
   opacity: 20%;
 }
 
+#main.split-view ol#poke-grid {
+  display: none;
+}
+
+#main.split-view ol#poke-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.25rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 3rem;
+}
+
+#main.split-view ol#poke-list li {
+  font-size: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.25rem 0;
+  border-top: 1px solid #aba;
+  cursor: pointer;
+}
+
+#main.split-view ol#poke-list li:first-child {
+  border: none;
+}
+
+#main.split-view ol#poke-list li .pokeName, #main.split-view ol#poke-list li .pokeId {
+  font-size: 1rem;
+  font-weight: normal;
+  font-family: 'Nova Mono';
+}
+
 div#detail-view {
   padding: 5% 10%;
   display: -webkit-box;

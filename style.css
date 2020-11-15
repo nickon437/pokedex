@@ -42,6 +42,7 @@ header {
   padding: 1rem 5%;
   font-size: 3rem;
   font-weight: bold;
+  z-index: 50;
 }
 
 .pokeId {
@@ -136,6 +137,13 @@ ol#poke-grid li svg[name="dots-1"] {
   opacity: 20%;
 }
 
+#main.split-view {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+}
+
 #main.split-view ol#poke-grid {
   display: none;
 }
@@ -151,20 +159,35 @@ ol#poke-grid li svg[name="dots-1"] {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  width: 3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  overflow-y: scroll;
+  -webkit-box-shadow: 0 5px 5px #2a2a2a;
+          box-shadow: 0 5px 5px #2a2a2a;
+  z-index: 20;
+}
+
+#main.split-view ol#poke-list:hover .pokeOverview {
+  display: block;
 }
 
 #main.split-view ol#poke-list li {
   font-size: 1rem;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 0.25rem 0;
-  border-top: 1px solid #aba;
+  margin: 0.25rem 0;
   cursor: pointer;
 }
 
-#main.split-view ol#poke-list li:first-child {
+#main.split-view ol#poke-list li > div {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  border-top: 1px solid #5a5a5a;
+}
+
+#main.split-view ol#poke-list li:first-child > div {
   border: none;
 }
 
@@ -172,6 +195,15 @@ ol#poke-grid li svg[name="dots-1"] {
   font-size: 1rem;
   font-weight: normal;
   font-family: 'Nova Mono';
+}
+
+#main.split-view ol#poke-list li .pokeOverview {
+  display: none;
+}
+
+#main.split-view div#detail-view {
+  margin-left: 3rem;
+  height: 100%;
 }
 
 div#detail-view {

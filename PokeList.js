@@ -12,12 +12,14 @@ const PokeList = (pokemons) => {
         for (let i = 0; i < pkm.types.length; i++) {
             types += `<div>${pkm.types[i].type.name.toUpperCase()}</div>`;
         }
-        return `<li class="hflex">
-      <img src="${pkm.sprites.versions['generation-vii'].icons.front_default}" name="pokemon"/>
-      <div class="pokeOverview">
-        <div class="hflex">
-          <div name="pokeId" class="pokeId">${pokeId}</div>
-          <div name="pokeName" class="pokeName">${pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
+        return `<li>
+      <div class="hflex" name="info-container">
+        <img src="${pkm.sprites.versions['generation-vii'].icons.front_default}" name="pokemon"/>
+        <div class="pokeOverview">
+          <div class="hflex">
+            <div name="pokeId" class="pokeId">${pokeId}</div>
+            <div name="pokeName" class="pokeName">${pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
+          </div>
         </div>
       </div>
     </li>`;

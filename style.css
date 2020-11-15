@@ -146,6 +146,7 @@ div#detail-view {
       -ms-flex-direction: column;
           flex-direction: column;
   background-color: #ef5350;
+  width: 100%;
 }
 
 div#detail-view #overview {
@@ -165,6 +166,8 @@ div#detail-view #overview img[name="pokemon"] {
 div#detail-view #overview img[name="pokeball"] {
   height: 25rem;
   opacity: 0.4;
+  -webkit-transform: rotate(10deg);
+          transform: rotate(10deg);
 }
 
 div#detail-view #overview svg[name="dots-1"] {
@@ -216,9 +219,31 @@ img[name="pokemon"] {
 }
 
 #detail-data {
-  height: 10rem;
   background-color: white;
   border-radius: 20px;
   z-index: 5;
+  padding: 5%;
+}
+
+.progress-bar-container {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: max-content max-content auto;
+      grid-template-columns: -webkit-max-content -webkit-max-content auto;
+      grid-template-columns: max-content max-content auto;
+  -ms-grid-rows: auto;
+      grid-template-rows: auto;
+  -webkit-column-gap: 1rem;
+          column-gap: 1rem;
+}
+
+.progress-bar-container .figure {
+  text-align: right;
+}
+
+.progress-bar-container .progress-bar {
+  background-color: #aaa;
+  height: 1rem;
+  width: 100%;
 }
 /*# sourceMappingURL=style.css.map */

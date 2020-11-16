@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nova+Mono&family=Open+Sans:wght@400;600;700;800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap');
 
+$primary-red: #ef5350;
+
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
@@ -38,6 +40,238 @@ header {
   padding: 1rem 5%;
   font-size: 3rem;
   font-weight: bold;
+  z-index: 50;
+}
+
+@keyframes slide-left-to-right {
+  75% {
+    transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-right-to-left {
+  0% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+#main {
+  position: relative;
+
+  ol#poke-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+    grid-template-rows: auto;
+    gap: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 5%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    
+    @media screen and (max-width: 500px) {
+      grid-template-columns: repeat(1, 1fr);
+
+      .pokeTypes.hflex {
+        flex-direction: column;
+      }
+    }
+
+    li {
+      background-color: $primary-red;
+      color: white;
+      padding: 2rem 10%;
+      border-radius: 10px;
+      height: 15rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+      img[name="pokemon"] {
+        position: absolute;
+        height: 10rem;
+        bottom: 1rem;
+        right: 10%;
+      }
+      
+      img[name="pokeball"] {
+        height: 20rem;
+        bottom: -5rem;
+        right: -5rem;
+        opacity: 40%;
+        transform: rotate(10deg);
+      }
+
+      svg[name="dots-1"] {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        transform: rotate(90deg);
+        fill: white;
+        height: 5rem;
+        opacity: 20%;
+      }
+    }
+  }
+
+  ol#poke-list {
+    list-style-type: none;
+    margin: 0rem;
+    padding: 0.25rem;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
+    overflow-y: scroll;
+    
+    transform: translateX(-100%);
+    
+    box-shadow: 0 5px 5px #2a2a2a;
+    z-index: 20;
+
+    scrollbar-width: thin;
+  // scrollbar-color: #aba orange;
+
+    &:hover {
+      .pokeOverview {
+        display: block;
+      }
+    }
+    
+    li {
+      font-size: 1rem;
+      margin: 0.25rem 0;
+      cursor: pointer;
+
+      & > div {
+        align-items: center;
+        border-top: 1px solid #5a5a5a;
+      }
+
+      &:first-child > div {
+        border: none;
+      }
+      
+      .pokeName, .pokeId {
+        font-size: 1rem;
+        font-weight: normal;
+        font-family: 'Nova Mono';;
+      }
+
+      .pokeOverview {
+        display: none;
+      }
+    }
+  }
+
+  div#detail-view {
+    padding: 5% 10%;
+    display: flex;
+    flex-direction: column;
+    background-color: $primary-red;
+    width: 100%;
+    height: 100%;
+
+    
+    transform: translateX(100%);
+    // top: 0;
+    // left: 0;
+  
+    #overview {
+      height: 20rem;
+      width: 100%;
+      position: relative;
+      color: white;
+  
+      img[name="pokemon"] {
+        position: absolute;
+        height: 35vw;
+        min-height: 13rem;
+        max-height: 25rem;
+        bottom: -5rem;
+        left: 10%;
+        z-index: 10;
+      }
+  
+      img[name="pokeball"] {
+        height: 25rem;
+        opacity: 0.4;
+        transform: rotate(10deg);
+      }
+  
+      svg[name="dots-1"] {
+        right: 1rem;
+        fill: white;
+        opacity: 0.2;
+      }
+  
+      svg[name="dots-2"] {
+        fill: white;
+        opacity: 0.15;
+        height: 20rem;
+        right: 40%;
+      }
+  
+      div[name="basic-data"] {
+        position: absolute;
+        right: 10%;
+        padding: 5rem;
+      }
+
+      button[name="cancel-btn"] {
+        top: 0;
+        right: 0;
+        height: 2rem;
+        width: 2rem;
+        background-color: rgba($color: #fff, $alpha: 0.5);
+        border: none;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s linear;
+
+        &:hover {
+          background-color: rgba($color: #fff, $alpha: 0.8);
+          svg {
+            color: $primary-red;
+            opacity: 1;
+          }
+        }
+
+        svg {
+          height: 1.5rem;
+          width: 1.5rem;
+          color: white;
+          opacity: 1;
+
+        }
+      }
+    }
+  }
 }
 
 .pokeId {
@@ -63,111 +297,40 @@ header {
   }
 }
 
-ol#poke-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-  grid-template-rows: auto;
-  gap: 2rem;
-  list-style-type: none;
-  margin: 0;
-  padding: 5%;
+#main.split-view {
 
+  ol#poke-grid {
+    // transition: all 1s ease-in-out;
+    animation: slide-left-to-right 1s linear forwards;
+  }
   
-  @media screen and (max-width: 500px) {
-    grid-template-columns: repeat(1, 1fr);
-
-    .pokeTypes.hflex {
-      flex-direction: column;
-    }
+  ol#poke-list {
+    transform: translateX(0%);
+    transition: transform 1s ease-in-out;
   }
 
-  li {
-    background-color: #ef5350;
-    color: white;
-    padding: 2rem 10%;
-    border-radius: 10px;
-    height: 15rem;
-    position: relative;
-    overflow: hidden;
-    cursor: pointer;
-
-    &:hover {
-      filter: brightness(0.9);
-    }
-
-    img[name="pokemon"] {
-      position: absolute;
-      height: 10rem;
-      bottom: 1rem;
-      right: 10%;
-    }
+  div#detail-view {
+    transform: translateX(0%);
+    transition: transform 1s ease-in-out;
     
-    img[name="pokeball"] {
-      height: 20rem;
-      bottom: -5rem;
-      right: -5rem;
-      opacity: 40%;
-      transform: rotate(10deg);
-    }
-
-    svg[name="dots-1"] {
-      bottom: 0.5rem;
-      left: 0.5rem;
-      transform: rotate(90deg);
-      fill: white;
-      height: 5rem;
-      opacity: 20%;
-    }
+    margin-left: 3rem;
+    width: calc(100% - 3rem);
   }
 }
 
-div#detail-view {
-  padding: 5% 10%;
-  display: flex;
-  flex-direction: column;
-  background-color: #ef5350;
-  width: 100%;
+#main.split-view.reverse-split-view {
+  ol#poke-grid {
+    animation: slide-right-to-left 1s linear forwards;
+  }
+  
+  ol#poke-list {
+    transform: translateX(-100%);
+    transition: transform 1s ease-in-out;
+  }
 
-  #overview {
-    height: 20rem;
-    width: 100%;
-    position: relative;
-    color: white;
-
-    img[name="pokemon"] {
-      position: absolute;
-      height: 35vw;
-      min-height: 13rem;
-      max-height: 25rem;
-      bottom: -5rem;
-      left: 10%;
-      z-index: 10;
-    }
-
-    img[name="pokeball"] {
-      height: 25rem;
-      opacity: 0.4;
-      transform: rotate(10deg);
-    }
-
-    svg[name="dots-1"] {
-      right: 1rem;
-      fill: white;
-      opacity: 0.2;
-    }
-
-    svg[name="dots-2"] {
-      fill: white;
-      opacity: 0.15;
-      height: 20rem;
-      right: 40%;
-    }
-
-    div[name="basic-data"] {
-      position: absolute;
-      right: 10%;
-      padding: 5rem;
-    }
+  div#detail-view {
+    transform: translateX(100%);
+    transition: transform 1s ease-in-out;
   }
 }
 

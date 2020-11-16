@@ -31,7 +31,10 @@ const PokeGrid = (pokemons) => {
     // Setup onclick function for each li
     const listItems = $('ol#poke-grid > li');
     for (let i = 0; i < listItems.length; i++) {
-        listItems[i].onclick = () => DetailView(pokemons[i]);
+        listItems[i].onclick = () => {
+            $('#main').addClass('split-view');
+            DetailView(pokemons[i]);
+        };
     }
 };
 export default PokeGrid;

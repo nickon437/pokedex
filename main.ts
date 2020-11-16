@@ -3,7 +3,7 @@ import PokeList from './PokeList.js';
 
 const fetchPokemon = async () => {
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-  const NUM_OF_POKEMON = 30;
+  const NUM_OF_POKEMON = 3;
   const promises = [];
 
   for (let i = 1; i <= NUM_OF_POKEMON; i++) {

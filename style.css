@@ -45,6 +45,68 @@ header {
   z-index: 50;
 }
 
+@-webkit-keyframes slide-left-to-right {
+  75% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translateX(-100%) translateY(-100%);
+            transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-left-to-right {
+  75% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translateX(-100%) translateY(-100%);
+            transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@-webkit-keyframes slide-right-to-left {
+  0% {
+    -webkit-transform: translateX(-100%) translateY(-100%);
+            transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+  25% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-right-to-left {
+  0% {
+    -webkit-transform: translateX(-100%) translateY(-100%);
+            transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+  25% {
+    -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    -webkit-transform: translateX(0) translateY(0);
+            transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
 #main {
   position: relative;
 }
@@ -236,6 +298,44 @@ header {
   padding: 5rem;
 }
 
+#main div#detail-view #overview button[name="cancel-btn"] {
+  top: 0;
+  right: 0;
+  height: 2rem;
+  width: 2rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border: none;
+  border-radius: 7px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  cursor: pointer;
+  -webkit-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+
+#main div#detail-view #overview button[name="cancel-btn"]:hover {
+  background-color: rgba(255, 255, 255, 0.8);
+}
+
+#main div#detail-view #overview button[name="cancel-btn"]:hover svg {
+  color: #ef5350;
+  opacity: 1;
+}
+
+#main div#detail-view #overview button[name="cancel-btn"] svg {
+  height: 1.5rem;
+  width: 1.5rem;
+  color: white;
+  opacity: 1;
+}
+
 .pokeId {
   font-size: 1.5rem;
   font-family: 'Nova Mono';
@@ -260,35 +360,7 @@ header {
   text-align: center;
 }
 
-@-webkit-keyframes slide-left-to-right {
-  75% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-    opacity: 0.2;
-  }
-  100% {
-    -webkit-transform: translateX(-100%) translateY(-100%);
-            transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
-  }
-}
-
-@keyframes slide-left-to-right {
-  75% {
-    -webkit-transform: translateX(-100%);
-            transform: translateX(-100%);
-    opacity: 0.2;
-  }
-  100% {
-    -webkit-transform: translateX(-100%) translateY(-100%);
-            transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
-  }
-}
-
 #main.split-view ol#poke-grid {
-  -webkit-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
   -webkit-animation: slide-left-to-right 1s linear forwards;
           animation: slide-left-to-right 1s linear forwards;
 }
@@ -311,6 +383,29 @@ header {
   transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
   margin-left: 3rem;
   width: calc(100% - 3rem);
+}
+
+#main.split-view.reverse-split-view ol#poke-grid {
+  -webkit-animation: slide-right-to-left 1s linear forwards;
+          animation: slide-right-to-left 1s linear forwards;
+}
+
+#main.split-view.reverse-split-view ol#poke-list {
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+
+#main.split-view.reverse-split-view div#detail-view {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
 }
 
 .background-patterns {

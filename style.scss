@@ -41,6 +41,32 @@ header {
   z-index: 50;
 }
 
+@keyframes slide-left-to-right {
+  75% {
+    transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+}
+
+@keyframes slide-right-to-left {
+  0% {
+    transform: translateX(-100%) translateY(-100%);
+    opacity: 0;
+  }
+  25% {
+    transform: translateX(-100%);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translateX(0) translateY(0);
+    opacity: 1;
+  }
+}
+
 #main {
   position: relative;
 
@@ -211,6 +237,37 @@ header {
         right: 10%;
         padding: 5rem;
       }
+
+      button[name="cancel-btn"] {
+        top: 0;
+        right: 0;
+        height: 2rem;
+        width: 2rem;
+        background-color: rgba($color: #fff, $alpha: 0.5);
+        border: none;
+        border-radius: 7px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s linear;
+
+        &:hover {
+          background-color: rgba($color: #fff, $alpha: 0.8);
+          svg {
+            color: #ef5350;
+            opacity: 1;
+          }
+        }
+
+        svg {
+          height: 1.5rem;
+          width: 1.5rem;
+          color: white;
+          opacity: 1;
+
+        }
+      }
     }
   }
 }
@@ -238,35 +295,40 @@ header {
   }
 }
 
-
 #main.split-view {
-  @keyframes slide-left-to-right {
-    75% {
-      transform: translateX(-100%);
-      opacity: 0.2;
-    }
-    100% {
-      transform: translateX(-100%) translateY(-100%);
-      opacity: 0;
-    }
-  }
 
   ol#poke-grid {
-    transition: all 1s ease-in-out;
+    // transition: all 1s ease-in-out;
     animation: slide-left-to-right 1s linear forwards;
   }
   
   ol#poke-list {
     transform: translateX(0%);
     transition: transform 1s ease-in-out;
-    
   }
+
   div#detail-view {
     transform: translateX(0%);
     transition: transform 1s ease-in-out;
     
     margin-left: 3rem;
     width: calc(100% - 3rem);
+  }
+}
+
+#main.split-view.reverse-split-view {
+  ol#poke-grid {
+    animation: slide-right-to-left 1s linear forwards;
+  }
+  
+  ol#poke-list {
+    transform: translateX(-100%);
+    transition: transform 1s ease-in-out;
+  }
+
+  div#detail-view {
+    transform: translateX(100%);
+    transition: transform 1s ease-in-out;
   }
 }
 

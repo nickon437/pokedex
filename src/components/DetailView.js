@@ -11,32 +11,12 @@ const DetailView = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
   const [pkmSpecies, setPkmSpecies] = useState(null);
 
-  // const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${ctxPokedex.id}`;
-  // const pkmSpecies = await fetch(pokemonSpeciesUrl).then((result) => result.json());
-
   const fetchSpecies = useCallback(async (selectedPkm) => {
-    console.log('fetchSpecies', ctxPokedex);
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${selectedPkm.id}`;
-    // pkmSpecies.current = await fetch(pokemonSpeciesUrl).then((result) => result.json());
     setPkmSpecies(await fetch(pokemonSpeciesUrl).then((result) => result.json()));
-    // const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-    // const NUM_OF_POKEMON = 3;
-    // const promises = [];
-    // let pokemons;
-    // for (let i = 1; i <= NUM_OF_POKEMON; i++) {
-    //   const pokemonUrl = BASE_URL + i;
-    //   promises.push(fetch(pokemonUrl).then((result) => result.json()));
-    // }
-    // pokemons = await Promise.all(promises);
-    // setCtxPokedex((prev) => ({
-    //   ...prev,
-    //   pokemons,
-    // }));
-    console.log('DetailView');
   }, []);
 
   useEffect(() => {
-    console.log('DetailView fetchSpecies', ctxPokedex);
     if (ctxPokedex.selectedPkm) {
       fetchSpecies(ctxPokedex.selectedPkm);
     }
@@ -78,8 +58,7 @@ const DetailView = () => {
       </div>
       <div id="detail-data">
         <h2>Pokedex entry</h2>
-        {/* <div>{pkmSpecies.current && pkmSpecies.current.flavor_text_entries[0].flavor_text}</div> */}
-        <div>{pkmSpecies && pkmSpecies.flavor_text_entries[0].flavor_text}</div>
+        <div>{pkmSpecies && pkmSpecies.flavor_text_entries.find((entry) => (entry.language.name === 'en')).flavor_text}</div>
         <Stat pkm={ctxPokedex.selectedPkm} />
       </div>
     </div>

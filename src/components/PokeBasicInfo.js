@@ -13,7 +13,7 @@ const PokeBasicInfo = ({ pkm }) => {
 
   let pokeTypes = [];
   for (let i = 0; i < pkm.types.length; i++) {
-    pokeTypes.push(<div>{pkm.types[i].type.name.toUpperCase()}</div>);
+    pokeTypes.push(<div key={i}>{pkm.types[i].type.name.toUpperCase()}</div>);
   }
 
   return (

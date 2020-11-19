@@ -29,26 +29,28 @@ const Stat = ({ pkm }) => {
     const baseStat = curStat.base_stat;
     totalStat += baseStat;
     return (
-      <>
+      <div className="stat-container">
         <div className="label">{codifyStatName(curStat.stat.name)}</div>
         <div className="figure">{baseStat}</div>
         <div className="progress-bar">
           <div style={{'width': `${(baseStat / 255) * 100}%`}}></div>
         </div>
-      </>
+      </div>
     )
   });
 
   return (
     <>
       <h2>Stats</h2>
-      <div className="progress-bar-container">
+      <div className="stat-section-content">
         {statHtml}
-        <div className="label">TOTAL</div>
-        <div className="figure">{totalStat}</div>
+        <div className="stat-container">
+          <div className="label">TOTAL</div>
+          <div className="figure">{totalStat}</div>
+        </div>
       </div>
     </>
   )
 }
 
-export default Stat
+export default Stat;

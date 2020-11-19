@@ -42,11 +42,14 @@ const App = () => {
   });
 
   return (
-    <div id="main" className={[ ctxPokedex.class.splitView && "split-view", ctxPokedex.class.reverseSplitView && "reverse-split-view" ].join(' ') }>
-      <PokeGrid />
-      <PokeList />
-      <DetailView />
-    </div>
+    <>
+      <header><div>POKEDEX</div></header>
+      <div id="main" className={[ ctxPokedex.class.splitView && "split-view", ctxPokedex.class.reverseSplitView && "reverse-split-view" ].join(' ') }>
+        <PokeGrid />
+        <PokeList />
+        <DetailView />
+      </div>
+    </>
   );
 }
 

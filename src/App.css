@@ -45,65 +45,55 @@ header {
   z-index: 50;
 }
 
-@-webkit-keyframes slide-out-left-to-right {
+@-webkit-keyframes slide-out-right-to-left {
   75% {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
-    opacity: 0.2;
   }
   100% {
     -webkit-transform: translateX(-100%) translateY(-100%);
             transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
   }
 }
 
-@keyframes slide-out-left-to-right {
+@keyframes slide-out-right-to-left {
   75% {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
-    opacity: 0.2;
   }
   100% {
     -webkit-transform: translateX(-100%) translateY(-100%);
             transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
   }
 }
 
-@-webkit-keyframes slide-in-right-to-left {
+@-webkit-keyframes slide-in-left-to-right {
   0% {
     -webkit-transform: translateX(-100%) translateY(-100%);
             transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
   }
   25% {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
-    opacity: 0.2;
   }
   100% {
     -webkit-transform: translateX(0) translateY(0);
             transform: translateX(0) translateY(0);
-    opacity: 1;
   }
 }
 
-@keyframes slide-in-right-to-left {
+@keyframes slide-in-left-to-right {
   0% {
     -webkit-transform: translateX(-100%) translateY(-100%);
             transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
   }
   25% {
     -webkit-transform: translateX(-100%);
             transform: translateX(-100%);
-    opacity: 0.2;
   }
   100% {
     -webkit-transform: translateX(0) translateY(0);
             transform: translateX(0) translateY(0);
-    opacity: 1;
   }
 }
 
@@ -150,6 +140,10 @@ header {
   position: relative;
   overflow: hidden;
   cursor: pointer;
+  -webkit-transition: -webkit-filter 0.1s linear;
+  transition: -webkit-filter 0.1s linear;
+  transition: filter 0.1s linear;
+  transition: filter 0.1s linear, -webkit-filter 0.1s linear;
 }
 
 #main ol#poke-grid li:hover {
@@ -331,8 +325,8 @@ header {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
-  -webkit-transition: all 0.3s linear;
-  transition: all 0.3s linear;
+  -webkit-transition: all 0.1s linear;
+  transition: all 0.1s linear;
 }
 
 #main div#detail-view #overview button[name="cancel-btn"]:hover {
@@ -376,8 +370,8 @@ header {
 }
 
 #main.split-view ol#poke-grid {
-  -webkit-animation: slide-out-left-to-right 1s linear forwards;
-          animation: slide-out-left-to-right 1s linear forwards;
+  -webkit-animation: slide-out-right-to-left 1s linear forwards;
+          animation: slide-out-right-to-left 1s linear forwards;
 }
 
 #main.split-view ol#poke-list {
@@ -401,26 +395,26 @@ header {
 }
 
 #main.split-view.reverse-split-view ol#poke-grid {
-  -webkit-animation: slide-in-right-to-left 1s linear forwards;
-          animation: slide-in-right-to-left 1s linear forwards;
+  -webkit-animation: slide-in-left-to-right 1s linear forwards;
+          animation: slide-in-left-to-right 1s linear forwards;
 }
 
 #main.split-view.reverse-split-view ol#poke-list {
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
-  -webkit-transition: -webkit-transform 1s linear;
-  transition: -webkit-transform 1s linear;
-  transition: transform 1s linear;
-  transition: transform 1s linear, -webkit-transform 1s linear;
+  -webkit-transition: opacity 1s linear, -webkit-transform 1s linear;
+  transition: opacity 1s linear, -webkit-transform 1s linear;
+  transition: transform 1s linear, opacity 1s linear;
+  transition: transform 1s linear, opacity 1s linear, -webkit-transform 1s linear;
 }
 
 #main.split-view.reverse-split-view div#detail-view {
   -webkit-transform: translateX(100%);
           transform: translateX(100%);
-  -webkit-transition: -webkit-transform 1s linear;
-  transition: -webkit-transform 1s linear;
-  transition: transform 1s linear;
-  transition: transform 1s linear, -webkit-transform 1s linear;
+  -webkit-transition: opacity 1s linear, -webkit-transform 1s linear;
+  transition: opacity 1s linear, -webkit-transform 1s linear;
+  transition: transform 1s linear, opacity 1s linear;
+  transition: transform 1s linear, opacity 1s linear, -webkit-transform 1s linear;
 }
 
 .background-patterns {

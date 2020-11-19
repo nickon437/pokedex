@@ -3,6 +3,7 @@
 
 $primary-red: #ef5350;
 $page-transition-time: 1s;
+$short-animation-time: 0.1s;
 
 html {
   box-sizing: border-box;
@@ -44,29 +45,24 @@ header {
   z-index: 50;
 }
 
-@keyframes slide-out-left-to-right {
+@keyframes slide-out-right-to-left {
   75% {
     transform: translateX(-100%);
-    opacity: 0.2;
   }
   100% {
     transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
   }
 }
 
-@keyframes slide-in-right-to-left {
+@keyframes slide-in-left-to-right {
   0% {
     transform: translateX(-100%) translateY(-100%);
-    opacity: 0;
   }
   25% {
     transform: translateX(-100%);
-    opacity: 0.2;
   }
   100% {
     transform: translateX(0) translateY(0);
-    opacity: 1;
   }
 }
 
@@ -103,6 +99,7 @@ header {
       position: relative;
       overflow: hidden;
       cursor: pointer;
+      transition: filter $short-animation-time linear;
 
       &:hover {
         filter: brightness(0.9);
@@ -171,7 +168,7 @@ header {
         height: 2.5rem;
         width: 100%;
         border-top: 1px solid #bbbbbb;
-        transition: background-color 0.1s linear;
+        transition: background-color $short-animation-time linear;
 
         &:hover {
           background-color: rgba($color: #e0e0e0, $alpha: 1);
@@ -265,7 +262,7 @@ header {
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        transition: all 0.3s linear;
+        transition: all $short-animation-time linear;
 
         &:hover {
           background-color: rgba($color: #fff, $alpha: 0.8);
@@ -314,7 +311,7 @@ header {
 
   ol#poke-grid {
     // transition: all 1s ease-in-out;
-    animation: slide-out-left-to-right $page-transition-time linear forwards;
+    animation: slide-out-right-to-left $page-transition-time linear forwards;
   }
   
   ol#poke-list {
@@ -333,17 +330,17 @@ header {
 
 #main.split-view.reverse-split-view {
   ol#poke-grid {
-    animation: slide-in-right-to-left $page-transition-time linear forwards;
+    animation: slide-in-left-to-right $page-transition-time linear forwards;
   }
   
   ol#poke-list {
     transform: translateX(-100%);
-    transition: transform $page-transition-time linear;
+    transition: transform $page-transition-time linear, opacity $page-transition-time linear;
   }
 
   div#detail-view {
     transform: translateX(100%);
-    transition: transform $page-transition-time linear;
+    transition: transform $page-transition-time linear, opacity $page-transition-time linear;
   }
 }
 

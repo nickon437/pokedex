@@ -9,6 +9,7 @@ export const PokedexProvider = (props) => {
     class: {
       splitView: false,
       reverseSplitView: false,
+      splitViewHiddenProp: true,
     }
   });
 

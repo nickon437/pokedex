@@ -17,8 +17,11 @@ const PokeList = () => {
     }));
 
     return (
-      <li key={pkm.id} onClick={handleClickItem}>
-        <div className="hflex" name="info-container">
+      <li
+        name="info-container"
+        key={pkm.id}
+        onClick={handleClickItem}
+        className={[ctxPokedex.selectedPkm?.id === pkm.id && "selected", "hflex"].join(' ')}>
           <img src={pkm.sprites.versions['generation-vii'].icons.front_default} name="pokemon" alt=""/>
           <div className="pokeOverview">
             <div className="hflex">
@@ -26,7 +29,6 @@ const PokeList = () => {
               <div name="pokeName" className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
             </div>
           </div>
-        </div>
       </li>
     )
   });

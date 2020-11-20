@@ -220,7 +220,7 @@ header {
     background-color: white;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 3rem;
+    width: 3.5rem;
     box-shadow: 0 5px 5px #2a2a2a;
     z-index: 20;
     transform: translateX(-100%);
@@ -235,21 +235,28 @@ header {
       font-size: 1rem;
       cursor: pointer;
       display: flex;
+      transition: background-color $short-animation-time linear;
+      align-items: center;
+      line-height: 2.5rem;
+      width: 100%;
+      border-top: 1px solid #bbbbbb;
       
-      & > div {
-        align-items: center;
-        height: 2.5rem;
-        width: 100%;
-        border-top: 1px solid #bbbbbb;
-        transition: background-color $short-animation-time linear;
-
-        &:hover {
-          background-color: rgba($color: #e0e0e0, $alpha: 1);
-        }
+      &:hover {
+        background-color: rgba($color: #e0e0e0, $alpha: 1);
       }
       
-      &:first-child > div {
+      &:first-child {
         border: none;
+      }
+
+      &.selected {
+        background-color: $primary-red;
+        border-radius: 10px;
+        color: white;
+        
+        &:hover {
+          background-color: $dark-red;
+        }
       }
       
       .pokeName, .pokeId {

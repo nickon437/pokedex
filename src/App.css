@@ -574,8 +574,13 @@ header div {
 }
 
 #main.split-view ol#poke-grid {
-  -webkit-animation: slide-out-right-to-left 1s linear forwards;
-          animation: slide-out-right-to-left 1s linear forwards;
+  -webkit-transform: translateY(-120%);
+          transform: translateY(-120%);
+  visibility: hidden;
+  -webkit-transition: visibility 1s linear, -webkit-transform 1s linear;
+  transition: visibility 1s linear, -webkit-transform 1s linear;
+  transition: transform 1s linear, visibility 1s linear;
+  transition: transform 1s linear, visibility 1s linear, -webkit-transform 1s linear;
 }
 
 #main.split-view ol#poke-list {
@@ -595,8 +600,13 @@ header div {
 }
 
 #main.split-view.reverse-split-view ol#poke-grid {
-  -webkit-animation: slide-in-left-to-right 1s linear forwards;
-          animation: slide-in-left-to-right 1s linear forwards;
+  -webkit-transform: translateY(0);
+          transform: translateY(0);
+  visibility: visible;
+  -webkit-transition: -webkit-transform 1s linear;
+  transition: -webkit-transform 1s linear;
+  transition: transform 1s linear;
+  transition: transform 1s linear, -webkit-transform 1s linear;
 }
 
 #main.split-view.reverse-split-view ol#poke-list {

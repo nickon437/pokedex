@@ -438,7 +438,9 @@ header {
   transition: background-color 0s linear $page-transition-time;
 
   ol#poke-grid {
-    animation: slide-out-right-to-left $page-transition-time linear forwards;
+    transform: translateY(-120%);
+    visibility: hidden;
+    transition: transform $page-transition-time linear, visibility $page-transition-time linear;
   }
   
   ol#poke-list {
@@ -455,7 +457,9 @@ header {
   transition: background-color 0s linear;
 
   ol#poke-grid {
-    animation: slide-in-left-to-right $page-transition-time linear forwards;
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform $page-transition-time linear;
   }
   
   ol#poke-list {

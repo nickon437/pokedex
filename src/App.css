@@ -12,6 +12,23 @@ html {
           box-sizing: inherit;
 }
 
+* {
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 7px;
+}
+
+*::-webkit-scrollbar-track {
+  background: rgba(128, 128, 128, 0.1);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(128, 128, 128, 0.3);
+  border-radius: 20px;
+}
+
 body {
   margin: 0;
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -304,17 +321,20 @@ header div {
   bottom: 0;
   background-color: white;
   overflow-y: scroll;
+  overflow-x: hidden;
+  width: 3rem;
   -webkit-box-shadow: 0 5px 5px #2a2a2a;
           box-shadow: 0 5px 5px #2a2a2a;
   z-index: 20;
-  scrollbar-width: thin;
   -webkit-transform: translateX(-100%);
           transform: translateX(-100%);
   visibility: hidden;
+  -webkit-transition: width 0.3s ease-in-out;
+  transition: width 0.3s ease-in-out;
 }
 
-#main ol#poke-list:hover .pokeOverview {
-  display: block;
+#main ol#poke-list:hover {
+  width: 14rem;
 }
 
 #main ol#poke-list li {
@@ -348,10 +368,6 @@ header div {
   font-size: 1rem;
   font-weight: normal;
   font-family: 'Nova Mono';
-}
-
-#main ol#poke-list li .pokeOverview {
-  display: none;
 }
 
 #main ol#poke-list li .pokeName {

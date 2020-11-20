@@ -10,7 +10,7 @@ const App = () => {
 
   const fetchPokemon = useCallback(async () => {
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-    const NUM_OF_POKEMON = 10;
+    const NUM_OF_POKEMON = 20;
     const promises = [];
     let pokemons;
     for (let i = 1; i <= NUM_OF_POKEMON; i++) {

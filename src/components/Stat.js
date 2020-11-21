@@ -29,7 +29,7 @@ const Stat = ({ pkm }) => {
     const baseStat = curStat.base_stat;
     totalStat += baseStat;
     return (
-      <div className="stat-container">
+      <div className="stat-container" key={codifyStatName(curStat.stat.name)}>
         <div className="label">{codifyStatName(curStat.stat.name)}</div>
         <div className="figure">{baseStat}</div>
         <div className="progress-bar">

@@ -222,7 +222,6 @@ header div {
   display: -ms-flexbox;
   display: flex;
   height: calc(100vh - 6rem);
-  height: calc(100vh - $header-height);
   top: 6rem;
 }
 
@@ -288,7 +287,7 @@ header div {
   height: 20rem;
   bottom: -5rem;
   right: -5rem;
-  opacity: 40%;
+  opacity: 0.4;
   -webkit-transform: rotate(10deg);
           transform: rotate(10deg);
 }
@@ -300,7 +299,7 @@ header div {
           transform: rotate(90deg);
   fill: white;
   height: 5rem;
-  opacity: 20%;
+  opacity: 0.2;
 }
 
 #main ol#poke-list {

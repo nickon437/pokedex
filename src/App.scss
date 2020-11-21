@@ -140,7 +140,7 @@ header {
   position: relative;
   display: flex;
   height: calc(100vh - 6rem);  // Fallback due to issue with sass does not compile $header-height
-  height: calc(100vh - $header-height);
+  // height: calc(100vh - $header-height);
   top: $header-height;
 
   ol#poke-grid {
@@ -191,7 +191,7 @@ header {
         height: 20rem;
         bottom: -5rem;
         right: -5rem;
-        opacity: 40%;
+        opacity: 0.4;
         transform: rotate(10deg);
       }
 
@@ -201,7 +201,7 @@ header {
         transform: rotate(90deg);
         fill: white;
         height: 5rem;
-        opacity: 20%;
+        opacity: 0.2;
       }
     }
   }

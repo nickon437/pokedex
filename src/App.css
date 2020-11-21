@@ -343,6 +343,7 @@ header div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  gap: 0.75rem;
   -webkit-transition: background-color 0.1s linear;
   transition: background-color 0.1s linear;
   -webkit-box-align: center;
@@ -576,11 +577,11 @@ header div {
 #main.split-view ol#poke-grid {
   -webkit-transform: translateY(-120%);
           transform: translateY(-120%);
-  visibility: hidden;
-  -webkit-transition: visibility 1s linear, -webkit-transform 1s linear;
-  transition: visibility 1s linear, -webkit-transform 1s linear;
-  transition: transform 1s linear, visibility 1s linear;
-  transition: transform 1s linear, visibility 1s linear, -webkit-transform 1s linear;
+  opacity: 0.3;
+  -webkit-transition: opacity 1s linear, visibility 1s linear, -webkit-transform 0s linear 1s;
+  transition: opacity 1s linear, visibility 1s linear, -webkit-transform 0s linear 1s;
+  transition: transform 0s linear 1s, opacity 1s linear, visibility 1s linear;
+  transition: transform 0s linear 1s, opacity 1s linear, visibility 1s linear, -webkit-transform 0s linear 1s;
 }
 
 #main.split-view ol#poke-list {
@@ -602,11 +603,10 @@ header div {
 #main.split-view.reverse-split-view ol#poke-grid {
   -webkit-transform: translateY(0);
           transform: translateY(0);
+  opacity: 1;
   visibility: visible;
-  -webkit-transition: -webkit-transform 1s linear;
-  transition: -webkit-transform 1s linear;
-  transition: transform 1s linear;
-  transition: transform 1s linear, -webkit-transform 1s linear;
+  -webkit-transition: opacity 1s linear;
+  transition: opacity 1s linear;
 }
 
 #main.split-view.reverse-split-view ol#poke-list {

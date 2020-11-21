@@ -235,6 +235,7 @@ header {
       font-size: 1rem;
       cursor: pointer;
       display: flex;
+      gap: 0.75rem;
       transition: background-color $short-animation-time linear;
       align-items: center;
       line-height: 2.5rem;
@@ -439,8 +440,8 @@ header {
 
   ol#poke-grid {
     transform: translateY(-120%);
-    visibility: hidden;
-    transition: transform $page-transition-time linear, visibility $page-transition-time linear;
+    opacity: 0.3;
+    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
   }
   
   ol#poke-list {
@@ -458,8 +459,10 @@ header {
 
   ol#poke-grid {
     transform: translateY(0);
+    opacity: 1;
     visibility: visible;
-    transition: transform $page-transition-time linear;
+    transition: opacity $page-transition-time linear;
+
   }
   
   ol#poke-list {

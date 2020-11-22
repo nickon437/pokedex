@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
+import SearchBar from './SearchBar';
 
 const PokeList = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
@@ -33,7 +34,10 @@ const PokeList = () => {
   });
 
   return (
-    <ol id="poke-list" className="vflex">{pokeListHtml}</ol>
+    <ol id="poke-list" className="vflex">
+      <li><SearchBar /></li>
+      {pokeListHtml}
+    </ol>
   );
 }
 

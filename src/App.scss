@@ -6,7 +6,7 @@ $primary-red: #ef5350;
 $dark-red: #c62828;
 $page-transition-time: 1s;
 $short-animation-time: 0.1s;
-$header-height: 6rem;
+$header-height: 4rem;
 
 html {
   box-sizing: border-box;
@@ -73,7 +73,8 @@ header {
   div {
     font-family: Orbitron;
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 2rem;
+    height: 100%;
     background-color: rgba($color: white, $alpha: 1);
     color: $dark-red;
     width: fit-content;
@@ -81,6 +82,9 @@ header {
     border-radius: 5px;
     padding: 0 1rem; 
     -webkit-text-stroke: 1px rgba($color: white, $alpha: 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -485,5 +489,35 @@ header {
 
   * {
     position: absolute;
+  }
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  height: 2rem;
+  width: 100%;
+  background-color: white;
+  padding: 0.25rem;
+  // border: 1px solid #e0e0e0;
+  // border-radius: 7px;
+
+  img {
+    // padding: 1rem;
+    height: 100%;
+    margin: 0 0.25rem;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    width: 100%;
+    background: transparent;
+  }
+
+  &:focus-within {
+    // border-radius: 7px;
+    background-color: #e0e0e0;
+    // background-color: pink;
   }
 }

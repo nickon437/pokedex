@@ -18,7 +18,7 @@ const PokeBasicInfo = ({ pkm }) => {
 
   return (
     <>
-      <img src={pkm.sprites.other['official-artwork'].front_default} name="pokemon" alt={pkm.name}></img>
+      <img src={pkm.sprites.other['official-artwork'].front_default} name="pokemon" alt=""></img>
       <div name="basic-data">
         <div className="pokeId">{pokeId}</div>
         <div className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>

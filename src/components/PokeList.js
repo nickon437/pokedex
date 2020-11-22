@@ -21,20 +21,19 @@ const PokeList = () => {
         name="info-container"
         key={pkm.id}
         onClick={handleClickItem}
-        className={[ctxPokedex.selectedPkm?.id === pkm.id && "selected", "hflex"].join(' ')}>
-          <img src={pkm.sprites.versions['generation-vii'].icons.front_default} name="pokemon" alt=""/>
-          <div className="pokeOverview">
-            <div className="hflex">
-              <div name="pokeId" className="pokeId">{pokeId}</div>
-              <div name="pokeName" className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
-            </div>
-          </div>
+        className={[ctxPokedex.selectedPkm?.id === pkm.id && "selected", "hflex"].join(' ')}
+      >
+        <img src={pkm.sprites.versions['generation-vii'].icons.front_default} name="pokemon" alt="" />
+        <div className="pokeOverview hflex">
+          <div name="pokeId" className="pokeId">{pokeId}</div>
+          <div name="pokeName" className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
+        </div>
       </li>
     )
   });
 
   return (
-    <ol id="poke-list">{pokeListHtml}</ol>
+    <ol id="poke-list" className="vflex">{pokeListHtml}</ol>
   );
 }
 

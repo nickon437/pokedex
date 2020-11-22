@@ -39,7 +39,6 @@ body {
   font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  overflow-x: hidden;
 }
 
 code {
@@ -48,11 +47,16 @@ code {
 
 html, body, #root {
   height: 100%;
+  overflow-x: hidden;
 }
 
-.hflex {
+.hflex, .vflex {
   display: flex;
   gap: 0.5rem;
+}
+
+.vflex {
+  flex-direction: column;
 }
 
 header {
@@ -160,7 +164,7 @@ header {
     @media screen and (max-width: 500px) {
       grid-template-columns: repeat(1, 1fr);
 
-      .pokeTypes.hflex {
+      .pokeTypes {
         flex-direction: column;
       }
     }
@@ -210,8 +214,6 @@ header {
     list-style-type: none;
     margin: 0;
     padding: 0.25rem;
-    display: flex;
-    flex-direction: column;
     position: fixed;
     -webkit-backface-visibility: hidden;
     top: $header-height;
@@ -226,6 +228,7 @@ header {
     transform: translateX(-100%);
     visibility: hidden;
     transition: width 0.3s ease-in-out;
+    gap: 0;
 
     &:hover {
       width: 14rem;
@@ -274,7 +277,6 @@ header {
 
   div#detail-view {
     padding: 5vh 10vw;
-    flex-direction: column;
     background-color: $primary-red;
     height: max-content;
     position: absolute;

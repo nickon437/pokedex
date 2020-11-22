@@ -21,6 +21,7 @@ const App = () => {
     setCtxPokedex((prev) => ({
       ...prev,
       pokemons,
+      filteredPokemons: pokemons,
     }));
   }, []);
 

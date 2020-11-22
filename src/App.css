@@ -266,7 +266,7 @@ header div {
   background-color: #e0e0e0;
 }
 
-#main #poke-grid-container ol#poke-grid {
+#main #poke-grid-container #poke-grid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(23rem, 1fr))[auto-fit];
@@ -280,11 +280,11 @@ header div {
 }
 
 @media screen and (max-width: 500px) {
-  #main #poke-grid-container ol#poke-grid {
+  #main #poke-grid-container #poke-grid {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
   }
-  #main #poke-grid-container ol#poke-grid .pokeTypes {
+  #main #poke-grid-container #poke-grid .pokeTypes {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -292,7 +292,7 @@ header div {
   }
 }
 
-#main #poke-grid-container ol#poke-grid li {
+#main #poke-grid-container #poke-grid li {
   background-color: #ef5350;
   color: white;
   padding: 2rem 10%;
@@ -307,19 +307,19 @@ header div {
   transition: filter 0.1s linear, -webkit-filter 0.1s linear;
 }
 
-#main #poke-grid-container ol#poke-grid li:hover {
+#main #poke-grid-container #poke-grid li:hover {
   -webkit-filter: brightness(0.9);
           filter: brightness(0.9);
 }
 
-#main #poke-grid-container ol#poke-grid li img[name="pokemon"] {
+#main #poke-grid-container #poke-grid li img[name="pokemon"] {
   position: absolute;
   height: 10rem;
   bottom: 1rem;
   right: 10%;
 }
 
-#main #poke-grid-container ol#poke-grid li img[name="pokeball"] {
+#main #poke-grid-container #poke-grid li img[name="pokeball"] {
   height: 20rem;
   bottom: -5rem;
   right: -5rem;
@@ -328,7 +328,7 @@ header div {
           transform: rotate(10deg);
 }
 
-#main #poke-grid-container ol#poke-grid li svg[name="dots-1"] {
+#main #poke-grid-container #poke-grid li svg[name="dots-1"] {
   bottom: 0.5rem;
   left: 0.5rem;
   -webkit-transform: rotate(90deg);
@@ -338,7 +338,7 @@ header div {
   opacity: 0.2;
 }
 
-#main ol#poke-list {
+#main #poke-list {
   list-style-type: none;
   margin: 0;
   padding: 0.25rem;
@@ -362,11 +362,11 @@ header div {
   gap: 0;
 }
 
-#main ol#poke-list:hover {
+#main #poke-list:hover {
   width: 14rem;
 }
 
-#main ol#poke-list li {
+#main #poke-list li {
   font-size: 1rem;
   cursor: pointer;
   display: -webkit-box;
@@ -383,36 +383,36 @@ header div {
   border-top: 1px solid #e0e0e0;
 }
 
-#main ol#poke-list li:hover {
+#main #poke-list li:hover {
   background-color: #e0e0e0;
 }
 
-#main ol#poke-list li:first-child {
+#main #poke-list li:first-child {
   border: none;
   background-color: transparent;
 }
 
-#main ol#poke-list li.selected {
+#main #poke-list li.selected {
   background-color: #ef5350;
   border-radius: 10px;
   color: white;
 }
 
-#main ol#poke-list li.selected:hover {
+#main #poke-list li.selected:hover {
   background-color: #c62828;
 }
 
-#main ol#poke-list li .pokeName, #main ol#poke-list li .pokeId {
+#main #poke-list li .pokeName, #main #poke-list li .pokeId {
   font-size: 1rem;
   font-weight: normal;
   font-family: 'Nova Mono';
 }
 
-#main ol#poke-list li .pokeName {
+#main #poke-list li .pokeName {
   padding-right: 1rem;
 }
 
-#main div#detail-view {
+#main #detail-view {
   padding: 5vh 10vw;
   background-color: #ef5350;
   height: -webkit-max-content;
@@ -429,14 +429,14 @@ header div {
   visibility: hidden;
 }
 
-#main div#detail-view #overview {
+#main #detail-view #overview {
   height: 20rem;
   width: 100%;
   position: relative;
   color: white;
 }
 
-#main div#detail-view #overview img[name="pokemon"] {
+#main #detail-view #overview img[name="pokemon"] {
   position: absolute;
   height: 30vw;
   min-height: 13rem;
@@ -446,34 +446,34 @@ header div {
   z-index: 10;
 }
 
-#main div#detail-view #overview img[name="pokeball"] {
+#main #detail-view #overview img[name="pokeball"] {
   height: 25rem;
   opacity: 0.4;
   -webkit-transform: rotate(10deg);
           transform: rotate(10deg);
 }
 
-#main div#detail-view #overview svg[name="dots-1"] {
+#main #detail-view #overview svg[name="dots-1"] {
   right: 1rem;
   fill: white;
   opacity: 0.2;
 }
 
-#main div#detail-view #overview svg[name="dots-2"] {
+#main #detail-view #overview svg[name="dots-2"] {
   fill: white;
   opacity: 0.15;
   height: 20rem;
   right: 40%;
 }
 
-#main div#detail-view #overview div[name="basic-data"] {
+#main #detail-view #overview div[name="basic-data"] {
   position: absolute;
   right: 10%;
   padding: 5rem;
   padding-right: 8%;
 }
 
-#main div#detail-view #overview button[name="cancel-btn"] {
+#main #detail-view #overview button[name="cancel-btn"] {
   top: 0;
   right: 0;
   height: 2rem;
@@ -495,23 +495,23 @@ header div {
   transition: all 0.1s linear;
 }
 
-#main div#detail-view #overview button[name="cancel-btn"]:hover {
+#main #detail-view #overview button[name="cancel-btn"]:hover {
   background-color: rgba(255, 255, 255, 0.8);
 }
 
-#main div#detail-view #overview button[name="cancel-btn"]:hover svg {
+#main #detail-view #overview button[name="cancel-btn"]:hover svg {
   color: #ef5350;
   opacity: 1;
 }
 
-#main div#detail-view #overview button[name="cancel-btn"] svg {
+#main #detail-view #overview button[name="cancel-btn"] svg {
   height: 1.5rem;
   width: 1.5rem;
   color: white;
   opacity: 1;
 }
 
-#main div#detail-view #detail-data {
+#main #detail-view #detail-data {
   background-color: white;
   border-radius: 20px;
   z-index: 5;
@@ -519,7 +519,7 @@ header div {
   position: relative;
 }
 
-#main div#detail-view #detail-data .stat-section-content {
+#main #detail-view #detail-data .stat-section-content {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[2];
@@ -533,7 +533,7 @@ header div {
           align-items: center;
 }
 
-#main div#detail-view #detail-data .stat-section-content .stat-container {
+#main #detail-view #detail-data .stat-section-content .stat-container {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: 2.5rem 1.5rem auto;
@@ -542,29 +542,29 @@ header div {
           column-gap: 1rem;
 }
 
-#main div#detail-view #detail-data .stat-section-content .stat-container .label {
+#main #detail-view #detail-data .stat-section-content .stat-container .label {
   font-weight: 600;
 }
 
-#main div#detail-view #detail-data .stat-section-content .stat-container .figure {
+#main #detail-view #detail-data .stat-section-content .stat-container .figure {
   text-align: right;
 }
 
-#main div#detail-view #detail-data .stat-section-content .stat-container .progress-bar {
+#main #detail-view #detail-data .stat-section-content .stat-container .progress-bar {
   background-color: #e6e6e6;
   height: 1rem;
   width: 100%;
   border-radius: 50px;
 }
 
-#main div#detail-view #detail-data .stat-section-content .stat-container .progress-bar div {
+#main #detail-view #detail-data .stat-section-content .stat-container .progress-bar div {
   background-color: cornflowerblue;
   height: 100%;
   border-radius: inherit;
 }
 
 @media screen and (max-width: 768px) {
-  #main div#detail-view #detail-data .stat-section-content {
+  #main #detail-view #detail-data .stat-section-content {
     -ms-grid-columns: 1fr;
         grid-template-columns: 1fr;
   }
@@ -600,7 +600,7 @@ header div {
   transition: background-color 0s linear 1s;
 }
 
-#main.split-view ol#poke-grid {
+#main.split-view #poke-grid-container {
   -webkit-transform: translateY(-120%);
           transform: translateY(-120%);
   opacity: 0.3;
@@ -610,12 +610,12 @@ header div {
   transition: transform 0s linear 1s, opacity 1s linear, visibility 1s linear, -webkit-transform 0s linear 1s;
 }
 
-#main.split-view ol#poke-list {
+#main.split-view #poke-list {
   -webkit-animation: slide-in-left-to-right 1s linear forwards;
           animation: slide-in-left-to-right 1s linear forwards;
 }
 
-#main.split-view div#detail-view {
+#main.split-view #detail-view {
   -webkit-animation: slide-in-right-to-left 1s linear forwards;
           animation: slide-in-right-to-left 1s linear forwards;
 }
@@ -626,7 +626,7 @@ header div {
   transition: background-color 0s linear;
 }
 
-#main.split-view.reverse-split-view ol#poke-grid {
+#main.split-view.reverse-split-view #poke-grid-container {
   -webkit-transform: translateY(0);
           transform: translateY(0);
   opacity: 1;
@@ -635,12 +635,12 @@ header div {
   transition: opacity 1s linear;
 }
 
-#main.split-view.reverse-split-view ol#poke-list {
+#main.split-view.reverse-split-view #poke-list {
   -webkit-animation: slide-out-right-to-left 1s linear forwards;
           animation: slide-out-right-to-left 1s linear forwards;
 }
 
-#main.split-view.reverse-split-view div#detail-view {
+#main.split-view.reverse-split-view #detail-view {
   -webkit-animation: slide-out-left-to-right 1s linear forwards;
           animation: slide-out-left-to-right 1s linear forwards;
 }

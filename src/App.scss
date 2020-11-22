@@ -170,7 +170,7 @@ header {
       background-color: $light-grey;
     }
 
-    ol#poke-grid {
+    #poke-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
       grid-template-rows: auto;
@@ -229,7 +229,7 @@ header {
     }
   }
 
-  ol#poke-list {
+  #poke-list {
     list-style-type: none;
     margin: 0;
     padding: 0.25rem;
@@ -295,7 +295,7 @@ header {
     }
   }
 
-  div#detail-view {
+  #detail-view {
     padding: 5vh 10vw;
     background-color: $primary-red;
     height: max-content;
@@ -460,17 +460,18 @@ header {
   background-color: $primary-red;
   transition: background-color 0s linear $page-transition-time;
 
-  ol#poke-grid {
+  #poke-grid-container {
+  // // ol#poke-grid {
     transform: translateY(-120%);
     opacity: 0.3;
     transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
   }
   
-  ol#poke-list {
+  #poke-list {
     animation: slide-in-left-to-right $page-transition-time linear forwards;
   }
 
-  div#detail-view {
+  #detail-view {
     animation: slide-in-right-to-left $page-transition-time linear forwards;
   }
 }
@@ -479,7 +480,8 @@ header {
   background-color: white;
   transition: background-color 0s linear;
 
-  ol#poke-grid {
+  #poke-grid-container {
+  // ol#poke-grid {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
@@ -487,11 +489,11 @@ header {
 
   }
   
-  ol#poke-list {
+  #poke-list {
     animation: slide-out-right-to-left $page-transition-time linear forwards;
   }
 
-  div#detail-view {
+  #detail-view {
     animation: slide-out-left-to-right $page-transition-time linear forwards;
   }
 }

@@ -6,7 +6,7 @@ import SearchBar from './SearchBar';
 
 const PokeGrid = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
-  const pokeData = ctxPokedex.pokemons.map((pkm) => (<PokeGridElement key={pkm.id} pkm={pkm}/>));  
+  const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm}/>);  
   return (
     <div id="poke-grid-container">
       <SearchBar />

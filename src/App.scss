@@ -4,9 +4,10 @@
 
 $primary-red: #ef5350;
 $dark-red: #c62828;
+$light-grey: #e0e0e0;
 $page-transition-time: 1s;
 $short-animation-time: 0.1s;
-$header-height: 6rem;
+$header-height: 4rem;
 
 html {
   box-sizing: border-box;
@@ -47,7 +48,7 @@ code {
 
 html, body, #root {
   height: 100%;
-  overflow-x: hidden;
+  width: 100vw;
 }
 
 .hflex, .vflex {
@@ -73,7 +74,8 @@ header {
   div {
     font-family: Orbitron;
     font-weight: 900;
-    font-size: 3rem;
+    font-size: 2rem;
+    height: 100%;
     background-color: rgba($color: white, $alpha: 1);
     color: $dark-red;
     width: fit-content;
@@ -81,6 +83,9 @@ header {
     border-radius: 5px;
     padding: 0 1rem; 
     -webkit-text-stroke: 1px rgba($color: white, $alpha: 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -147,70 +152,84 @@ header {
   // height: calc(100vh - $header-height);
   top: $header-height;
 
-  ol#poke-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-    grid-template-rows: auto;
-    gap: 2rem;
-    list-style-type: none;
-    margin: 0;
+  #poke-grid-container {
     padding: 3rem 5%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     width: 100vw;
-    
-    @media screen and (max-width: 500px) {
-      grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
-      .pokeTypes {
-        flex-direction: column;
-      }
+    .search-bar {
+      border-radius: 7px;
+      padding: 0.75rem;
+      height: 3rem;
+      background-color: $light-grey;
     }
 
-    li {
-      background-color: $primary-red;
-      color: white;
-      padding: 2rem 10%;
-      border-radius: 10px;
-      height: 15rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: filter $short-animation-time linear;
-
-      &:hover {
-        filter: brightness(0.9);
-      }
-
-      img[name="pokemon"] {
-        position: absolute;
-        height: 10rem;
-        bottom: 1rem;
-        right: 10%;
-      }
+    #poke-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+      grid-template-rows: auto;
+      gap: 2rem;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
       
-      img[name="pokeball"] {
-        height: 20rem;
-        bottom: -5rem;
-        right: -5rem;
-        opacity: 0.4;
-        transform: rotate(10deg);
+      @media screen and (max-width: 500px) {
+        grid-template-columns: repeat(1, 1fr);
+  
+        .pokeTypes {
+          flex-direction: column;
+        }
       }
-
-      svg[name="dots-1"] {
-        bottom: 0.5rem;
-        left: 0.5rem;
-        transform: rotate(90deg);
-        fill: white;
-        height: 5rem;
-        opacity: 0.2;
+  
+      li {
+        background-color: $primary-red;
+        color: white;
+        padding: 2rem 10%;
+        border-radius: 10px;
+        height: 15rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: filter $short-animation-time linear;
+  
+        &:hover {
+          filter: brightness(0.9);
+        }
+  
+        img[name="pokemon"] {
+          position: absolute;
+          height: 10rem;
+          bottom: 1rem;
+          right: 10%;
+        }
+        
+        img[name="pokeball"] {
+          height: 20rem;
+          bottom: -5rem;
+          right: -5rem;
+          opacity: 0.4;
+          transform: rotate(10deg);
+        }
+  
+        svg[name="dots-1"] {
+          bottom: 0.5rem;
+          left: 0.5rem;
+          transform: rotate(90deg);
+          fill: white;
+          height: 5rem;
+          opacity: 0.2;
+        }
       }
     }
   }
 
-  ol#poke-list {
+  #poke-list {
     list-style-type: none;
     margin: 0;
     padding: 0.25rem;
@@ -233,6 +252,10 @@ header {
     &:hover {
       width: 14rem;
     }
+
+    .search-bar {
+      margin: 0.25rem 0;
+    }
     
     li {
       font-size: 1rem;
@@ -243,14 +266,15 @@ header {
       align-items: center;
       line-height: 2.5rem;
       width: 100%;
-      border-top: 1px solid #bbbbbb;
+      border-top: 1px solid $light-grey;
       
       &:hover {
-        background-color: rgba($color: #e0e0e0, $alpha: 1);
+        background-color: rgba($color: $light-grey, $alpha: 1);
       }
       
       &:first-child {
         border: none;
+        background-color: transparent;
       }
 
       &.selected {
@@ -275,7 +299,7 @@ header {
     }
   }
 
-  div#detail-view {
+  #detail-view {
     padding: 5vh 10vw;
     background-color: $primary-red;
     height: max-content;
@@ -440,17 +464,18 @@ header {
   background-color: $primary-red;
   transition: background-color 0s linear $page-transition-time;
 
-  ol#poke-grid {
+  #poke-grid-container {
+  // // ol#poke-grid {
     transform: translateY(-120%);
     opacity: 0.3;
     transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
   }
   
-  ol#poke-list {
+  #poke-list {
     animation: slide-in-left-to-right $page-transition-time linear forwards;
   }
 
-  div#detail-view {
+  #detail-view {
     animation: slide-in-right-to-left $page-transition-time linear forwards;
   }
 }
@@ -459,7 +484,8 @@ header {
   background-color: white;
   transition: background-color 0s linear;
 
-  ol#poke-grid {
+  #poke-grid-container {
+  // ol#poke-grid {
     transform: translateY(0);
     opacity: 1;
     visibility: visible;
@@ -467,11 +493,11 @@ header {
 
   }
   
-  ol#poke-list {
+  #poke-list {
     animation: slide-out-right-to-left $page-transition-time linear forwards;
   }
 
-  div#detail-view {
+  #detail-view {
     animation: slide-out-left-to-right $page-transition-time linear forwards;
   }
 }
@@ -485,5 +511,37 @@ header {
 
   * {
     position: absolute;
+  }
+}
+
+.search-bar {
+  display: flex;
+  gap: 0.5rem;
+  height: 2rem;
+  width: 100%;
+  padding: 0.25rem;
+  background-color: $light-grey;
+  border-radius: 7px;
+  transition: filter $short-animation-time linear;
+
+  img {
+    height: 100%;
+    margin: 0 0.25rem;
+  }
+
+  input {
+    outline: none;
+    border: none;
+    width: 100%;
+    background: transparent;
+  }
+
+  &:focus-within {
+    outline: 1px dotted black;
+    filter: brightness(0.95);
+  }
+  
+  &:hover {
+    filter: brightness(0.95);
   }
 }

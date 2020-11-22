@@ -1,10 +1,11 @@
 import React, { useContext } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
+import SearchBar from './SearchBar';
 
 const PokeList = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
 
-  const pokeListHtml = ctxPokedex.pokemons.map((pkm) => {
+  const pokeListHtml = ctxPokedex.filteredPokemons.map((pkm) => {
     let zeros = '';
     for (let i = 0; i < 3 - pkm.id.toString().length; i++) {
       zeros += '0';
@@ -33,7 +34,10 @@ const PokeList = () => {
   });
 
   return (
-    <ol id="poke-list" className="vflex">{pokeListHtml}</ol>
+    <ol id="poke-list" className="vflex">
+      <li><SearchBar /></li>
+      {pokeListHtml}
+    </ol>
   );
 }
 

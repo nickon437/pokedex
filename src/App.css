@@ -366,6 +366,10 @@ header div {
   width: 14rem;
 }
 
+#main #poke-list .search-bar {
+  margin: 0.25rem 0;
+}
+
 #main #poke-list li {
   font-size: 1rem;
   cursor: pointer;

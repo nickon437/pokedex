@@ -4,6 +4,7 @@
 
 $primary-red: #ef5350;
 $dark-red: #c62828;
+$light-grey: #e0e0e0;
 $page-transition-time: 1s;
 $short-animation-time: 0.1s;
 $header-height: 4rem;
@@ -151,65 +152,79 @@ header {
   // height: calc(100vh - $header-height);
   top: $header-height;
 
-  ol#poke-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-    grid-template-rows: auto;
-    gap: 2rem;
-    list-style-type: none;
-    margin: 0;
+  #poke-grid-container {
     padding: 3rem 5%;
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     width: 100vw;
-    
-    @media screen and (max-width: 500px) {
-      grid-template-columns: repeat(1, 1fr);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 
-      .pokeTypes {
-        flex-direction: column;
-      }
+    .search-bar {
+      border-radius: 7px;
+      padding: 0.75rem;
+      height: 3rem;
+      background-color: $light-grey;
     }
 
-    li {
-      background-color: $primary-red;
-      color: white;
-      padding: 2rem 10%;
-      border-radius: 10px;
-      height: 15rem;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      transition: filter $short-animation-time linear;
-
-      &:hover {
-        filter: brightness(0.9);
-      }
-
-      img[name="pokemon"] {
-        position: absolute;
-        height: 10rem;
-        bottom: 1rem;
-        right: 10%;
-      }
+    ol#poke-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+      grid-template-rows: auto;
+      gap: 2rem;
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
       
-      img[name="pokeball"] {
-        height: 20rem;
-        bottom: -5rem;
-        right: -5rem;
-        opacity: 0.4;
-        transform: rotate(10deg);
+      @media screen and (max-width: 500px) {
+        grid-template-columns: repeat(1, 1fr);
+  
+        .pokeTypes {
+          flex-direction: column;
+        }
       }
-
-      svg[name="dots-1"] {
-        bottom: 0.5rem;
-        left: 0.5rem;
-        transform: rotate(90deg);
-        fill: white;
-        height: 5rem;
-        opacity: 0.2;
+  
+      li {
+        background-color: $primary-red;
+        color: white;
+        padding: 2rem 10%;
+        border-radius: 10px;
+        height: 15rem;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        transition: filter $short-animation-time linear;
+  
+        &:hover {
+          filter: brightness(0.9);
+        }
+  
+        img[name="pokemon"] {
+          position: absolute;
+          height: 10rem;
+          bottom: 1rem;
+          right: 10%;
+        }
+        
+        img[name="pokeball"] {
+          height: 20rem;
+          bottom: -5rem;
+          right: -5rem;
+          opacity: 0.4;
+          transform: rotate(10deg);
+        }
+  
+        svg[name="dots-1"] {
+          bottom: 0.5rem;
+          left: 0.5rem;
+          transform: rotate(90deg);
+          fill: white;
+          height: 5rem;
+          opacity: 0.2;
+        }
       }
     }
   }
@@ -247,14 +262,15 @@ header {
       align-items: center;
       line-height: 2.5rem;
       width: 100%;
-      border-top: 1px solid #bbbbbb;
+      border-top: 1px solid $light-grey;
       
       &:hover {
-        background-color: rgba($color: #e0e0e0, $alpha: 1);
+        background-color: rgba($color: $light-grey, $alpha: 1);
       }
       
       &:first-child {
         border: none;
+        background-color: transparent;
       }
 
       &.selected {
@@ -497,13 +513,12 @@ header {
   gap: 0.5rem;
   height: 2rem;
   width: 100%;
-  background-color: white;
   padding: 0.25rem;
-  // border: 1px solid #e0e0e0;
-  // border-radius: 7px;
+  background-color: $light-grey;
+  border-radius: 7px;
+  transition: filter $short-animation-time linear;
 
   img {
-    // padding: 1rem;
     height: 100%;
     margin: 0 0.25rem;
   }
@@ -516,8 +531,11 @@ header {
   }
 
   &:focus-within {
-    // border-radius: 7px;
-    background-color: #e0e0e0;
-    // background-color: pink;
+    outline: 1px dotted black;
+    filter: brightness(0.95);
+  }
+  
+  &:hover {
+    filter: brightness(0.95);
   }
 }

@@ -2,14 +2,18 @@
 import React, { useContext } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
 import PokeGridElement from './PokeGridElement';
+import SearchBar from './SearchBar';
 
 const PokeGrid = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
   const pokeData = ctxPokedex.pokemons.map((pkm) => (<PokeGridElement key={pkm.id} pkm={pkm}/>));  
   return (
-    <ol id="poke-grid">
-      {pokeData}
-    </ol>
+    <div id="poke-grid-container">
+      <SearchBar />
+      <ol id="poke-grid">
+        {pokeData}
+      </ol>
+    </div>
   )
 };
 

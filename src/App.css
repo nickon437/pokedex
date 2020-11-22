@@ -242,7 +242,31 @@ header div {
   top: 4rem;
 }
 
-#main ol#poke-grid {
+#main #poke-grid-container {
+  padding: 3rem 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1.5rem;
+}
+
+#main #poke-grid-container .search-bar {
+  border-radius: 7px;
+  padding: 0.75rem;
+  height: 3rem;
+  background-color: #e0e0e0;
+}
+
+#main #poke-grid-container ol#poke-grid {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (minmax(23rem, 1fr))[auto-fit];
@@ -252,20 +276,15 @@ header div {
   gap: 2rem;
   list-style-type: none;
   margin: 0;
-  padding: 3rem 5%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  width: 100vw;
+  padding: 0;
 }
 
 @media screen and (max-width: 500px) {
-  #main ol#poke-grid {
+  #main #poke-grid-container ol#poke-grid {
     -ms-grid-columns: (1fr)[1];
         grid-template-columns: repeat(1, 1fr);
   }
-  #main ol#poke-grid .pokeTypes {
+  #main #poke-grid-container ol#poke-grid .pokeTypes {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -273,7 +292,7 @@ header div {
   }
 }
 
-#main ol#poke-grid li {
+#main #poke-grid-container ol#poke-grid li {
   background-color: #ef5350;
   color: white;
   padding: 2rem 10%;
@@ -288,19 +307,19 @@ header div {
   transition: filter 0.1s linear, -webkit-filter 0.1s linear;
 }
 
-#main ol#poke-grid li:hover {
+#main #poke-grid-container ol#poke-grid li:hover {
   -webkit-filter: brightness(0.9);
           filter: brightness(0.9);
 }
 
-#main ol#poke-grid li img[name="pokemon"] {
+#main #poke-grid-container ol#poke-grid li img[name="pokemon"] {
   position: absolute;
   height: 10rem;
   bottom: 1rem;
   right: 10%;
 }
 
-#main ol#poke-grid li img[name="pokeball"] {
+#main #poke-grid-container ol#poke-grid li img[name="pokeball"] {
   height: 20rem;
   bottom: -5rem;
   right: -5rem;
@@ -309,7 +328,7 @@ header div {
           transform: rotate(10deg);
 }
 
-#main ol#poke-grid li svg[name="dots-1"] {
+#main #poke-grid-container ol#poke-grid li svg[name="dots-1"] {
   bottom: 0.5rem;
   left: 0.5rem;
   -webkit-transform: rotate(90deg);
@@ -361,7 +380,7 @@ header div {
           align-items: center;
   line-height: 2.5rem;
   width: 100%;
-  border-top: 1px solid #bbbbbb;
+  border-top: 1px solid #e0e0e0;
 }
 
 #main ol#poke-list li:hover {
@@ -370,6 +389,7 @@ header div {
 
 #main ol#poke-list li:first-child {
   border: none;
+  background-color: transparent;
 }
 
 #main ol#poke-list li.selected {
@@ -644,8 +664,13 @@ header div {
   gap: 0.5rem;
   height: 2rem;
   width: 100%;
-  background-color: white;
   padding: 0.25rem;
+  background-color: #e0e0e0;
+  border-radius: 7px;
+  -webkit-transition: -webkit-filter 0.1s linear;
+  transition: -webkit-filter 0.1s linear;
+  transition: filter 0.1s linear;
+  transition: filter 0.1s linear, -webkit-filter 0.1s linear;
 }
 
 .search-bar img {
@@ -661,6 +686,13 @@ header div {
 }
 
 .search-bar:focus-within {
-  background-color: #e0e0e0;
+  outline: 1px dotted black;
+  -webkit-filter: brightness(0.95);
+          filter: brightness(0.95);
+}
+
+.search-bar:hover {
+  -webkit-filter: brightness(0.95);
+          filter: brightness(0.95);
 }
 /*# sourceMappingURL=App.css.map */

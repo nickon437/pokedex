@@ -44,7 +44,10 @@ code {
 
 html, body, #root {
   height: 100%;
-  width: 100vw;
+}
+
+#root {
+  overflow-x: hidden;
 }
 
 header {
@@ -57,7 +60,6 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  // @include background(null, blue);
   
   div {
     font-family: Orbitron;

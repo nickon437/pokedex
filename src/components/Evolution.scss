@@ -1,0 +1,52 @@
+@import '../variables';
+
+#evolution-section {
+  
+  #evolution-chain  {
+    @include flex($center: true, $direction: null, $gap: null)
+
+    .pokemon-evolution {
+      img {
+        height: 5rem;
+      }
+      
+    }
+
+    .evolution-trigger {
+      @include flex($center: true, $direction: column, $gap: null);
+      font-weight: bold;
+      width: fit-content;
+
+      .evolution-requirement {
+        padding: 0 0.5rem;
+      }
+
+      .arrow {
+        width: 100%;
+        height: 0.5rem;
+        background-color: $light-grey;
+        position: relative;
+        border-radius: 7px;
+        
+        &::before, &::after {
+          content: "";
+          width: 1rem;
+          height: inherit;
+          border-radius: inherit;
+          position: absolute;
+          right: 0;
+          background-color: inherit;
+        }
+        
+        &::before {
+          rotate: 45deg;
+          bottom: 0.25rem;
+        }
+        &::after {
+          rotate: -45deg;
+          bottom: -0.25rem;
+        }
+      }
+    }
+  }
+}

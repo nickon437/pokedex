@@ -5,21 +5,27 @@ import PokeBasicInfo from './PokeBasicInfo';
 import { PokedexContext } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
 import './DetailView.scss';
+import Evolution from './Evolution';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const DetailView = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
   const [pkmSpecies, setPkmSpecies] = useState(null);
+  const [pkmEvolution, setPkmEvolution] = useState(null);
 
-  const fetchSpecies = useCallback(async (selectedPkm) => {
+  const fetchPkmData = useCallback(async (selectedPkm) => {
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${selectedPkm.id}`;
-    setPkmSpecies(await fetch(pokemonSpeciesUrl).then((result) => result.json()));
+    const pokemonSpecies = await fetch(pokemonSpeciesUrl).then((result) => result.json());
+    setPkmSpecies(pokemonSpecies);
+
+    const evolutionUrl = pokemonSpecies.evolution_chain.url;
+    setPkmEvolution(await fetch(evolutionUrl).then((result) => result.json()));
   }, []);
 
   useEffect(() => {
     if (ctxPokedex.selectedPkm) {
-      fetchSpecies(ctxPokedex.selectedPkm);
+      fetchPkmData(ctxPokedex.selectedPkm);
     }
   }, [ctxPokedex.selectedPkm]);
 
@@ -63,9 +69,12 @@ const DetailView = () => {
         <PokeBasicInfo pkm={ctxPokedex.selectedPkm} />
       </div>
       <div id="detail-data">
-        <h2>Pokedex entry</h2>
-        <div>{pkmSpecies && pokeEntry()}</div>
+        <section>
+          <h2>Pokedex entry</h2>
+          <div>{pkmSpecies && pokeEntry()}</div>
+        </section>
         <Stat pkm={ctxPokedex.selectedPkm} />
+        <Evolution pokemons={ctxPokedex.pokemons} pkmEvolution={pkmEvolution} />
       </div>
     </div>
   )

@@ -1,0 +1,96 @@
+@import '../variables';
+
+#poke-grid-container {
+  padding: 3rem 5%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  .search-bar {
+    border-radius: 7px;
+    padding: 0.75rem;
+    height: 3rem;
+    background-color: $light-grey;
+  }
+
+  #poke-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
+    grid-template-rows: auto;
+    gap: 2rem;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    
+    @media screen and (max-width: 500px) {
+      grid-template-columns: repeat(1, 1fr);
+
+      .pokeTypes {
+        flex-direction: column;
+      }
+    }
+
+    li {
+      background-color: $primary-red;
+      color: white;
+      padding: 2rem 10%;
+      border-radius: 10px;
+      height: 15rem;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: filter $short-animation-time linear;
+
+      &:hover {
+        filter: brightness(0.9);
+      }
+
+      img[name="pokemon"] {
+        position: absolute;
+        height: 10rem;
+        bottom: 1rem;
+        right: 10%;
+      }
+      
+      img[name="pokeball"] {
+        height: 20rem;
+        bottom: -5rem;
+        right: -5rem;
+        opacity: 0.4;
+        transform: rotate(10deg);
+      }
+
+      svg[name="dots-1"] {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        transform: rotate(90deg);
+        fill: white;
+        height: 5rem;
+        opacity: 0.2;
+      }
+    }
+  }
+}
+
+#main.split-view {
+  #poke-grid-container {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
+  }
+}
+
+#main.split-view.reverse-split-view {
+  #poke-grid-container {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity $page-transition-time linear;
+  }
+}

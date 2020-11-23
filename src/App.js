@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { PokedexContext } from './context/PokedexContext';
 import PokeGrid from './components/PokeGrid';
 import PokeList from './components/PokeList';
@@ -10,7 +10,7 @@ const App = () => {
 
   const fetchPokemon = useCallback(async () => {
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-    const NUM_OF_POKEMON = 20;
+    const NUM_OF_POKEMON = 3;
     const promises = [];
     let pokemons;
     for (let i = 1; i <= NUM_OF_POKEMON; i++) {

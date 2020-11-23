@@ -1,0 +1,31 @@
+$primary-red: #ef5350;
+$dark-red: #c62828;
+$light-grey: #e0e0e0;
+$page-transition-time: 1s;
+$short-animation-time: 0.1s;
+$header-height: 4rem;
+
+@mixin flexCenter($direction, $gap) {
+  @if not $gap {
+    $gap: 0.5rem;
+  }
+
+  display: flex;
+  flex-direction: $direction;
+  justify-content: center;
+  align-items: center;
+  gap: $gap;
+}
+
+// @mixin background($bg, $bordercolor) {
+//   @if not $bg {
+//     $bg: black;
+//   }
+  
+//   @if not $bordercolor {
+//     $bordercolor: yellow;
+//   }
+
+//   background-color: $bg;
+//   border: 3px solid $bordercolor;
+// }

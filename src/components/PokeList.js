@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
 import SearchBar from './SearchBar';
+import './PokeList.scss';
 
 const PokeList = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);

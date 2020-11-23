@@ -2,12 +2,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&display=swap');
 
-$primary-red: #ef5350;
-$dark-red: #c62828;
-$light-grey: #e0e0e0;
-$page-transition-time: 1s;
-$short-animation-time: 0.1s;
-$header-height: 4rem;
+@import './variables';
+@import './keyframes';
 
 html {
   box-sizing: border-box;
@@ -70,6 +66,7 @@ header {
   position: fixed;
   top: 0;
   left: 0;
+  // @include background(null, blue);
   
   div {
     font-family: Orbitron;
@@ -83,356 +80,7 @@ header {
     border-radius: 5px;
     padding: 0 1rem; 
     -webkit-text-stroke: 1px rgba($color: white, $alpha: 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-}
-
-@keyframes slide-out-right-to-left {
-  0% {
-    visibility: visible;
-    transform: translateX(0);
-  }
-  75% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(-100%) translateY(-100%);
-    visibility: hidden;
-  }
-}
-
-@keyframes slide-in-left-to-right {
-  0% {
-    transform: translateX(-100%) translateY(-100%);
-    visibility: hidden;
-  }
-  25% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(0) translateY(0);
-    visibility: visible;
-  }
-}
-
-@keyframes slide-out-left-to-right {
-  0% {
-    visibility: visible;
-    transform: translateX(0);
-  }
-  75% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(100%) translateY(-100%);
-    visibility: hidden;
-  }
-}
-
-@keyframes slide-in-right-to-left {
-  0% {
-    transform: translateX(100%) translateY(-100%);
-    visibility: hidden;
-  }
-  25% {
-    transform: translateX(100%);
-  }
-  100% {
-    transform: translateX(0) translateY(0);
-    visibility: visible;
-  }
-}
-
-#main {
-  position: relative;
-  display: flex;
-  height: calc(100vh - 6rem);  // Fallback due to issue with sass does not compile $header-height
-  // height: calc(100vh - $header-height);
-  top: $header-height;
-
-  #poke-grid-container {
-    padding: 3rem 5%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-
-    .search-bar {
-      border-radius: 7px;
-      padding: 0.75rem;
-      height: 3rem;
-      background-color: $light-grey;
-    }
-
-    #poke-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(23rem, 1fr));
-      grid-template-rows: auto;
-      gap: 2rem;
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
-      
-      @media screen and (max-width: 500px) {
-        grid-template-columns: repeat(1, 1fr);
-  
-        .pokeTypes {
-          flex-direction: column;
-        }
-      }
-  
-      li {
-        background-color: $primary-red;
-        color: white;
-        padding: 2rem 10%;
-        border-radius: 10px;
-        height: 15rem;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        transition: filter $short-animation-time linear;
-  
-        &:hover {
-          filter: brightness(0.9);
-        }
-  
-        img[name="pokemon"] {
-          position: absolute;
-          height: 10rem;
-          bottom: 1rem;
-          right: 10%;
-        }
-        
-        img[name="pokeball"] {
-          height: 20rem;
-          bottom: -5rem;
-          right: -5rem;
-          opacity: 0.4;
-          transform: rotate(10deg);
-        }
-  
-        svg[name="dots-1"] {
-          bottom: 0.5rem;
-          left: 0.5rem;
-          transform: rotate(90deg);
-          fill: white;
-          height: 5rem;
-          opacity: 0.2;
-        }
-      }
-    }
-  }
-
-  #poke-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0.25rem;
-    position: fixed;
-    -webkit-backface-visibility: hidden;
-    top: $header-height;
-    left: 0;
-    bottom: 0;
-    background-color: white;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    width: 3.5rem;
-    box-shadow: 0 5px 5px #2a2a2a;
-    z-index: 20;
-    transform: translateX(-100%);
-    visibility: hidden;
-    transition: width 0.3s ease-in-out;
-    gap: 0;
-
-    &:hover {
-      width: 14rem;
-    }
-
-    .search-bar {
-      margin: 0.25rem 0;
-    }
-    
-    li {
-      font-size: 1rem;
-      cursor: pointer;
-      display: flex;
-      gap: 0.75rem;
-      transition: background-color $short-animation-time linear;
-      align-items: center;
-      line-height: 2.5rem;
-      width: 100%;
-      border-top: 1px solid $light-grey;
-      
-      &:hover {
-        background-color: rgba($color: $light-grey, $alpha: 1);
-      }
-      
-      &:first-child {
-        border: none;
-        background-color: transparent;
-      }
-
-      &.selected {
-        background-color: $primary-red;
-        border-radius: 10px;
-        color: white;
-        
-        &:hover {
-          background-color: $dark-red;
-        }
-      }
-      
-      .pokeName, .pokeId {
-        font-size: 1rem;
-        font-weight: normal;
-        font-family: 'Nova Mono';;
-      }
-
-      .pokeName {
-        padding-right: 1rem;
-      }
-    }
-  }
-
-  #detail-view {
-    padding: 5vh 10vw;
-    background-color: $primary-red;
-    height: max-content;
-    position: absolute;
-    top: 0;
-    right: 0;
-    left: 3rem;
-    overflow-y: auto;
-    overflow-x: hidden;
-    transform: translateX(100%);
-    visibility: hidden;
-
-    #overview {
-      height: 20rem;
-      width: 100%;
-      position: relative;
-      color: white;
-  
-      img[name="pokemon"] {
-        position: absolute;
-        height: 30vw;
-        min-height: 13rem;
-        max-height: 25rem;
-        bottom: -5rem;
-        left: 10%;
-        z-index: 10;
-      }
-  
-      img[name="pokeball"] {
-        height: 25rem;
-        opacity: 0.4;
-        transform: rotate(10deg);
-      }
-  
-      svg[name="dots-1"] {
-        right: 1rem;
-        fill: white;
-        opacity: 0.2;
-      }
-  
-      svg[name="dots-2"] {
-        fill: white;
-        opacity: 0.15;
-        height: 20rem;
-        right: 40%;
-      }
-  
-      div[name="basic-data"] {
-        position: absolute;
-        right: 10%;
-        padding: 5rem;
-        padding-right: 8%; // Allows basic data to stay relatively center on iPhone 6 screen
-      }
-
-      button[name="cancel-btn"] {
-        top: 0;
-        right: 0;
-        height: 2rem;
-        width: 2rem;
-        background-color: rgba($color: #fff, $alpha: 0.5);
-        border: none;
-        border-radius: 7px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all $short-animation-time linear;
-
-        &:hover {
-          background-color: rgba($color: #fff, $alpha: 0.8);
-          svg {
-            color: $primary-red;
-            opacity: 1;
-          }
-        }
-
-        svg {
-          height: 1.5rem;
-          width: 1.5rem;
-          color: white;
-          opacity: 1;
-        }
-      }
-    }
-
-    #detail-data {
-      background-color: white;
-      border-radius: 20px;
-      z-index: 5;
-      padding: 5rem 5%;
-      position: relative;
-    
-      .stat-section-content {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: auto;
-        column-gap: 3rem;
-        align-items: center;
-    
-        .stat-container {
-          display: grid;
-          grid-template-columns: 2.5rem 1.5rem auto;
-          column-gap: 1rem;
-    
-          .label {
-            font-weight: 600;
-          }
-        
-          .figure {
-            text-align: right;
-          }
-        
-          .progress-bar {
-            background-color: rgba($color: #e6e6e6, $alpha: 1.0);
-            height: 1rem;
-            width: 100%;
-            border-radius: 50px;
-        
-            div {
-              background-color: cornflowerblue; 
-              height: 100%;
-              border-radius: inherit;
-            }
-          }
-        }
-      }
-    
-      @media screen and (max-width: 768px) {
-        .stat-section-content {
-          grid-template-columns: 1fr;
-        }
-      }
-    }
+    @include flexCenter(null, null);
   }
 }
 
@@ -448,6 +96,7 @@ header {
 
 .pokeTypes {
   margin: 0.5rem 0;
+  @include flexCenter(null, null);
 
   div {
     font-size: 0.75rem;
@@ -460,20 +109,16 @@ header {
   }
 }
 
+#main {
+  position: relative;
+  display: flex;
+  height: calc(100vh - #{$header-height});
+  top: $header-height;  
+}
+
 #main.split-view {
   background-color: $primary-red;
   transition: background-color 0s linear $page-transition-time;
-
-  #poke-grid-container {
-  // // ol#poke-grid {
-    transform: translateY(-120%);
-    opacity: 0.3;
-    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
-  }
-  
-  #poke-list {
-    animation: slide-in-left-to-right $page-transition-time linear forwards;
-  }
 
   #detail-view {
     animation: slide-in-right-to-left $page-transition-time linear forwards;
@@ -483,19 +128,6 @@ header {
 #main.split-view.reverse-split-view {
   background-color: white;
   transition: background-color 0s linear;
-
-  #poke-grid-container {
-  // ol#poke-grid {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity $page-transition-time linear;
-
-  }
-  
-  #poke-list {
-    animation: slide-out-right-to-left $page-transition-time linear forwards;
-  }
 
   #detail-view {
     animation: slide-out-left-to-right $page-transition-time linear forwards;
@@ -511,37 +143,5 @@ header {
 
   * {
     position: absolute;
-  }
-}
-
-.search-bar {
-  display: flex;
-  gap: 0.5rem;
-  height: 2rem;
-  width: 100%;
-  padding: 0.25rem;
-  background-color: $light-grey;
-  border-radius: 7px;
-  transition: filter $short-animation-time linear;
-
-  img {
-    height: 100%;
-    margin: 0 0.25rem;
-  }
-
-  input {
-    outline: none;
-    border: none;
-    width: 100%;
-    background: transparent;
-  }
-
-  &:focus-within {
-    outline: 1px dotted black;
-    filter: brightness(0.95);
-  }
-  
-  &:hover {
-    filter: brightness(0.95);
   }
 }

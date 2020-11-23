@@ -22,7 +22,7 @@ const PokeBasicInfo = ({ pkm }) => {
       <div name="basic-data">
         <div className="pokeId">{pokeId}</div>
         <div className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
-        <div className="pokeTypes hflex">{pokeTypes}</div>
+        <div className="pokeTypes">{pokeTypes}</div>
       </div>
     </>
   )

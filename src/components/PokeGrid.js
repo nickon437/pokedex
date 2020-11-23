@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
 import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
+import './PokeGrid.scss';
 
 const PokeGrid = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);

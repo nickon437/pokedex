@@ -4,6 +4,7 @@ import Stat from './Stat';
 import PokeBasicInfo from './PokeBasicInfo';
 import { PokedexContext } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
+import './DetailView.scss';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 

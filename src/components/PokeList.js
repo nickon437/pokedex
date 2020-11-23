@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
 import SearchBar from './SearchBar';
+import './PokeList.scss';
 
 const PokeList = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
@@ -22,10 +23,10 @@ const PokeList = () => {
         name="info-container"
         key={pkm.id}
         onClick={handleClickItem}
-        className={[ctxPokedex.selectedPkm?.id === pkm.id && "selected", "hflex"].join(' ')}
+        className={ctxPokedex.selectedPkm?.id === pkm.id && "selected"}
       >
         <img src={pkm.sprites.versions['generation-vii'].icons.front_default} name="pokemon" alt="" />
-        <div className="pokeOverview hflex">
+        <div className="pokeOverview">
           <div name="pokeId" className="pokeId">{pokeId}</div>
           <div name="pokeName" className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
         </div>
@@ -34,8 +35,8 @@ const PokeList = () => {
   });
 
   return (
-    <ol id="poke-list" className="vflex">
-      <li><SearchBar /></li>
+    <ol id="poke-list">
+      <li><SearchBar searchBarID="poke-list-search-bar"/></li>
       {pokeListHtml}
     </ol>
   );

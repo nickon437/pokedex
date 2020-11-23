@@ -1,5 +1,5 @@
 import React, { useCallback, useContext, useEffect } from 'react';
-import './App.css';
+import './App.scss';
 import { PokedexContext } from './context/PokedexContext';
 import PokeGrid from './components/PokeGrid';
 import PokeList from './components/PokeList';

@@ -1,0 +1,88 @@
+@import '../variables';
+@import '../keyframes';
+
+#poke-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0.25rem;
+  position: fixed;
+  -webkit-backface-visibility: hidden;
+  top: $header-height;
+  left: 0;
+  bottom: 0;
+  background-color: white;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  width: 3.5rem;
+  box-shadow: 0 5px 5px #2a2a2a;
+  z-index: 20;
+  transform: translateX(-100%);
+  visibility: hidden;
+  transition: width 0.3s ease-in-out;  
+  @include flex($center: false, $direction: column, $gap: 0);
+
+  &:hover, &:focus-within {
+    width: $expanded-poke-list;
+  }
+
+  .search-bar {
+    margin: 0.25rem 0;
+    gap: 1rem;
+  }
+  
+  li {
+    font-size: 1rem;
+    cursor: pointer;
+    @include flex($center: false, $direction: null, $gap: 0.75rem);
+    align-items: center;
+    transition: background-color $short-animation-time linear;
+    line-height: 2.5rem;
+    width: 100%;
+    border-top: 1px solid $light-grey;
+    
+    &:hover {
+      background-color: rgba($color: $light-grey, $alpha: 1);
+    }
+    
+    &:first-child {
+      border: none;
+      background-color: transparent;
+    }
+
+    &.selected {
+      background-color: $primary-red;
+      border-radius: 10px;
+      color: white;
+      
+      &:hover {
+        background-color: $dark-red;
+      }
+    }
+    
+    .pokeName, .pokeId {
+      font-size: 1rem;
+      font-weight: normal;
+      font-family: 'Nova Mono';;
+    }
+
+    .pokeName {
+      padding-right: 1rem;
+    }
+
+    .pokeOverview {
+      @include flex($center: false, $direction: null, $gap: null);
+    }
+  }
+}
+
+#main.split-view {
+  #poke-list {
+    animation: slide-in-left-to-right $page-transition-time linear forwards;
+  }
+}
+
+#main.split-view.reverse-split-view {
+  #poke-list {
+    animation: slide-out-right-to-left $page-transition-time linear forwards;
+  }
+}

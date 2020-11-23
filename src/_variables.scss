@@ -20,16 +20,3 @@ $expanded-poke-list: 14rem;
   flex-direction: $direction;
   gap: $gap;
 }
-
-// @mixin background($bg, $bordercolor) {
-//   @if not $bg {
-//     $bg: black;
-//   }
-  
-//   @if not $bordercolor {
-//     $bordercolor: yellow;
-//   }
-
-//   background-color: $bg;
-//   border: 3px solid $bordercolor;
-// }

@@ -47,15 +47,6 @@ html, body, #root {
   width: 100vw;
 }
 
-.hflex, .vflex {
-  display: flex;
-  gap: 0.5rem;
-}
-
-.vflex {
-  flex-direction: column;
-}
-
 header {
   height: $header-height;
   width: 100%;
@@ -80,7 +71,7 @@ header {
     border-radius: 5px;
     padding: 0 1rem; 
     -webkit-text-stroke: 1px rgba($color: white, $alpha: 0.8);
-    @include flexCenter(null, null);
+    @include flex($center: true, $direction: null, $gap: null);
   }
 }
 
@@ -96,7 +87,7 @@ header {
 
 .pokeTypes {
   margin: 0.5rem 0;
-  @include flexCenter(null, null);
+  @include flex($center: false, $direction: null, $gap: null);
 
   div {
     font-size: 0.75rem;

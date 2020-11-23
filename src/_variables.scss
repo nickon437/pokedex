@@ -5,15 +5,18 @@ $page-transition-time: 1s;
 $short-animation-time: 0.1s;
 $header-height: 4rem;
 
-@mixin flexCenter($direction, $gap) {
+@mixin flex($center, $direction, $gap) {
   @if not $gap {
     $gap: 0.5rem;
   }
 
+  @if $center {
+    justify-content: center;
+    align-items: center;
+  }
+
   display: flex;
   flex-direction: $direction;
-  justify-content: center;
-  align-items: center;
   gap: $gap;
 }
 

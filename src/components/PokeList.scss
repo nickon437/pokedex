@@ -18,10 +18,8 @@
   z-index: 20;
   transform: translateX(-100%);
   visibility: hidden;
-  transition: width 0.3s ease-in-out;
-  gap: 0;
-
-  // @include flexCenter(column, 0);
+  transition: width 0.3s ease-in-out;  
+  @include flex($center: false, $direction: column, $gap: 0);
 
   &:hover {
     width: 14rem;
@@ -29,14 +27,14 @@
 
   .search-bar {
     margin: 0.25rem 0;
+    gap: 1rem;
   }
   
   li {
     font-size: 1rem;
     cursor: pointer;
-    display: flex;
+    @include flex($center: false, $direction: null, $gap: 0.75rem);
     align-items: center;
-    gap: 0.75rem;
     transition: background-color $short-animation-time linear;
     line-height: 2.5rem;
     width: 100%;
@@ -69,6 +67,10 @@
 
     .pokeName {
       padding-right: 1rem;
+    }
+
+    .pokeOverview {
+      @include flex($center: false, $direction: null, $gap: null);
     }
   }
 }

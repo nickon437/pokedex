@@ -7,9 +7,7 @@
   left: 0;
   right: 0;
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
+  @include flex($center: false, $direction: column, $gap: 1.5rem);
 
   .search-bar {
     border-radius: 7px;

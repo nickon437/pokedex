@@ -10,7 +10,7 @@ const PokeGrid = () => {
   const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm}/>);  
   return (
     <div id="poke-grid-container">
-      <SearchBar />
+      <SearchBar searchBarID="poke-grid-search-bar"/>
       <ol id="poke-grid">
         {pokeData}
       </ol>

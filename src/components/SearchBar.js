@@ -3,7 +3,7 @@ import { PokedexContext } from '../context/PokedexContext';
 import magnify from '../resources/img/magnify.png';
 import './SearchBar.scss';
 
-const SearchBar = () => {
+const SearchBar = ({ searchBarID }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
 
   const handleChange = (e) => {
@@ -19,8 +19,10 @@ const SearchBar = () => {
 
   return (
     <div class="search-bar">
-      <img src={magnify} alt="" />
-      <input name="search" type="search" placeholder="Search for ID and name" onChange={handleChange} />
+      <label htmlFor={searchBarID}>
+        <img src={magnify} alt="search" />
+      </label>
+      <input id={searchBarID} name="search-input" type="search" placeholder="Search for ID and name" onChange={handleChange} />
     </div>
   )
 }

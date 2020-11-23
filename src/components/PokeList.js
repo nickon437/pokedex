@@ -36,7 +36,7 @@ const PokeList = () => {
 
   return (
     <ol id="poke-list">
-      <li><SearchBar /></li>
+      <li><SearchBar searchBarID="poke-list-search-bar"/></li>
       {pokeListHtml}
     </ol>
   );

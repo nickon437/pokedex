@@ -21,8 +21,8 @@
   transition: width 0.3s ease-in-out;  
   @include flex($center: false, $direction: column, $gap: 0);
 
-  &:hover {
-    width: 14rem;
+  &:hover, &:focus-within {
+    width: $expanded-poke-list;
   }
 
   .search-bar {

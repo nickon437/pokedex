@@ -1,14 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useCallback, useState } from 'react';
 import { PokedexContext } from '../context/PokedexContext';
 import './Evolution.scss';
 import StringUtil from '../utils/StringUtil';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [multipleEvoChainsJSX, setMultipleEvoChainsJSX] = useState([]);
 
-  const multipleEvoChainsJSX = [];
-
-  const getEvoRequirements = (evoDetails) => {
+  const getEvoRequirements = async (evoDetails) => {
     const evoRequirements = [];
 
     if (evoDetails.gender) {
@@ -20,7 +19,10 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.item) {
-      evoRequirements.push(`Item: ${StringUtil.makeFirstLetterUpperCase(evoDetails.item.name.replace(/-/g, ' '))}`);
+      const evoItemUrl = evoDetails.item.url;
+      const evoItem = await fetch(evoItemUrl).then((result) => result.json());
+      const evoItemSpriteUrl = evoItem.sprites.default;
+      evoRequirements.push(<div><img src={evoItemSpriteUrl} alt={evoItem.name.replace(/-/g, ' ')} /></div>);
     }
 
     if (evoDetails.known_move) {
@@ -48,7 +50,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.min_level) {
-      evoRequirements.push(`Lv. ${evoDetails.min_level}`);
+      evoRequirements.push(<div>Lv. {evoDetails.min_level}</div>);
     }
 
     if (evoDetails.needs_overworld_rain) {
@@ -74,19 +76,20 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     if (evoDetails.trade_species) {
       evoRequirements.push(`Trade: {evoDetails.trade_species}`);
     }
+    
+    if (evoDetails.trigger && evoDetails.trigger.name !== 'level-up' && evoDetails.trigger.name !== 'use-item') {
+      evoRequirements.push(`Trigger: ${evoDetails.trigger.name}`);
+    }
 
     if (evoDetails.turn_upside_down) {
       evoRequirements.push(`{evoDetails.turn_upside_down}`);
     }
 
-    console.log(evoRequirements);
     return evoRequirements;
   }
 
-  let evolution = pkmEvolution?.chain;
-  const buildEvolutionChain = (evolution, evoChainJSX) => {
-    const pokemonID = evolution.species.url.match(/\/\d+\//)[0].slice(1, -1);
-    console.log('pokemonID', pokemonID);
+  const buildEvolutionChain =  useCallback(async (evolution, evoChainJSX, pokemons) => {
+    const pokemonID = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
     if (pokemonID > pokemons.length) {
       return;
     }
@@ -102,40 +105,38 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     evoChainJSX.push(pokemonImgJSX);
 
     if (evolution.evolves_to.length <= 0) {
-      multipleEvoChainsJSX.push(evoChainJSX);
+      setMultipleEvoChainsJSX((prev) => [...prev, evoChainJSX]);
     } else {
-      let index = 0;
-      while (index < evolution.evolves_to.length) {
+      let branchIndex = 0;
+      while (branchIndex < evolution.evolves_to.length) {
         const currentEvoChain = [...evoChainJSX];
+        const nextEvolution = evolution.evolves_to.[branchIndex.toString()];
 
-        const nextEvolution = evolution.evolves_to.[index.toString()];
-
-        if (nextEvolution) {
-          const evolutionTrigger = (
-            <div className="evolution-trigger">
-              <div className="evolution-requirement">
-                {getEvoRequirements(nextEvolution.evolution_details.["0"]).join('\n')}
-              </div>
-              <div className="arrow" />
+        const evolutionTrigger = (
+          <div className="evolution-trigger">
+            <div className="evolution-requirement">
+              {(await getEvoRequirements(nextEvolution.evolution_details.["0"]))}
             </div>
-          );
-          currentEvoChain.push(evolutionTrigger);
-        }
+            <div className="arrow" />
+          </div>
+        );
+        currentEvoChain.push(evolutionTrigger);
 
-        buildEvolutionChain(nextEvolution, currentEvoChain);
-
-        index++;
+        buildEvolutionChain(nextEvolution, currentEvoChain, pokemons);
+        branchIndex++;
       }
     }
-    
     return;
+  }, []);
 
+  useEffect(() => {
+    if (pkmEvolution) {
+      setMultipleEvoChainsJSX([]);
+      let evolution = pkmEvolution.chain;
+      buildEvolutionChain(evolution, [], pokemons);
+    }
+  }, [pkmEvolution]);
 
-  }
-
-  if (evolution) {
-  buildEvolutionChain(evolution, []);
-}
   return (
     <section id="evolution-section">
       <h2>Evolution</h2>

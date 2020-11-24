@@ -22,7 +22,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
       const evoItemUrl = evoDetails.item.url;
       const evoItem = await fetch(evoItemUrl).then((result) => result.json());
       const evoItemSpriteUrl = evoItem.sprites.default;
-      evoRequirements.push(<div><img src={evoItemSpriteUrl} alt={evoItem.name.replace(/-/g, ' ')} /></div>);
+      evoRequirements.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItem.name)} /></div>);
     }
 
     if (evoDetails.known_move) {
@@ -38,15 +38,15 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.min_affection) {
-      evoRequirements.push(`Minimum affection: ${evoDetails.min_affection}`);
+      evoRequirements.push(`Affection: ${evoDetails.min_affection}`);
     }
 
     if (evoDetails.min_beauty) {
-      evoRequirements.push(`Minimum beauty: ${evoDetails.min_beauty}`);
+      evoRequirements.push(`Beauty: ${evoDetails.min_beauty}`);
     }
 
     if (evoDetails.min_happiness) {
-      evoRequirements.push(`Minimum happiness: ${evoDetails.min_happiness}`);
+      evoRequirements.push(`Happiness: ${evoDetails.min_happiness}`);
     }
 
     if (evoDetails.min_level) {
@@ -54,7 +54,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.needs_overworld_rain) {
-      evoRequirements.push(`Needs overworld rain`);
+      evoRequirements.push(`Overworld rain`);
     }
 
     if (evoDetails.party_species) {
@@ -70,7 +70,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.time_of_day) {
-      evoRequirements.push(`Time of day: ${evoDetails.time_of_day}`);
+      evoRequirements.push(evoDetails.time_of_day);
     }
 
     if (evoDetails.trade_species) {
@@ -78,11 +78,11 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
     
     if (evoDetails.trigger && evoDetails.trigger.name !== 'level-up' && evoDetails.trigger.name !== 'use-item') {
-      evoRequirements.push(`Trigger: ${evoDetails.trigger.name}`);
+      evoRequirements.push(`${StringUtil.cleanUpString(evoDetails.trigger.name)}`);
     }
 
     if (evoDetails.turn_upside_down) {
-      evoRequirements.push(`{evoDetails.turn_upside_down}`);
+      evoRequirements.push('Turn upside down');
     }
 
     return evoRequirements;

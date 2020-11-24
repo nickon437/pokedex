@@ -47,6 +47,10 @@ html, body, #root {
   overflow-x: clip;
 }
 
+.hflex {
+  @include flex(true, null, null);
+}
+
 header {
   height: $header-height;
   width: 100%;

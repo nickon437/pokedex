@@ -5,7 +5,7 @@ import StringUtil from '../utils/StringUtil';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
-  const [multipleEvoChainsJSX, setMultipleEvoChainsJSX] = useState([]);
+  const [multipleEvoChainsJsx, setMultipleEvoChainsJsx] = useState([]);
 
   const getEvoRequirements = async (evoDetails) => {
     const evoRequirements = [];
@@ -88,28 +88,29 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     return evoRequirements;
   }
 
-  const buildEvolutionChain =  useCallback(async (evolution, evoChainJSX, pokemons) => {
-    const pokemonID = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
-    if (pokemonID > pokemons.length) {
+  const buildEvolutionChain =  useCallback(async (evolution, evoChainJsx, pokemons) => {
+    const pokemonId = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
+    if (pokemonId > pokemons.length) {
+      setMultipleEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx.slice(0, -1)}</div>]);
       return;
     }
 
-    const pokemonImgJSX = (
+    const pokemonImgJsx = (
       <div className="pokemon-evolution">
         <img
-          src={pokemons[pokemonID - 1].sprites.other['official-artwork'].front_default}
-          alt={pokemons[pokemonID - 1].name}
+          src={pokemons[pokemonId - 1].sprites.other['official-artwork'].front_default}
+          alt={pokemons[pokemonId - 1].name}
         />
       </div>
     );
-    evoChainJSX.push(pokemonImgJSX);
+    evoChainJsx.push(pokemonImgJsx);
 
     if (evolution.evolves_to.length <= 0) {
-      setMultipleEvoChainsJSX((prev) => [...prev, evoChainJSX]);
+      setMultipleEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx}</div>]);
     } else {
       let branchIndex = 0;
       while (branchIndex < evolution.evolves_to.length) {
-        const currentEvoChain = [...evoChainJSX];
+        const currentEvoChain = [...evoChainJsx];
         const nextEvolution = evolution.evolves_to.[branchIndex.toString()];
 
         const evolutionTrigger = (
@@ -131,7 +132,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
   useEffect(() => {
     if (pkmEvolution) {
-      setMultipleEvoChainsJSX([]);
+      setMultipleEvoChainsJsx([]);
       let evolution = pkmEvolution.chain;
       buildEvolutionChain(evolution, [], pokemons);
     }
@@ -141,7 +142,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     <section id="evolution-section">
       <h2>Evolution</h2>
       <div id="evolution-chain">
-        {multipleEvoChainsJSX}
+        {multipleEvoChainsJsx}
       </div>
     </section>
   )

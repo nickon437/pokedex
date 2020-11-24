@@ -3,7 +3,7 @@
 #evolution-section {
   
   #evolution-chain  {
-    @include flex($center: true, $direction: null, $gap: null)
+    @include flex($center: true, $direction: column, $gap: null)
 
     .pokemon-evolution {
       img {

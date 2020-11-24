@@ -11,11 +11,11 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     const evoConditions = [];
 
     if (evoDetails.gender) {
-      evoConditions.push(`Gender: ${evoDetails.gender}`);
+      evoConditions.push(<div>Gender: {evoDetails.gender}</div>);
     }
 
     if (evoDetails.held_item) {
-      evoConditions.push(`Held item: ${evoDetails.held_item.name}`);
+      evoConditions.push(<div>Held item: {evoDetails.held_item.name}</div>);
     }
 
     if (evoDetails.item) {
@@ -26,27 +26,27 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.known_move) {
-      evoConditions.push(`Known move: ${evoDetails.known_move}`);
+      evoConditions.push(<div>Known move: {evoDetails.known_move}</div>);
     }
 
     if (evoDetails.known_move_type) {
-      evoConditions.push(`Known move type: ${evoDetails.known_move_type}`);
+      evoConditions.push(<div>Known move type: {evoDetails.known_move_type}</div>);
     }
 
     if (evoDetails.location) {
-      evoConditions.push(`Location: ${evoDetails.location}`);
+      evoConditions.push(<div>Location: {evoDetails.location}</div>);
     }
 
     if (evoDetails.min_affection) {
-      evoConditions.push(`Affection: ${evoDetails.min_affection}`);
+      evoConditions.push(<div>Affection: {evoDetails.min_affection}</div>);
     }
 
     if (evoDetails.min_beauty) {
-      evoConditions.push(`Beauty: ${evoDetails.min_beauty}`);
+      evoConditions.push(<div>Beauty: {evoDetails.min_beauty}</div>);
     }
 
     if (evoDetails.min_happiness) {
-      evoConditions.push(`Happiness: ${evoDetails.min_happiness}`);
+      evoConditions.push(<div>Happiness: {evoDetails.min_happiness}</div>);
     }
 
     if (evoDetails.min_level) {
@@ -54,35 +54,37 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.needs_overworld_rain) {
-      evoConditions.push(`Overworld rain`);
+      evoConditions.push(<div>Overworld rain</div>);
     }
 
     if (evoDetails.party_species) {
-      evoConditions.push(`Party species: ${evoDetails.party_species}`);
+      evoConditions.push(<div>Party species: {evoDetails.party_species}</div>);
     }
 
     if (evoDetails.party_type) {
-      evoConditions.push(`Party type: ${evoDetails.party_type}`);
+      evoConditions.push(<div>Party type: {evoDetails.party_type}</div>);
     }
 
     if (evoDetails.relative_physical_stats) {
-      evoConditions.push(`Relative physical stat: ${evoDetails.relative_physical_stats}`);
+      evoConditions.push(<div>Relative physical stat: {evoDetails.relative_physical_stats}</div>);
     }
 
     if (evoDetails.time_of_day) {
-      evoConditions.push(evoDetails.time_of_day);
+      evoConditions.push(<div>{evoDetails.time_of_day}</div>);
     }
 
     if (evoDetails.trade_species) {
-      evoConditions.push(`Trade: {evoDetails.trade_species}`);
+      evoConditions.push(<div>Trade: {evoDetails.trade_species}</div>);
     }
     
-    if (evoDetails.trigger && evoDetails.trigger.name !== 'level-up' && evoDetails.trigger.name !== 'use-item') {
-      evoConditions.push(`${StringUtil.cleanUpString(evoDetails.trigger.name)}`);
+    if (evoDetails.trigger
+    && evoDetails.trigger.name !== 'level-up'
+    && evoDetails.trigger.name !== 'use-item') {
+      evoConditions.push(<div>{StringUtil.cleanUpString(evoDetails.trigger.name)}</div>);
     }
 
     if (evoDetails.turn_upside_down) {
-      evoConditions.push('Turn upside down');
+      evoConditions.push(<div>Turn upside down</div>);
     }
 
     return evoConditions;

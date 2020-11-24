@@ -5,93 +5,93 @@ import StringUtil from '../utils/StringUtil';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
-  const [multipleEvoChainsJsx, setMultipleEvoChainsJsx] = useState([]);
+  const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
 
-  const getEvoRequirements = async (evoDetails) => {
-    const evoRequirements = [];
+  const getEvoConditions = async (evoDetails) => {
+    const evoConditions = [];
 
     if (evoDetails.gender) {
-      evoRequirements.push(`Gender: ${evoDetails.gender}`);
+      evoConditions.push(`Gender: ${evoDetails.gender}`);
     }
 
     if (evoDetails.held_item) {
-      evoRequirements.push(`Held item: ${evoDetails.held_item.name}`);
+      evoConditions.push(`Held item: ${evoDetails.held_item.name}`);
     }
 
     if (evoDetails.item) {
       const evoItemUrl = evoDetails.item.url;
       const evoItem = await fetch(evoItemUrl).then((result) => result.json());
       const evoItemSpriteUrl = evoItem.sprites.default;
-      evoRequirements.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItem.name)} /></div>);
+      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItem.name)} /></div>);
     }
 
     if (evoDetails.known_move) {
-      evoRequirements.push(`Known move: ${evoDetails.known_move}`);
+      evoConditions.push(`Known move: ${evoDetails.known_move}`);
     }
 
     if (evoDetails.known_move_type) {
-      evoRequirements.push(`Known move type: ${evoDetails.known_move_type}`);
+      evoConditions.push(`Known move type: ${evoDetails.known_move_type}`);
     }
 
     if (evoDetails.location) {
-      evoRequirements.push(`Location: ${evoDetails.location}`);
+      evoConditions.push(`Location: ${evoDetails.location}`);
     }
 
     if (evoDetails.min_affection) {
-      evoRequirements.push(`Affection: ${evoDetails.min_affection}`);
+      evoConditions.push(`Affection: ${evoDetails.min_affection}`);
     }
 
     if (evoDetails.min_beauty) {
-      evoRequirements.push(`Beauty: ${evoDetails.min_beauty}`);
+      evoConditions.push(`Beauty: ${evoDetails.min_beauty}`);
     }
 
     if (evoDetails.min_happiness) {
-      evoRequirements.push(`Happiness: ${evoDetails.min_happiness}`);
+      evoConditions.push(`Happiness: ${evoDetails.min_happiness}`);
     }
 
     if (evoDetails.min_level) {
-      evoRequirements.push(<div>Lv. {evoDetails.min_level}</div>);
+      evoConditions.push(<div>Lv. {evoDetails.min_level}</div>);
     }
 
     if (evoDetails.needs_overworld_rain) {
-      evoRequirements.push(`Overworld rain`);
+      evoConditions.push(`Overworld rain`);
     }
 
     if (evoDetails.party_species) {
-      evoRequirements.push(`Party species: ${evoDetails.party_species}`);
+      evoConditions.push(`Party species: ${evoDetails.party_species}`);
     }
 
     if (evoDetails.party_type) {
-      evoRequirements.push(`Party type: ${evoDetails.party_type}`);
+      evoConditions.push(`Party type: ${evoDetails.party_type}`);
     }
 
     if (evoDetails.relative_physical_stats) {
-      evoRequirements.push(`Relative physical stat: ${evoDetails.relative_physical_stats}`);
+      evoConditions.push(`Relative physical stat: ${evoDetails.relative_physical_stats}`);
     }
 
     if (evoDetails.time_of_day) {
-      evoRequirements.push(evoDetails.time_of_day);
+      evoConditions.push(evoDetails.time_of_day);
     }
 
     if (evoDetails.trade_species) {
-      evoRequirements.push(`Trade: {evoDetails.trade_species}`);
+      evoConditions.push(`Trade: {evoDetails.trade_species}`);
     }
     
     if (evoDetails.trigger && evoDetails.trigger.name !== 'level-up' && evoDetails.trigger.name !== 'use-item') {
-      evoRequirements.push(`${StringUtil.cleanUpString(evoDetails.trigger.name)}`);
+      evoConditions.push(`${StringUtil.cleanUpString(evoDetails.trigger.name)}`);
     }
 
     if (evoDetails.turn_upside_down) {
-      evoRequirements.push('Turn upside down');
+      evoConditions.push('Turn upside down');
     }
 
-    return evoRequirements;
+    return evoConditions;
   }
 
   const buildEvolutionChain =  useCallback(async (evolution, evoChainJsx, pokemons) => {
     const pokemonId = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
     if (pokemonId > pokemons.length) {
-      setMultipleEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx.slice(0, -1)}</div>]);
+      setMultiEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx.slice(0, -1)}</div>]);
       return;
     }
 
@@ -106,7 +106,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     evoChainJsx.push(pokemonImgJsx);
 
     if (evolution.evolves_to.length <= 0) {
-      setMultipleEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx}</div>]);
+      setMultiEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx}</div>]);
     } else {
       let branchIndex = 0;
       while (branchIndex < evolution.evolves_to.length) {
@@ -115,8 +115,8 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
         const evolutionTrigger = (
           <div className="evolution-trigger">
-            <div className="evolution-requirement">
-              {(await getEvoRequirements(nextEvolution.evolution_details.["0"]))}
+            <div className="evolution-condition">
+              {(await getEvoConditions(nextEvolution.evolution_details.["0"]))}
             </div>
             <div className="arrow" />
           </div>
@@ -132,7 +132,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
   useEffect(() => {
     if (pkmEvolution) {
-      setMultipleEvoChainsJsx([]);
+      setMultiEvoChainsJsx([]);
       let evolution = pkmEvolution.chain;
       buildEvolutionChain(evolution, [], pokemons);
     }
@@ -142,10 +142,10 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     <section id="evolution-section">
       <h2>Evolution</h2>
       <div id="evolution-chain">
-        {multipleEvoChainsJsx}
+        {multiEvoChainsJsx}
       </div>
     </section>
   )
 }
 
-export default Evolution
+export default Evolution;

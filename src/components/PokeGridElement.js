@@ -7,7 +7,10 @@ const PokeGridElement = ({ pkm }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
 
   const handleClickItem = () => {
-    window.scrollTo(0, 0);
+    document.getElementById('root').scroll({
+      top: 0,
+      behavior: 'smooth',
+    });
     setCtxPokedex((prev) => ({
       ...prev,
       selectedPkm: pkm,

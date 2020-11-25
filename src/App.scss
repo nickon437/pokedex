@@ -109,6 +109,58 @@ header {
   top: $header-height;  
 }
 
+#main.loading-view {
+  .lds-facebook {
+    @include flex(true, null, null);
+    position: relative;
+    width: 100%;
+    height: 100%;
+
+    div {
+      width: 16px;
+      background-color: $heavy-light-grey;
+      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
+      
+      &:nth-child(1) {
+        left: 8px;
+        animation-delay: -0.24s;
+      }
+
+      &:nth-child(2) {
+        left: 32px;
+        animation-delay: -0.12s;
+      }
+
+      &:nth-child(3) {
+        left: 56px;
+        animation-delay: 0;
+      }
+    }
+  }
+
+  #generations-section,
+  #poke-grid-container,
+  #poke-list-container,
+  #detail-view {
+    display: none;
+  }
+}
+
+#main.generation-view {
+  #poke-grid-container,
+  #poke-list-container,
+  #detail-view {
+    display: none;
+  }
+}
+
+#main.pokemon-list-view {
+  .lds-facebook,
+  #generations-section {
+    display: none;
+  }
+}
+
 #main.split-view {
   background-color: $primary-red;
   transition: background-color 0s linear $page-transition-time;
@@ -136,5 +188,28 @@ header {
 
   * {
     position: absolute;
+  }
+}
+
+button {
+  @include flex(true, null, 0);
+  font-weight: bold;
+  width: fit-content;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s linear, color 0.3s linear;
+  margin: 0;
+  padding: 0;
+  border-radius: 7px;
+  
+  &:hover {
+    background-color: $lighter-grey;
+    color: rgb(50, 50, 50);
+  }
+
+  svg {
+    height: 2rem;
   }
 }

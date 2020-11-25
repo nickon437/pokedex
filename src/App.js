@@ -4,14 +4,16 @@ import { PokedexContext } from './context/PokedexContext';
 import PokeGrid from './components/PokeGrid';
 import PokeList from './components/PokeList';
 import DetailView from './components/DetailView';
+import Generations from './components/Generations';
 
 const App = () => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
 
   const fetchPokemon = useCallback(async () => {
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-    // const NUM_OF_POKEMON = 251;
-    const NUM_OF_POKEMON = 151;
+    const NUM_OF_POKEMON = 251;
+    // const NUM_OF_POKEMON = 151;
+    // const NUM_OF_POKEMON = 12;
     // const NUM_OF_POKEMON = 3;
     const promises = [];
     let pokemons;
@@ -23,7 +25,11 @@ const App = () => {
     setCtxPokedex((prev) => ({
       ...prev,
       pokemons,
-      filteredPokemons: pokemons,
+      class: {
+        ...prev.class,
+        loadingView: false,
+        generationView: true,
+      }
     }));
   }, []);
 
@@ -31,10 +37,22 @@ const App = () => {
     fetchPokemon();
   }, [fetchPokemon]);
 
+  const mainClasses = [
+    ctxPokedex.class.loadingView && "loading-view",
+    ctxPokedex.class.generationView && "generation-view",
+    ctxPokedex.class.pokemonListView && "pokemon-list-view",
+    ctxPokedex.class.splitView && "split-view",
+    ctxPokedex.class.reverseSplitView && "reverse-split-view"
+  ].join(' ');
+
   return (
     <>
       <header><div>POKEDEX</div></header>
-      <div id="main" className={[ ctxPokedex.class.splitView && "split-view", ctxPokedex.class.reverseSplitView && "reverse-split-view" ].join(' ') }>
+      <div id="main" className={mainClasses}>
+        <div class="lds-facebook">
+          <div /><div /><div />
+        </div>
+        <Generations />
         <PokeGrid />
         <PokeList />
         <DetailView />

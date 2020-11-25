@@ -1,0 +1,89 @@
+@import '../variables';
+
+#generations-section {
+  display: grid;
+  padding: 3% 5%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fit, 25vw);
+  gap: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  .generation-box {
+    background-color: $xx-lighter-grey;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px grey;
+    @include flex(true, null, null);
+    transition: box-shadow $medium-animation-time linear, filter $medium-animation-time linear;;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 0 2px 3px grey;
+      filter: brightness(0.9);
+    }
+
+    .background-patterns {
+      overflow: hidden;
+      
+      img[name="pokeball"] {
+        height: 130%;
+        width: auto;
+        bottom: -30%;
+        right: -15%;
+        opacity: 0.3;
+        transform: rotate(10deg);
+      }
+
+      svg[name="dots-1"] {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        transform: rotate(90deg);
+        fill: black;
+        height: 5rem;
+        height: 30%;
+        opacity: 0.2;
+      }
+    }
+
+    img {
+      position: absolute;
+      width: 35%;
+
+      &.starter-1 {
+        left: 10%;
+        bottom: 30%;
+      }
+
+      &.starter-2 {
+        position: relative;
+        align-self: center;
+        z-index: 5;
+      }
+
+      &.starter-3 {
+        right: 10%;
+        bottom: 30%;
+      }
+    }
+    
+    .generation-heading {
+      position: absolute;
+      bottom: 0;
+      font-family: inherit;
+      font-weight: bold;
+      width: 100%;
+      height: 15%;
+      @include flex(true, null, null);
+      padding: 0.5rem;
+      background-color: rgba($color: black, $alpha: 0.5);
+      color: white;
+      border-bottom-left-radius: inherit;
+      border-bottom-right-radius: inherit;
+      box-shadow: inherit;
+    }
+  }
+}

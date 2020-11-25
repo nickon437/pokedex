@@ -16,6 +16,10 @@
     background-color: $light-grey;
   }
 
+  button[name=back-btn] {
+    padding-right: 0.5rem;
+  }
+
   #poke-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -34,10 +38,12 @@
       position: relative;
       overflow: hidden;
       cursor: pointer;
-      transition: filter $short-animation-time linear;
+      transition: filter $medium-animation-time linear, box-shadow $medium-animation-time linear;
+      box-shadow: 0 2px 5px grey;
 
       &:hover {
         filter: brightness(0.9);
+        box-shadow: 0 2px 3px grey;
       }
 
       img[name="pokemon"] {
@@ -47,21 +53,23 @@
         right: 10%;
       }
       
-      img[name="pokeball"] {
-        height: 20rem;
-        bottom: -5rem;
-        right: -5rem;
-        opacity: 0.4;
-        transform: rotate(10deg);
-      }
+      .background-patterns {
+        img[name="pokeball"] {
+          height: 20rem;
+          bottom: -5rem;
+          right: -5rem;
+          opacity: 0.4;
+          transform: rotate(10deg);
+        }
 
-      svg[name="dots-1"] {
-        bottom: 0.5rem;
-        left: 0.5rem;
-        transform: rotate(90deg);
-        fill: white;
-        height: 5rem;
-        opacity: 0.2;
+        svg[name="dots-1"] {
+          bottom: 0.5rem;
+          left: 0.5rem;
+          transform: rotate(90deg);
+          fill: white;
+          height: 5rem;
+          opacity: 0.2;
+        }
       }
 
       .pokeTypes {

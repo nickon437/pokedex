@@ -18,12 +18,12 @@
     border-radius: 10px;
     box-shadow: 0 2px 5px grey;
     @include flex(true, null, null);
-    transition: box-shadow $short-animation-time linear, background-color $short-animation-time linear;
+    transition: box-shadow $medium-animation-time linear, filter $medium-animation-time linear;;
     cursor: pointer;
 
     &:hover {
       box-shadow: 0 2px 3px grey;
-      background-color: $lighter-grey;
+      filter: brightness(0.9);
     }
 
     .background-patterns {
@@ -83,7 +83,7 @@
       color: white;
       border-bottom-left-radius: inherit;
       border-bottom-right-radius: inherit;
-      box-shadow: 0 2px 5px grey;
+      box-shadow: inherit;
     }
   }
 }

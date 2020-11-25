@@ -15,7 +15,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.held_item) {
-      evoConditions.push(<div>Held item: {evoDetails.held_item.name}</div>);
+      evoConditions.push(<div>Hold {StringUtil.cleanUpString(evoDetails.held_item.name, false)}</div>);
     }
 
     if (evoDetails.item) {
@@ -70,7 +70,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.time_of_day) {
-      evoConditions.push(<div>{evoDetails.time_of_day}</div>);
+      evoConditions.push(<div>{StringUtil.cleanUpString(evoDetails.time_of_day)}</div>);
     }
 
     if (evoDetails.trade_species) {
@@ -90,43 +90,59 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     return evoConditions;
   }
 
-  const buildEvolutionChain =  useCallback(async (evolution, evoChainJsx, pokemons) => {
+  const buildEvolutionChain =  useCallback(async (evolution, evoChainJsx, pokemons, currentBranchIndex) => {
     const pokemonId = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
-    if (pokemonId > pokemons.length) {
+
+    // Skip evolution branch with undefined post-evolution form
+    if (pokemonId > pokemons.length && currentBranchIndex > 0) {
+      return;
+    }
+
+    // Stop build evolution branch and return it once there is undefined form
+    if (pokemonId > pokemons.length && evoChainJsx.length !== 0) {
       setMultiEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx.slice(0, -1)}</div>]);
       return;
     }
 
-    const pokemonImgJsx = (
-      <div className="pokemon-evolution">
-        <img
-          src={pokemons[pokemonId - 1].sprites.other['official-artwork'].front_default}
-          alt={pokemons[pokemonId - 1].name}
-        />
-      </div>
-    );
-    evoChainJsx.push(pokemonImgJsx);
-
+    // Generate img of pokemon
+    if (pokemonId <= pokemons.length) {
+      const pokemonImgJsx = (
+        <div className="pokemon-evolution">
+          <img
+            src={pokemons[pokemonId - 1].sprites.other['official-artwork'].front_default}
+            alt={pokemons[pokemonId - 1].name}
+          />
+        </div>
+      );
+      evoChainJsx.push(pokemonImgJsx);
+    }
+    
+    // Stop build evolution chain when it reaches at the end of the chain
     if (evolution.evolves_to.length <= 0) {
       setMultiEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx}</div>]);
     } else {
-      let branchIndex = 0;
-      while (branchIndex < evolution.evolves_to.length) {
+      let nextBranchIndex = 0;
+      // Explore and build evolution chain of multiple branches
+      while (nextBranchIndex < evolution.evolves_to.length) {
+        // Generate copy of evoChain to reuse of different branches
         const currentEvoChain = [...evoChainJsx];
-        const nextEvolution = evolution.evolves_to.[branchIndex.toString()];
+        const nextEvolution = evolution.evolves_to.[nextBranchIndex.toString()];
 
-        const evolutionTrigger = (
-          <div className="evolution-trigger">
-            <div className="evolution-condition">
-              {(await getEvoConditions(nextEvolution.evolution_details.["0"]))}
+        // Skip evolution trigger if there is undefined baby form
+        if (currentEvoChain.length > 0) {
+          const evoTriggerJsx = (
+            <div className="evolution-trigger">
+              <div className="evolution-condition">
+                {(await getEvoConditions(nextEvolution.evolution_details.["0"]))}
+              </div>
+              <div className="arrow" />
             </div>
-            <div className="arrow" />
-          </div>
-        );
-        currentEvoChain.push(evolutionTrigger);
+          );
+          currentEvoChain.push(evoTriggerJsx);
+        }
 
-        buildEvolutionChain(nextEvolution, currentEvoChain, pokemons);
-        branchIndex++;
+        buildEvolutionChain(nextEvolution, currentEvoChain, pokemons, nextBranchIndex);
+        nextBranchIndex++;
       }
     }
     return;
@@ -136,7 +152,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     if (pkmEvolution) {
       setMultiEvoChainsJsx([]);
       let evolution = pkmEvolution.chain;
-      buildEvolutionChain(evolution, [], pokemons);
+      buildEvolutionChain(evolution, [], pokemons, 0);
     }
   }, [pkmEvolution]);
 

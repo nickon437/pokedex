@@ -25,6 +25,11 @@ const App = () => {
     setCtxPokedex((prev) => ({
       ...prev,
       pokemons,
+      class: {
+        ...prev.class,
+        loadingView: false,
+        generationView: true,
+      }
     }));
   }, []);
 

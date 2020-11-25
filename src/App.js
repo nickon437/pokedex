@@ -25,7 +25,6 @@ const App = () => {
     setCtxPokedex((prev) => ({
       ...prev,
       pokemons,
-      filteredPokemons: pokemons,
     }));
   }, []);
 
@@ -33,10 +32,20 @@ const App = () => {
     fetchPokemon();
   }, [fetchPokemon]);
 
+  const mainClasses = [
+    ctxPokedex.class.loadingView && "loading-view",
+    ctxPokedex.class.generationView && "generation-view",
+    ctxPokedex.class.splitView && "split-view",
+    ctxPokedex.class.reverseSplitView && "reverse-split-view"
+  ].join(' ');
+
   return (
     <>
       <header><div>POKEDEX</div></header>
-      <div id="main" className={[ ctxPokedex.class.splitView && "split-view", ctxPokedex.class.reverseSplitView && "reverse-split-view" ].join(' ') }>
+      <div id="main" className={mainClasses}>
+        <div class="lds-facebook">
+          <div /><div /><div />
+        </div>
         <Generations />
         <PokeGrid />
         <PokeList />

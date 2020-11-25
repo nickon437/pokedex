@@ -20,9 +20,11 @@ const Generations = () => {
   }
 
   const handleClick = (genIndex, startPkmIndex) => {
+    const selectedGenPokemons = ctxPokedex.pokemons.slice(startPkmIndex, gens[genIndex]);
     setCtxPokedex((prev) => ({
       ...prev,
-      selectedGenPokemons: prev.pokemons.slice(startPkmIndex, gens[genIndex]),
+      selectedGenPokemons,
+      filteredPokemons: selectedGenPokemons,
     }));
   };
 

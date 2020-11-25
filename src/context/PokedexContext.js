@@ -9,6 +9,8 @@ export const PokedexProvider = (props) => {
     filteredPokemons: [],
     selectedPkm: null,
     class: {
+      loadingView: true,
+      generationView: false,
       splitView: false,
       reverseSplitView: false,
       splitViewHiddenProp: true,

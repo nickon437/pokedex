@@ -100,7 +100,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
     // Stop build evolution branch and return it once there is undefined form
     if (pokemonId > pokemons.length && evoChainJsx.length !== 0) {
-      setMultiEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx.slice(0, -1)}</div>]);
+      setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx.slice(0, -1)}</div>]);
       return;
     }
 
@@ -119,7 +119,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     
     // Stop build evolution chain when it reaches at the end of the chain
     if (evolution.evolves_to.length <= 0) {
-      setMultiEvoChainsJsx((prev) => [...prev, <div className="hflex">{evoChainJsx}</div>]);
+      setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx}</div>]);
     } else {
       let nextBranchIndex = 0;
       // Explore and build evolution chain of multiple branches
@@ -159,7 +159,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
   return (
     <section id="evolution-section">
       <h2>Evolution</h2>
-      <div id="evolution-chain">
+      <div id="evolution-chain-list">
         {multiEvoChainsJsx}
       </div>
     </section>

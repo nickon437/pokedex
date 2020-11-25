@@ -26,8 +26,6 @@
     padding: 0;
     
     @media screen and (max-width: 500px) {
-      grid-template-columns: repeat(1, 1fr);
-
       .pokeTypes {
         flex-direction: column;
       }

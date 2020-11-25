@@ -51,21 +51,23 @@
         right: 10%;
       }
       
-      img[name="pokeball"] {
-        height: 20rem;
-        bottom: -5rem;
-        right: -5rem;
-        opacity: 0.4;
-        transform: rotate(10deg);
-      }
+      .background-patterns {
+        img[name="pokeball"] {
+          height: 20rem;
+          bottom: -5rem;
+          right: -5rem;
+          opacity: 0.4;
+          transform: rotate(10deg);
+        }
 
-      svg[name="dots-1"] {
-        bottom: 0.5rem;
-        left: 0.5rem;
-        transform: rotate(90deg);
-        fill: white;
-        height: 5rem;
-        opacity: 0.2;
+        svg[name="dots-1"] {
+          bottom: 0.5rem;
+          left: 0.5rem;
+          transform: rotate(90deg);
+          fill: white;
+          height: 5rem;
+          opacity: 0.2;
+        }
       }
 
       .pokeTypes {

@@ -3,11 +3,9 @@
 #generations-section {
   display: grid;
   padding: 3% 5%;
-  // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(auto-fit, 25vw);
   gap: 2rem;
-  // background-color: blue;
   position: absolute;
   top: 0;
   left: 0;
@@ -28,22 +26,45 @@
       background-color: $lighter-grey;
     }
 
+    .background-patterns {
+      overflow: hidden;
+      
+      img[name="pokeball"] {
+        height: 130%;
+        width: auto;
+        bottom: -30%;
+        right: -15%;
+        opacity: 0.3;
+        transform: rotate(10deg);
+      }
+
+      svg[name="dots-1"] {
+        bottom: 0.5rem;
+        left: 0.5rem;
+        transform: rotate(90deg);
+        fill: black;
+        height: 5rem;
+        height: 30%;
+        opacity: 0.2;
+      }
+    }
+
     img {
       position: absolute;
       width: 35%;
 
-      &:first-child {
+      &.starter-1 {
         left: 10%;
         bottom: 30%;
       }
 
-      &:nth-child(2) {
+      &.starter-2 {
         position: relative;
         align-self: center;
         z-index: 5;
       }
 
-      &:nth-child(3) {
+      &.starter-3 {
         right: 10%;
         bottom: 30%;
       }
@@ -54,6 +75,12 @@
       bottom: 10%;
       font-family: inherit;
       font-weight: bold;
+      width: 80%;
+      @include flex(true, null, null);
+      padding: 0.5rem;
+      background-color: rgba($color: black, $alpha: 0.5);
+      color: white;
+      border-radius: 10px;
     }
   }
 }

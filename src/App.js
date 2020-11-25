@@ -40,6 +40,7 @@ const App = () => {
   const mainClasses = [
     ctxPokedex.class.loadingView && "loading-view",
     ctxPokedex.class.generationView && "generation-view",
+    ctxPokedex.class.pokemonListView && "pokemon-list-view",
     ctxPokedex.class.splitView && "split-view",
     ctxPokedex.class.reverseSplitView && "reverse-split-view"
   ].join(' ');

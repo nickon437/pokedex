@@ -107,10 +107,6 @@ header {
   display: flex;
   height: calc(100vh - #{$header-height});
   top: $header-height;  
-
-  .lds-facebook {
-    display: none;
-  }
 }
 
 #main.loading-view {
@@ -142,13 +138,27 @@ header {
     }
   }
 
-  #generations-section {
+  #generations-section,
+  #poke-grid-container,
+  #poke-list-container,
+  #detail-view {
     display: none;
   }
 }
 
 #main.generation-view {
-  
+  #poke-grid-container,
+  #poke-list-container,
+  #detail-view {
+    display: none;
+  }
+}
+
+#main.pokemon-list-view {
+  .lds-facebook,
+  #generations-section {
+    display: none;
+  }
 }
 
 #main.split-view {

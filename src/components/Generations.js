@@ -25,6 +25,11 @@ const Generations = () => {
       ...prev,
       selectedGenPokemons,
       filteredPokemons: selectedGenPokemons,
+      class: {
+        ...prev.class,
+        generationView: false,
+        pokemonListView: true,
+      }
     }));
   };
 

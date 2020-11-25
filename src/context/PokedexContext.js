@@ -11,6 +11,7 @@ export const PokedexProvider = (props) => {
     class: {
       loadingView: true,
       generationView: false,
+      pokemonListView: false,
       splitView: false,
       reverseSplitView: false,
       splitViewHiddenProp: true,

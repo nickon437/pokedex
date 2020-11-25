@@ -16,6 +16,10 @@
     background-color: $light-grey;
   }
 
+  button[name=back-btn] {
+    padding-right: 0.5rem;
+  }
+
   #poke-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));

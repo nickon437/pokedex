@@ -40,7 +40,7 @@ const Stat = ({ pkm }) => {
   });
 
   return (
-    <>
+    <section id="stat-section">
       <h2>Stats</h2>
       <div className="stat-section-content">
         {statHtml}
@@ -49,7 +49,7 @@ const Stat = ({ pkm }) => {
           <div className="figure">{totalStat}</div>
         </div>
       </div>
-    </>
+    </section>
   )
 }
 

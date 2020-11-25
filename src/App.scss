@@ -44,7 +44,10 @@ code {
 
 html, body, #root {
   height: 100%;
-  overflow-x: clip;
+}
+
+#root {
+  overflow-x: hidden;
 }
 
 header {

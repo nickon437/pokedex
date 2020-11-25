@@ -31,27 +31,6 @@ const App = () => {
     fetchPokemon();
   }, [fetchPokemon]);
 
-  // // Load ctx from local storage
-  // useEffect(() => {
-  //   try {
-  //     const pokedexContextData = JSON.parse(window.localStorage.getItem('pokedex-context'));
-  //     if (pokedexContextData) {
-  //       setCtxPokedex(pokedexContextData);
-  //     }
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // }, []);
-
-  // // Save ctx to local storage
-  // useEffect(() => {
-  //   try {
-  //     window.localStorage.setItem('pokedex-context', JSON.stringify(ctxPokedex));
-  //   } catch (e) {
-  //     console.error(e);
-  //   }
-  // });
-
   return (
     <>
       <header><div>POKEDEX</div></header>

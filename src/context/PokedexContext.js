@@ -5,6 +5,7 @@ export const PokedexContext = React.createContext();
 export const PokedexProvider = (props) => {
   const [ctxPokedex, setCtxPokedex] = useState({
     pokemons: [],
+    selectedGenPokemons: [],
     filteredPokemons: [],
     selectedPkm: null,
     class: {

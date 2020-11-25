@@ -1,0 +1,53 @@
+@import '../variables';
+
+#generations-section {
+  display: grid;
+  padding: 3% 5%;
+  // grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(auto-fit, 25vw);
+  gap: 2rem;
+  // background-color: blue;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  
+  .generation-box {
+    // background-color: pink;
+    background-color: $xx-lighter-grey;
+    position: relative;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px grey;
+    @include flex(true, null, null);
+
+    img {
+      position: absolute;
+      width: 35%;
+
+      &:first-child {
+        left: 10%;
+        bottom: 30%;
+      }
+
+      &:nth-child(2) {
+        position: relative;
+        align-self: center;
+        z-index: 5;
+      }
+
+      &:nth-child(3) {
+        right: 10%;
+        bottom: 30%;
+      }
+    }
+    
+    .generation-heading {
+      position: absolute;
+      bottom: 10%;
+      font-family: inherit;
+      font-weight: bold;
+    }
+  }
+}

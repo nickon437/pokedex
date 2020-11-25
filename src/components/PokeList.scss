@@ -71,6 +71,7 @@
 
     .pokeOverview {
       @include flex($center: false, $direction: null, $gap: null);
+      white-space: nowrap;
     }
   }
 }

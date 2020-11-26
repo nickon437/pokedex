@@ -6,6 +6,7 @@ import { PokedexContext } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
 import './DetailView.scss';
 import Evolution from './Evolution';
+import ColorCode from '../utils/ColorCode';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -56,7 +57,7 @@ const DetailView = () => {
   }
 
   return (
-    <div id="detail-view">
+    <div id="detail-view" style={{backgroundColor: ColorCode.colorCode[ctxPokedex.selectedPkm?.types[0].type.name]}}>
       <div id="overview">
         <div className="background-patterns">
           <img src={Pokeball} name="pokeball" alt=""/>

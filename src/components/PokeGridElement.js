@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import PokeBasicInfo from './PokeBasicInfo';
 import { PokedexContext } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
+import ColorCode from '../utils/ColorCode';
 
 const PokeGridElement = ({ pkm }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
@@ -22,7 +23,7 @@ const PokeGridElement = ({ pkm }) => {
   };
 
   return (
-    <li onClick={handleClickItem}>
+    <li onClick={handleClickItem} style={{backgroundColor: ColorCode.colorCode[pkm.types[0].type.name]}}>
       <div className="background-patterns" name="background-patterns">
         <img src={Pokeball} name="pokeball" alt=""/>
         <svg name="dots-1" viewBox="0 0 45.767 45.767">

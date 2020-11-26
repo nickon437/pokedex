@@ -36,7 +36,8 @@
     @include flex($center: false, $direction: null, $gap: 0.75rem);
     align-items: center;
     transition: background-color $short-animation-time linear;
-    line-height: 2.5rem;
+    height: fit-content;
+    padding: 0.2rem 0;
     width: 100%;
     border-top: 1px solid $light-grey;
     

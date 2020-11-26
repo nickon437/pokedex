@@ -90,7 +90,6 @@ export const PokedexProvider = (props) => {
       pokemonListView: false,
       splitView: false,
       reverseSplitView: false,
-      splitViewHiddenProp: true,
     }
   });
 
@@ -105,10 +104,8 @@ export const ACTION = {
   COMPLETE_FETCH_POKEMONS: 'completeFetchPokemons',
   SET_FILTERED_POKEMONS: 'setFilteredPokemons',
   SET_SELECTED_GEN_POKEMON: 'setSelectedGenPokemon',
-  // SET_SELECTED_POKEMON: 'setSelectedPokemon',
   BACK_TO_GENERATION_VIEW: 'backToGenerationView',
-  SHOW_DETAIL_VIEW: 'openPokeListSplitView',
-  TRANSITION_CLOSE_DETAIL_VIEW: 'transitionCloseSplitView',
-  COMPLETE_TRANSITION_CLOSE_DETAIL_VIEW: 'completeTransitionCloseSplitView',
-  // SPLIT_VIEW_HIDDEN_PROP: 'splitViewHiddenProp',
+  SHOW_DETAIL_VIEW: 'showDetailView',
+  TRANSITION_CLOSE_DETAIL_VIEW: 'transitionCloseDetailView',
+  COMPLETE_TRANSITION_CLOSE_DETAIL_VIEW: 'completeTransitionCloseDetailView',
 }

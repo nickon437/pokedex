@@ -2,17 +2,12 @@ import React, { useContext } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import SearchBar from './SearchBar';
 import './PokeList.scss';
+import StringUtil from '../utils/StringUtil';
 
 const PokeList = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
 
   const pokeListHtml = ctxPokedex.filteredPokemons.map((pkm) => {
-    let zeros = '';
-    for (let i = 0; i < 3 - pkm.id.toString().length; i++) {
-      zeros += '0';
-    }
-    const pokeId = `#${zeros}${pkm.id}`;
-
     const handleClickItem = () => {
       dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pkm });
     };
@@ -26,8 +21,8 @@ const PokeList = () => {
       >
         <img src={pkm.sprites.versions['generation-vii'].icons.front_default} className="pokemon" alt="" />
         <div className="pokeOverview">
-          <div name="pokeId" className="pokeId">{pokeId}</div>
-          <div name="pokeName" className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
+          <div name="pokeId" className="pokeId">{StringUtil.formatPokemonId(pkm.id)}</div>
+          <div name="pokeName" className="pokeName">{StringUtil.makeFirstLetterUpperCase(pkm.name)}</div>
         </div>
       </li>
     )

@@ -1,4 +1,4 @@
-class ColorCode {
+class ColorUtil {
   static colorCode = {
     normal: '#bfbfb3',
     grass: '#8bd64f',
@@ -26,4 +26,4 @@ class ColorCode {
   }
 }
 
-export default ColorCode;
+export default ColorUtil;

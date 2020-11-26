@@ -1,10 +1,10 @@
 import React, { useContext, useRef } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import magnify from '../resources/img/magnify.png';
 import './SearchBar.scss';
 
 const SearchBar = ({ searchBarID }) => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const searchBarRef = useRef(null);
 
   const handleChange = (e) => {
@@ -12,11 +12,7 @@ const SearchBar = ({ searchBarID }) => {
       const idRegex = new RegExp(`#?0*(${pokemon.id.toString()})`);
       return pokemon.name.includes(e.target.value) || e.target.value.match(idRegex)
     });
-    setCtxPokedex((prev) => ({
-      ...prev,
-      filteredPokemons,
-      searchKeyword: e.target.value,
-    }));
+    dispatch({ type: ACTION.SET_FILTERED_POKEMONS, filteredPokemons, searchKeyword: e.target.value });
   };
 
   if (searchBarRef.current && searchBarRef.current.value !== ctxPokedex.searchKeyword) {

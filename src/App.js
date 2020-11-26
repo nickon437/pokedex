@@ -1,13 +1,13 @@
 import React, { useCallback, useContext, useEffect } from 'react';
 import './App.scss';
-import { PokedexContext } from './context/PokedexContext';
+import { PokedexContext, ACTION } from './context/PokedexContext';
 import PokeGrid from './components/PokeGrid';
 import PokeList from './components/PokeList';
 import DetailView from './components/DetailView';
 import Generations from './components/Generations';
 
 const App = () => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
 
   const fetchPokemon = useCallback(async () => {
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
@@ -23,15 +23,7 @@ const App = () => {
       promises.push(fetch(pokemonUrl).then((result) => result.json()));
     }
     pokemons = await Promise.all(promises);
-    setCtxPokedex((prev) => ({
-      ...prev,
-      pokemons,
-      class: {
-        ...prev.class,
-        loadingView: false,
-        generationView: true,
-      }
-    }));
+    dispatch({ type: ACTION.COMPLETE_FETCH_POKEMONS, pokemons });
   }, []);
 
   useEffect(() => {

@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import SearchBar from './SearchBar';
 import './PokeList.scss';
 
 const PokeList = () => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
 
   const pokeListHtml = ctxPokedex.filteredPokemons.map((pkm) => {
     let zeros = '';
@@ -13,17 +13,16 @@ const PokeList = () => {
     }
     const pokeId = `#${zeros}${pkm.id}`;
 
-    const handleClickItem = () => setCtxPokedex((prev) => ({
-      ...prev,
-      selectedPkm: pkm,
-    }));
+    const handleClickItem = () => {
+      dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pkm });
+    };
 
     return (
       <li
         name="info-container"
         key={pkm.id}
         onClick={handleClickItem}
-        className={ctxPokedex.selectedPkm?.id === pkm.id ? "selected" : undefined}
+        className={ctxPokedex.selectedPokemon?.id === pkm.id ? "selected" : undefined}
       >
         <img src={pkm.sprites.versions['generation-vii'].icons.front_default} className="pokemon" alt="" />
         <div className="pokeOverview">
@@ -36,7 +35,7 @@ const PokeList = () => {
 
   return (
     <ol id="poke-list">
-      <li><SearchBar searchBarID="poke-list-search-bar"/></li>
+      <li><SearchBar searchBarID="poke-list-search-bar" /></li>
       {pokeListHtml}
     </ol>
   );

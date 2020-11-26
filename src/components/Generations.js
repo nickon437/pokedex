@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import './Generations.scss';
 import Pokeball from '../resources/img/pokeball.svg';
 
 const Generations = () => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
 
   const convertToRoman = (num) => {
@@ -22,16 +22,7 @@ const Generations = () => {
 
   const handleClick = (genIndex, startPkmIndex) => {
     const selectedGenPokemons = ctxPokedex.pokemons.slice(startPkmIndex, gens[genIndex]);
-    setCtxPokedex((prev) => ({
-      ...prev,
-      selectedGenPokemons,
-      filteredPokemons: selectedGenPokemons,
-      class: {
-        ...prev.class,
-        generationView: false,
-        pokemonListView: true,
-      }
-    }));
+    dispatch({ type: ACTION.SET_SELECTED_GEN_POKEMON, selectedGenPokemons });
   };
 
   const generationListJsx = gens.map((num, genIndex) => {

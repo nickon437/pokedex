@@ -1,17 +1,14 @@
 import React, { useContext, useEffect, useCallback, useState } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import './Evolution.scss';
 import StringUtil from '../utils/StringUtil';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
 
   const handleClick = (pokemon) => {
-    setCtxPokedex((prev) => ({
-      ...prev,
-      selectedPkm: pokemon,
-    }))
+    dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pokemon });
   }
 
   const getEvoConditions = async (evoDetails) => {
@@ -134,14 +131,14 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
       while (nextBranchIndex < evolution.evolves_to.length) {
         // Generate copy of evoChain to reuse of different branches
         const currentEvoChain = [...evoChainJsx];
-        const nextEvolution = evolution.evolves_to.[nextBranchIndex.toString()];
+        const nextEvolution = evolution.evolves_to[nextBranchIndex.toString()];
 
         // Skip evolution trigger if there is undefined baby form
         if (currentEvoChain.length > 0) {
           const evoTriggerJsx = (
             <div className="evolution-trigger">
               <div className="evolution-condition">
-                {(await getEvoConditions(nextEvolution.evolution_details.["0"]))}
+                {(await getEvoConditions(nextEvolution.evolution_details["0"]))}
               </div>
               <div className="arrow" />
             </div>

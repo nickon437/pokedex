@@ -24,7 +24,7 @@ const SearchBar = ({ searchBarID }) => {
   }
   
   return (
-    <div class="search-bar">
+    <div className="search-bar">
       <label htmlFor={searchBarID}>
         <img src={magnify} alt="search" />
       </label>

@@ -23,7 +23,7 @@ const PokeList = () => {
         name="info-container"
         key={pkm.id}
         onClick={handleClickItem}
-        className={ctxPokedex.selectedPkm?.id === pkm.id && "selected"}
+        className={ctxPokedex.selectedPkm?.id === pkm.id ? "selected" : undefined}
       >
         <img src={pkm.sprites.versions['generation-vii'].icons.front_default} name="pokemon" alt="" />
         <div className="pokeOverview">

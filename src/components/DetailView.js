@@ -72,7 +72,7 @@ const DetailView = () => {
       <div id="detail-data">
         <section>
           <h2>Pokedex entry</h2>
-          <div>{pkmSpecies && pokeEntry()}</div>
+          <div>{pkmSpecies ? pokeEntry() : undefined}</div>
         </section>
         <Stat pkm={ctxPokedex.selectedPkm} />
         <Evolution pokemons={ctxPokedex.pokemons} pkmEvolution={pkmEvolution} />

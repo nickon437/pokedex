@@ -39,18 +39,18 @@ const App = () => {
   }, [fetchPokemon]);
 
   const mainClasses = [
-    ctxPokedex.class.loadingView && "loading-view",
-    ctxPokedex.class.generationView && "generation-view",
-    ctxPokedex.class.pokemonListView && "pokemon-list-view",
-    ctxPokedex.class.splitView && "split-view",
-    ctxPokedex.class.reverseSplitView && "reverse-split-view"
+    ctxPokedex.class.loadingView ? "loading-view" : undefined,
+    ctxPokedex.class.generationView ? "generation-view" : undefined,
+    ctxPokedex.class.pokemonListView ? "pokemon-list-view" : undefined,
+    ctxPokedex.class.splitView ? "split-view" : undefined,
+    ctxPokedex.class.reverseSplitView ? "reverse-split-view" : undefined,
   ].join(' ');
 
   return (
     <>
       <header><div>POKEDEX</div></header>
       <div id="main" className={mainClasses}>
-        <div class="lds-facebook">
+        <div className="lds-facebook">
           <div /><div /><div />
         </div>
         <Generations />

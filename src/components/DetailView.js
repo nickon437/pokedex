@@ -57,7 +57,7 @@ const DetailView = () => {
   }
 
   return (
-    <div id="detail-view" style={{backgroundColor: ColorCode.colorCode[ctxPokedex.selectedPkm?.types[0].type.name]}}>
+    <div id="detail-view" style={{backgroundColor: ColorCode.getPrimaryTypeColor(ctxPokedex.selectedPkm)}}>
       <div id="overview">
         <div className="background-patterns">
           <img src={Pokeball} name="pokeball" alt=""/>

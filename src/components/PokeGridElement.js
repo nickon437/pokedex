@@ -23,7 +23,7 @@ const PokeGridElement = ({ pkm }) => {
   };
 
   return (
-    <li onClick={handleClickItem} style={{backgroundColor: ColorCode.colorCode[pkm.types[0].type.name]}}>
+    <li onClick={handleClickItem} style={{backgroundColor: ColorCode.getPrimaryTypeColor(pkm)}}>
       <div className="background-patterns" name="background-patterns">
         <img src={Pokeball} name="pokeball" alt=""/>
         <svg name="dots-1" viewBox="0 0 45.767 45.767">

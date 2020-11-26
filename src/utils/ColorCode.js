@@ -19,6 +19,11 @@ class ColorCode {
     steel: '#c4c2db',
     fairy: '#faadff',
   }
+
+  static getPrimaryTypeColor = (pokemon) => {
+    const primaryType = pokemon?.types[0].type.name;
+    return this.colorCode[primaryType];
+  }
 }
 
 export default ColorCode;

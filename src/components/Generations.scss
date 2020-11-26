@@ -16,13 +16,13 @@
     background-color: $xx-lighter-grey;
     position: relative;
     border-radius: 10px;
-    box-shadow: 0 2px 5px grey;
+    box-shadow: $std-box-shadow;
     @include flex(true, null, null);
     transition: box-shadow $medium-animation-time linear, filter $medium-animation-time linear;;
     cursor: pointer;
 
     &:hover {
-      box-shadow: 0 2px 3px grey;
+      box-shadow: $narrow-box-shadow;
       filter: brightness(0.9);
     }
 

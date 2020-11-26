@@ -7,7 +7,7 @@ const SearchBar = ({ searchBarID }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
 
   const handleChange = (e) => {
-    const filteredPokemons = ctxPokedex.pokemons.filter((pokemon) => {
+    const filteredPokemons = ctxPokedex.selectedGenPokemons.filter((pokemon) => {
       const idRegex = new RegExp(`#?0*(${pokemon.id.toString()})`);
       return pokemon.name.includes(e.target.value) || e.target.value.match(idRegex)
     });

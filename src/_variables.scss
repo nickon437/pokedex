@@ -10,6 +10,9 @@ $short-animation-time: 0.1s;
 $header-height: 4rem;
 $expanded-poke-list: 14rem;
 
+$std-box-shadow: 0 2px 5px grey;
+$narrow-box-shadow: 0 2px 3px grey;
+
 @mixin flex($center, $direction, $gap) {
   @if not $gap {
     $gap: 0.5rem;

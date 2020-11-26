@@ -7,6 +7,13 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
   const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
 
+  const handleClick = (pokemon) => {
+    setCtxPokedex((prev) => ({
+      ...prev,
+      selectedPkm: pokemon,
+    }))
+  }
+
   const getEvoConditions = async (evoDetails) => {
     const evoConditions = [];
 
@@ -106,11 +113,12 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
     // Generate img of pokemon
     if (pokemonId <= pokemons.length) {
+      const pokemon = pokemons[pokemonId - 1];
       const pokemonImgJsx = (
-        <div className="pokemon-evolution">
+        <div className="pokemon-evolution" onClick={() => handleClick(pokemon)}>
           <img
-            src={pokemons[pokemonId - 1].sprites.other['official-artwork'].front_default}
-            alt={pokemons[pokemonId - 1].name}
+            src={pokemon.sprites.other['official-artwork'].front_default}
+            alt={pokemon.name}
           />
         </div>
       );

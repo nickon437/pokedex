@@ -11,7 +11,8 @@ const App = () => {
 
   const fetchPokemon = useCallback(async () => {
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-    const NUM_OF_POKEMON = 251;
+    const NUM_OF_POKEMON = 386;
+    // const NUM_OF_POKEMON = 251;
     // const NUM_OF_POKEMON = 151;
     // const NUM_OF_POKEMON = 12;
     // const NUM_OF_POKEMON = 3;
@@ -38,18 +39,18 @@ const App = () => {
   }, [fetchPokemon]);
 
   const mainClasses = [
-    ctxPokedex.class.loadingView && "loading-view",
-    ctxPokedex.class.generationView && "generation-view",
-    ctxPokedex.class.pokemonListView && "pokemon-list-view",
-    ctxPokedex.class.splitView && "split-view",
-    ctxPokedex.class.reverseSplitView && "reverse-split-view"
+    ctxPokedex.class.loadingView ? "loading-view" : undefined,
+    ctxPokedex.class.generationView ? "generation-view" : undefined,
+    ctxPokedex.class.pokemonListView ? "pokemon-list-view" : undefined,
+    ctxPokedex.class.splitView ? "split-view" : undefined,
+    ctxPokedex.class.reverseSplitView ? "reverse-split-view" : undefined,
   ].join(' ');
 
   return (
     <>
       <header><div>POKEDEX</div></header>
       <div id="main" className={mainClasses}>
-        <div class="lds-facebook">
+        <div className="lds-facebook">
           <div /><div /><div />
         </div>
         <Generations />

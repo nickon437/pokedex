@@ -8,6 +8,7 @@ export const PokedexProvider = (props) => {
     selectedGenPokemons: [],
     filteredPokemons: [],
     selectedPkm: null,
+    searchKeyword: '',
     class: {
       loadingView: true,
       generationView: false,

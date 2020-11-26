@@ -39,11 +39,11 @@
       overflow: hidden;
       cursor: pointer;
       transition: filter $medium-animation-time linear, box-shadow $medium-animation-time linear;
-      box-shadow: 0 2px 5px grey;
+      box-shadow: $std-box-shadow;
 
       &:hover {
         filter: brightness(0.9);
-        box-shadow: 0 2px 3px grey;
+        box-shadow: $narrow-box-shadow;
       }
 
       img[name="pokemon"] {

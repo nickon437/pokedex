@@ -12,11 +12,19 @@
       border-radius: 7px;
 
       .pokemon-evolution {
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color $short-animation-time linear;
+
+        &:hover {
+          background-color: rgba($color: black, $alpha: 0.1);
+        }
+
         img {
           height: 5rem;
         }
       }
-  
+
       .evolution-trigger {
         @include flex($center: true, $direction: column, $gap: null);
         font-weight: bold;

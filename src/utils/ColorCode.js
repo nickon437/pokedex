@@ -11,7 +11,7 @@ class ColorCode {
     rock: '#cdbc72',
     bug: '#bdcb21',
     ghost: '#7975d7',
-    electric: '#fde53c',
+    electric: '#ffce4b',
     psychic: '#f562b1',
     ice: '#96f2ff',
     dragon: '#8a76ff',

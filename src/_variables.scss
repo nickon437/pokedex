@@ -25,5 +25,24 @@ $narrow-box-shadow: 0 2px 3px grey;
 
   display: flex;
   flex-direction: $direction;
-  gap: $gap;
+  
+  @if $gap > 0 { 
+    & > * {
+      @if $direction == column {
+        margin-bottom: $gap;
+        margin-right: 0;
+      } @else {
+        margin-bottom: 0;
+        margin-right: $gap;
+      }
+    }
+
+    & > *:last-child {
+      @if $direction == column {
+        margin-bottom: 0;
+      } @else {
+        margin-right: 0;
+      }
+    }
+  }
 }

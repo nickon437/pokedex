@@ -19,7 +19,7 @@
     position: relative;
     border-radius: 10px;
     box-shadow: $std-box-shadow;
-    @include flex(true, null, null);
+    @include flex(true, null, 0);
     transition: box-shadow $medium-animation-time linear, filter $medium-animation-time linear;;
     cursor: pointer;
 

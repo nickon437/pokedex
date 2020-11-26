@@ -26,7 +26,6 @@
     grid-template-rows: auto;
     gap: 2rem;
     list-style-type: none;
-    margin: 0;
     padding: 0;
 
     li {
@@ -76,6 +75,10 @@
         width: 50%;
         min-width: 3rem;
         flex-wrap: wrap;
+        
+        * {
+          margin-bottom: 0.5rem;
+        }
       }
     }
   }

@@ -19,7 +19,7 @@
   transform: translateX(-100%);
   visibility: hidden;
   transition: width 0.3s ease-in-out;  
-  @include flex($center: false, $direction: column, $gap: 0);
+  // @include flex($center: false, $direction: column, $gap: 0);
 
   &:hover, &:focus-within {
     width: $expanded-poke-list;
@@ -36,8 +36,7 @@
     @include flex($center: false, $direction: null, $gap: 0.75rem);
     align-items: center;
     transition: background-color $short-animation-time linear;
-    height: fit-content;
-    padding: 0.2rem 0;
+    height: 2.5rem;  
     width: 100%;
     border-top: 1px solid $light-grey;
     
@@ -60,19 +59,19 @@
       }
     }
     
-    .pokeName, .pokeId {
-      font-size: 1rem;
-      font-weight: normal;
-      font-family: 'Nova Mono';;
-    }
-
-    .pokeName {
-      padding-right: 1rem;
-    }
-
     .pokeOverview {
       @include flex($center: false, $direction: null, $gap: null);
       white-space: nowrap;
+      
+      .pokeName, .pokeId {
+        font-size: 1rem;
+        font-weight: normal;
+        font-family: 'Nova Mono';
+      }
+
+      .pokeName {
+        padding-right: 1rem;
+      }
     }
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import ColorCode from '../utils/ColorCode';
 
 const PokeBasicInfo = ({ pkm }) => {
   if (!pkm) {
@@ -13,13 +14,18 @@ const PokeBasicInfo = ({ pkm }) => {
 
   let pokeTypes = [];
   for (let i = 0; i < pkm.types.length; i++) {
-    pokeTypes.push(<div key={i}>{pkm.types[i].type.name.toUpperCase()}</div>);
+    const pokemonType = pkm.types[i].type.name;
+    // if (i === 0) {
+    //   pokeTypes.push(<div key={i}>{pokemonType.toUpperCase()}</div>);
+    // } else {
+      pokeTypes.push(<div key={i} style={{backgroundColor: ColorCode.colorCode[pokemonType]}}>{pokemonType.toUpperCase()}</div>);
+    // }
   }
 
   return (
     <>
-      <img src={pkm.sprites.other['official-artwork'].front_default} name="pokemon" alt=""></img>
-      <div name="basic-data">
+      <img src={pkm.sprites.other['official-artwork'].front_default} className="pokemon" alt=""></img>
+      <div className="basic-data">
         <div className="pokeId">{pokeId}</div>
         <div className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>
         <div className="pokeTypes">{pokeTypes}</div>

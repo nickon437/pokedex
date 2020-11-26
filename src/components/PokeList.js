@@ -25,7 +25,7 @@ const PokeList = () => {
         onClick={handleClickItem}
         className={ctxPokedex.selectedPkm?.id === pkm.id ? "selected" : undefined}
       >
-        <img src={pkm.sprites.versions['generation-vii'].icons.front_default} name="pokemon" alt="" />
+        <img src={pkm.sprites.versions['generation-vii'].icons.front_default} className="pokemon" alt="" />
         <div className="pokeOverview">
           <div name="pokeId" className="pokeId">{pokeId}</div>
           <div name="pokeName" className="pokeName">{pkm.name.charAt(0).toUpperCase() + pkm.name.slice(1)}</div>

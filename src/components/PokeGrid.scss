@@ -45,11 +45,12 @@
         box-shadow: $narrow-box-shadow;
       }
 
-      img[name="pokemon"] {
+      img.pokemon {
         position: absolute;
         height: 10rem;
         bottom: 1rem;
         right: 10%;
+        z-index: 6;
       }
       
       .background-patterns {

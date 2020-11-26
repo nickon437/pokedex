@@ -38,6 +38,7 @@ const DetailView = () => {
         reverseSplitView: true,
       }
     }));
+    document.getElementById('main').style.backgroundColor = null;
 
     await sleep(1000);
     

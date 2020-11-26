@@ -12,6 +12,7 @@ const PokeGridElement = ({ pkm }) => {
       top: 0,
       behavior: 'smooth',
     });
+    document.getElementById('main').style.backgroundColor = ColorCode.getPrimaryTypeColor(pkm);
     setCtxPokedex((prev) => ({
       ...prev,
       selectedPkm: pkm,

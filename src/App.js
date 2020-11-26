@@ -17,12 +17,11 @@ const App = () => {
     // const NUM_OF_POKEMON = 12;
     // const NUM_OF_POKEMON = 3;
     const promises = [];
-    let pokemons;
     for (let i = 1; i <= NUM_OF_POKEMON; i++) {
       const pokemonUrl = BASE_URL + i;
       promises.push(fetch(pokemonUrl).then((result) => result.json()));
     }
-    pokemons = await Promise.all(promises);
+    const pokemons = await Promise.all(promises);
     dispatch({ type: ACTION.COMPLETE_FETCH_POKEMONS, pokemons });
   }, []);
 
@@ -31,9 +30,10 @@ const App = () => {
   }, [fetchPokemon]);
 
   const mainClasses = [
-    ctxPokedex.class.loadingView ? "loading-view" : undefined,
-    ctxPokedex.class.generationView ? "generation-view" : undefined,
-    ctxPokedex.class.pokemonListView ? "pokemon-list-view" : undefined,
+    ctxPokedex.class.mainView,
+    // ctxPokedex.class.loadingView ? "loading-view" : undefined,
+    // ctxPokedex.class.generationView ? "generation-view" : undefined,
+    // ctxPokedex.class.pokemonListView ? "pokemon-list-view" : undefined,
     ctxPokedex.class.splitView ? "split-view" : undefined,
     ctxPokedex.class.reverseSplitView ? "reverse-split-view" : undefined,
   ].join(' ');

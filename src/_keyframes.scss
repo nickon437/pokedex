@@ -9,6 +9,15 @@
   }
 }
 
+@keyframes delayed-background-fade-in {
+  0% {
+    background-color: transparent;
+  }
+  99% {
+    background-color: transparent;
+  }
+}
+
 @keyframes slide-out-right-to-left {
   0% {
     visibility: visible;

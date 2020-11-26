@@ -168,8 +168,7 @@ header {
 }
 
 #main.split-view {
-  background-color: $primary-red;
-  transition: background-color 0s linear $page-transition-time;
+  animation: delayed-background-fade-in $page-transition-time forwards;
 
   #detail-view {
     animation: slide-in-right-to-left $page-transition-time linear forwards;

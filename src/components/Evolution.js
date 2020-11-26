@@ -138,7 +138,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
           const evoTriggerJsx = (
             <div className="evolution-trigger">
               <div className="evolution-condition">
-                {(await getEvoConditions(nextEvolution.evolution_details["0"]))}
+                { await getEvoConditions(nextEvolution.evolution_details["0"]) }
               </div>
               <div className="arrow" />
             </div>

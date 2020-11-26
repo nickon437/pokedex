@@ -12,8 +12,7 @@ export const PokedexProvider = (props) => {
           pokemons: action.pokemons,
           class: {
             ...state.class,
-            loadingView: false,
-            generationView: true,
+            mainView: 'generation-view',
           }
         };
       case ACTION.SET_SELECTED_GEN_POKEMON:
@@ -23,8 +22,7 @@ export const PokedexProvider = (props) => {
           filteredPokemons: action.selectedGenPokemons,
           class: {
             ...state.class,
-            generationView: false,
-            pokemonListView: true,
+            mainView: 'pokemon-list-view',
           }
         };
       case ACTION.BACK_TO_GENERATION_VIEW:
@@ -32,8 +30,7 @@ export const PokedexProvider = (props) => {
           ...state,
           class: {
             ...state.class,
-            generationView: true,
-            pokemonListView: false,
+            mainView: 'generation-view',
           }
         }
       case ACTION.SHOW_DETAIL_VIEW:
@@ -85,9 +82,7 @@ export const PokedexProvider = (props) => {
     selectedPokemon: null,
     searchKeyword: '',
     class: {
-      loadingView: true,
-      generationView: false,
-      pokemonListView: false,
+      mainView: 'loading-view',
       splitView: false,
       reverseSplitView: false,
     }

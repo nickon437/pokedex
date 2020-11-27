@@ -226,7 +226,7 @@ button, select {
   background-color: transparent;
   font-family: inherit;
   cursor: pointer;
-  transition: background-color 0.3s linear, color 0.3s linear;
+  transition: background-color $medium-animation-time linear, color $medium-animation-time linear, transform $medium-animation-time linear;
   margin: 0;
   padding: 0;
   border-radius: 7px;
@@ -237,6 +237,7 @@ button, select {
   }
 
   svg {
+    transition: inherit;
     height: 2rem;
   }
 }

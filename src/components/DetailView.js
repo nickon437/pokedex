@@ -42,23 +42,27 @@ const DetailView = () => {
 
   const handleClickPrevPkm = () => {
     const pokemonIndex = ctxPokedex.selectedPokemon.id - 1;
-    const prevPkm = ctxPokedex.pokemons[pokemonIndex - 1];  
-    dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: prevPkm });
+    if (pokemonIndex > 0) {
+      const prevPkm = ctxPokedex.pokemons[pokemonIndex - 1];  
+      dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: prevPkm });
+    }
   }
   
   const handleClickNextPkm = () => {
     const pokemonIndex = ctxPokedex.selectedPokemon.id - 1;
-    const nextPkm = ctxPokedex.pokemons[pokemonIndex + 1];  
-    dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: nextPkm });
+    if (pokemonIndex < ctxPokedex.pokemons.length - 1) {
+      const nextPkm = ctxPokedex.pokemons[pokemonIndex + 1];  
+      dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: nextPkm });
+    }
   }
 
   return (
     <div id="detail-view" style={{ backgroundColor: ColorUtil.getPrimaryTypeColor(ctxPokedex.selectedPokemon) }}>
       <div id="overview">
-        <button id="previous-pokemon-btn" type="button" onClick={handleClickPrevPkm}>
+        <button id="previous-pokemon-btn" className="pokemon-detail-nav" type="button" onClick={handleClickPrevPkm}>
           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
         </button>
-        <button id="next-pokemon-btn" type="button" onClick={handleClickNextPkm}>
+        <button id="next-pokemon-btn" className="pokemon-detail-nav" type="button" onClick={handleClickNextPkm}>
           <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
         </button>
         <div className="background-patterns">

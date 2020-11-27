@@ -173,14 +173,37 @@ header {
   #detail-view {
     animation: slide-in-right-to-left $page-transition-time linear forwards;
   }
+
+  #poke-grid-container {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
+  }
+
+  #poke-list {
+    animation: slide-in-left-to-right $page-transition-time linear forwards;
+  }
 }
 
 #main.split-view.reverse-split-view {
   background-color: white;
   transition: background-color 0s linear;
+  animation: none;
 
   #detail-view {
     animation: slide-out-left-to-right $page-transition-time linear forwards;
+  }
+  
+  #poke-grid-container {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity $page-transition-time linear;
+  }
+
+  #poke-list {
+    animation: slide-out-right-to-left $page-transition-time linear forwards;
   }
 }
 
@@ -196,8 +219,7 @@ header {
   }
 }
 
-button {
-  @include flex(true, null, 0);
+button, select {
   font-weight: bold;
   width: fit-content;
   border: none;
@@ -216,5 +238,34 @@ button {
 
   svg {
     height: 2rem;
+  }
+}
+
+button {
+  @include flex(true, null, 0);
+}
+
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 1px solid grey;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: 50%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 1rem;
+  padding-left: 0.5rem;
+  font-family: inherit;
+  cursor: pointer;
+  
+  &:hover {
+    border: 1px solid transparent;
+  }
+
+  * {
+    font-family: inherit;
+    background-color: white;
   }
 }

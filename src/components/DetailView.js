@@ -7,6 +7,7 @@ import Pokeball from '../resources/img/pokeball.svg';
 import './DetailView.scss';
 import Evolution from './Evolution';
 import ColorUtil from '../utils/ColorUtil';
+import PokeEntry from './PokeEntry';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -39,11 +40,6 @@ const DetailView = () => {
     dispatch({ type: ACTION.COMPLETE_TRANSITION_CLOSE_DETAIL_VIEW })
   };
 
-  const pokeEntry = () => { 
-    let entry = pkmSpecies?.flavor_text_entries.find((entry) => (entry.language.name === 'en')).flavor_text;
-    return entry.replace('', ' '); // Clean up entry text
-  }
-
   return (
     <div id="detail-view" style={{backgroundColor: ColorUtil.getPrimaryTypeColor(ctxPokedex.selectedPokemon)}}>
       <div id="overview">
@@ -58,10 +54,7 @@ const DetailView = () => {
         <PokeBasicInfo pkm={ctxPokedex.selectedPokemon} />
       </div>
       <div id="detail-data">
-        <section>
-          <h2>Pokedex entry</h2>
-          <div>{pkmSpecies ? pokeEntry() : undefined}</div>
-        </section>
+        <PokeEntry pkmSpecies={pkmSpecies} />
         <Stat pkm={ctxPokedex.selectedPokemon} />
         <Evolution pokemons={ctxPokedex.pokemons} pkmEvolution={pkmEvolution} />
       </div>

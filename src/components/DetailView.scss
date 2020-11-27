@@ -92,7 +92,7 @@
     padding: 5rem 5%;
     position: relative;
     box-shadow: $std-box-shadow;
-  
+
     .stat-section-content {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
@@ -133,17 +133,5 @@
         grid-template-columns: 1fr;
       }
     }
-  }
-}
-
-#main.split-view {
-  #detail-view {
-    animation: slide-in-right-to-left $page-transition-time linear forwards;
-  }
-}
-
-#main.split-view.reverse-split-view {
-  #detail-view {
-    animation: slide-out-left-to-right $page-transition-time linear forwards;
   }
 }

@@ -30,29 +30,28 @@ const PokeEntry = ({ pkmSpecies }) => {
   };
 
   const genOptsJsx = pokemonVersions.map((gen, index) => {
-    const optionsJsx = gen.map((version) => {
-      let entry = pkmSpecies.flavor_text_entries.find((entry) => (entry.language.name === 'en' && entry.version.name === version));
-      if (entry) {
-        availableEntries[version] = entry;
-        return (<option value={version}>{StringUtil.cleanUpString(version)}</option>);
-      }
-      return;
-    });
+    if (pkmSpecies) {
+      const optionsJsx = gen.map((version) => {
+        let entry = pkmSpecies.flavor_text_entries.find((entry) => (entry.language.name === 'en' && entry.version.name === version));
+        if (entry) {
+          availableEntries[version] = entry;
+          return (<option value={version}>{StringUtil.cleanUpString(version)}</option>);
+        }
+        return;
+      });
 
-    if (optionsJsx) {
-      return (<optgroup label={`GENERATION ${StringUtil.convertToRoman(index + 1)}`}>
-        {optionsJsx}
-      </optgroup>);
+      if (optionsJsx) {
+        return (<optgroup label={`GENERATION ${StringUtil.convertToRoman(index + 1)}`}>
+          {optionsJsx}
+        </optgroup>);
+      }
     }
     return;
   });
 
   return (
     <section id="pokedex-entry-section">
-      <div className="heading">
-        <h2>Pokedex entry</h2>
-        <select>{genOptsJsx}</select>
-      </div>
+      <h2>Pokedex entry <select>{genOptsJsx}</select></h2>
       <div>{pokeEntry()}</div>
     </section>
   )

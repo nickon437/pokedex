@@ -36,9 +36,9 @@ const PokeEntry = ({ pkmSpecies }) => {
             return (<option value={version}>{StringUtil.cleanUpString(version)}</option>);
           }
           return;
-        });
-
-        if (optionsJsx) {
+        }).filter((version) => version);
+        
+        if (optionsJsx.length > 0) {
           return (<optgroup label={`GENERATION ${StringUtil.convertToRoman(index + 1)}`}>
             {optionsJsx}
           </optgroup>);
@@ -52,7 +52,7 @@ const PokeEntry = ({ pkmSpecies }) => {
   }
 
   const handleChangeVersion = () => {
-    setPokeEntry(availableEntries[versionSelectRef.current.value].flavor_text.replace('', ' '));
+    setPokeEntry(availableEntries[versionSelectRef.current?.value]?.flavor_text.replace('', ' '));
   };
 
   useEffect(() => {

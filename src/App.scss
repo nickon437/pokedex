@@ -173,6 +173,17 @@ header {
   #detail-view {
     animation: slide-in-right-to-left $page-transition-time linear forwards;
   }
+
+  #poke-grid-container {
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
+  }
+
+  #poke-list {
+    animation: slide-in-left-to-right $page-transition-time linear forwards;
+  }
 }
 
 #main.split-view.reverse-split-view {
@@ -181,6 +192,17 @@ header {
 
   #detail-view {
     animation: slide-out-left-to-right $page-transition-time linear forwards;
+  }
+  
+  #poke-grid-container {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+    transition: opacity $page-transition-time linear;
+  }
+
+  #poke-list {
+    animation: slide-out-right-to-left $page-transition-time linear forwards;
   }
 }
 

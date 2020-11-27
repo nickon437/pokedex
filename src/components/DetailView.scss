@@ -135,15 +135,3 @@
     }
   }
 }
-
-#main.split-view {
-  #detail-view {
-    animation: slide-in-right-to-left $page-transition-time linear forwards;
-  }
-}
-
-#main.split-view.reverse-split-view {
-  #detail-view {
-    animation: slide-out-left-to-right $page-transition-time linear forwards;
-  }
-}

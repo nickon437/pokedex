@@ -84,21 +84,3 @@
     }
   }
 }
-
-#main.split-view {
-  #poke-grid-container {
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
-  }
-}
-
-#main.split-view.reverse-split-view {
-  #poke-grid-container {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity $page-transition-time linear;
-  }
-}

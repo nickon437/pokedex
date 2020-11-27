@@ -75,15 +75,3 @@
     }
   }
 }
-
-#main.split-view {
-  #poke-list {
-    animation: slide-in-left-to-right $page-transition-time linear forwards;
-  }
-}
-
-#main.split-view.reverse-split-view {
-  #poke-list {
-    animation: slide-out-right-to-left $page-transition-time linear forwards;
-  }
-}

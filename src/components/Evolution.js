@@ -80,10 +80,10 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     if (evoDetails.trade_species) {
       evoConditions.push(<div>Trade: {evoDetails.trade_species}</div>);
     }
-    
+
     if (evoDetails.trigger
-    && evoDetails.trigger.name !== 'level-up'
-    && evoDetails.trigger.name !== 'use-item') {
+      && evoDetails.trigger.name !== 'level-up'
+      && evoDetails.trigger.name !== 'use-item') {
       evoConditions.push(<div>{StringUtil.cleanUpString(evoDetails.trigger.name)}</div>);
     }
 
@@ -94,22 +94,20 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     return evoConditions;
   }
 
-  const buildEvolutionChain =  useCallback(async (evolution, evoChainJsx, pokemons, currentBranchIndex) => {
+  const buildEvolutionChain = useCallback(async (evolution, evoChainJsx, pokemons, currentBranchIndex) => {
     const pokemonId = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
 
-    // Skip evolution branch with undefined post-evolution form
-    if (pokemonId > pokemons.length && currentBranchIndex > 0) {
-      return;
-    }
-
-    // Stop build evolution branch and return it once there is undefined form
-    if (pokemonId > pokemons.length && evoChainJsx.length !== 0) {
-      setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx.slice(0, -1)}</div>]);
-      return;
-    }
-
-    // Generate img of pokemon
-    if (pokemonId <= pokemons.length) {
+    if (pokemonId > pokemons.length) {
+      // Skip alternative evolution branch with undefined post-evolution form
+      if (currentBranchIndex > 0) {
+        return;
+      // Stop build evolution branch and return it once there is undefined form
+      } else if (evoChainJsx.length !== 0) {
+        setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx.slice(0, -1)}</div>]);
+        return;
+      }
+    } else {
+      // Generate img of pokemon
       const pokemon = pokemons[pokemonId - 1];
       const pokemonImgJsx = (
         <div className="pokemon-evolution" onClick={() => handleClick(pokemon)}>
@@ -121,7 +119,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
       );
       evoChainJsx.push(pokemonImgJsx);
     }
-    
+
     // Stop build evolution chain when it reaches at the end of the chain
     if (evolution.evolves_to.length <= 0) {
       setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx}</div>]);
@@ -138,7 +136,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
           const evoTriggerJsx = (
             <div className="evolution-trigger">
               <div className="evolution-condition">
-                { await getEvoConditions(nextEvolution.evolution_details["0"]) }
+                {await getEvoConditions(nextEvolution.evolution_details["0"])}
               </div>
               <div className="arrow" />
             </div>

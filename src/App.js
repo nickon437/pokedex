@@ -31,9 +31,6 @@ const App = () => {
 
   const mainClasses = [
     ctxPokedex.class.mainView,
-    // ctxPokedex.class.loadingView ? "loading-view" : undefined,
-    // ctxPokedex.class.generationView ? "generation-view" : undefined,
-    // ctxPokedex.class.pokemonListView ? "pokemon-list-view" : undefined,
     ctxPokedex.class.splitView ? "split-view" : undefined,
     ctxPokedex.class.reverseSplitView ? "reverse-split-view" : undefined,
   ].join(' ');

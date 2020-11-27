@@ -1,37 +1,16 @@
 import React, { useContext } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import './Generations.scss';
 import Pokeball from '../resources/img/pokeball.svg';
+import StringUtil from '../utils/StringUtil';
 
 const Generations = () => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
-
-  const convertToRoman = (num) => {
-    const roman = { M: 1000, CM: 900, D: 500, CD: 400, C: 100, XC: 90, L: 50, XL: 40, X: 10, IX: 9, V: 5, IV: 4, I: 1 };
-    let str = '';
-
-    for (let i of Object.keys(roman)) {
-      let q = Math.floor(num / roman[i]);
-      num -= q * roman[i];
-      str += i.repeat(q);
-    }
-
-    return str;
-  }
 
   const handleClick = (genIndex, startPkmIndex) => {
     const selectedGenPokemons = ctxPokedex.pokemons.slice(startPkmIndex, gens[genIndex]);
-    setCtxPokedex((prev) => ({
-      ...prev,
-      selectedGenPokemons,
-      filteredPokemons: selectedGenPokemons,
-      class: {
-        ...prev.class,
-        generationView: false,
-        pokemonListView: true,
-      }
-    }));
+    dispatch({ type: ACTION.SET_SELECTED_GEN_POKEMON, selectedGenPokemons });
   };
 
   const generationListJsx = gens.map((num, genIndex) => {
@@ -55,7 +34,7 @@ const Generations = () => {
         <img className="starter-1" src={ctxPokedex.pokemons[startPkmIndex]?.sprites.other['official-artwork'].front_default} alt="" />
         <img className="starter-2" src={ctxPokedex.pokemons[startPkmIndex + 3]?.sprites.other['official-artwork'].front_default} alt="" />
         <img className="starter-3" src={ctxPokedex.pokemons[startPkmIndex + 6]?.sprites.other['official-artwork'].front_default} alt="" />
-        <div className="generation-heading">GENERATION {convertToRoman(genIndex + 1)}</div>
+        <div className="generation-heading">GENERATION {StringUtil.convertToRoman(genIndex + 1)}</div>
       </div>
     )
   });

@@ -1,23 +1,16 @@
 
 import React, { useContext } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
 import './PokeGrid.scss';
 
 const PokeGrid = () => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm} />);
 
   const handleClick = () => {
-    setCtxPokedex((prev) => ({
-      ...prev,
-      class: {
-        ...prev.class,
-        generationView: true,
-        pokemonListView: false,
-      }
-    }));
+    dispatch({ type: ACTION.BACK_TO_GENERATION_VIEW });
   }
 
   return (

@@ -20,7 +20,7 @@
     position: relative;
     color: white;
 
-    img[name="pokemon"] {
+    img.pokemon {
       position: absolute;
       height: 30vw;
       min-height: 13rem;
@@ -49,7 +49,7 @@
       right: 40%;
     }
 
-    div[name="basic-data"] {
+    .basic-data {
       position: absolute;
       right: 10%;
       padding: 5rem;

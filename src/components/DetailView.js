@@ -2,21 +2,21 @@ import React, { useContext, useEffect, useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import Stat from './Stat';
 import PokeBasicInfo from './PokeBasicInfo';
-import { PokedexContext } from '../context/PokedexContext';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
 import './DetailView.scss';
 import Evolution from './Evolution';
-import ColorCode from '../utils/ColorCode';
+import ColorUtil from '../utils/ColorUtil';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const DetailView = () => {
-  const [ctxPokedex, setCtxPokedex] = useContext(PokedexContext);
+  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [pkmSpecies, setPkmSpecies] = useState(null);
   const [pkmEvolution, setPkmEvolution] = useState(null);
 
-  const fetchPkmData = useCallback(async (selectedPkm) => {
-    const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${selectedPkm.id}`;
+  const fetchPkmData = useCallback(async (selectedPokemon) => {
+    const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon.id}`;
     const pokemonSpecies = await fetch(pokemonSpeciesUrl).then((result) => result.json());
     setPkmSpecies(pokemonSpecies);
 
@@ -25,30 +25,18 @@ const DetailView = () => {
   }, []);
 
   useEffect(() => {
-    if (ctxPokedex.selectedPkm) {
-      fetchPkmData(ctxPokedex.selectedPkm);
+    if (ctxPokedex.selectedPokemon) {
+      fetchPkmData(ctxPokedex.selectedPokemon);
     }
-  }, [ctxPokedex.selectedPkm]);
+  }, [ctxPokedex.selectedPokemon]);
 
   const handleClickCancel = async () => {
-    setCtxPokedex((prev) => ({
-      ...prev,
-      class: {
-        ...prev.class,
-        reverseSplitView: true,
-      }
-    }));
+    dispatch({ type: ACTION.TRANSITION_CLOSE_DETAIL_VIEW });
+    document.getElementById('main').style.backgroundColor = null;
 
     await sleep(1000);
-    
-    setCtxPokedex((prev) => ({
-      ...prev,
-      class: {
-        ...prev.class,
-        splitView: false,
-        reverseSplitView: false,
-      }
-    }));
+
+    dispatch({ type: ACTION.COMPLETE_TRANSITION_CLOSE_DETAIL_VIEW })
   };
 
   const pokeEntry = () => { 
@@ -57,7 +45,7 @@ const DetailView = () => {
   }
 
   return (
-    <div id="detail-view" style={{backgroundColor: ColorCode.getPrimaryTypeColor(ctxPokedex.selectedPkm)}}>
+    <div id="detail-view" style={{backgroundColor: ColorUtil.getPrimaryTypeColor(ctxPokedex.selectedPokemon)}}>
       <div id="overview">
         <div className="background-patterns">
           <img src={Pokeball} name="pokeball" alt=""/>
@@ -67,14 +55,14 @@ const DetailView = () => {
             <svg viewBox="0 0 24 24"><path fill="currentColor" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" /></svg>
           </button>
         </div>
-        <PokeBasicInfo pkm={ctxPokedex.selectedPkm} />
+        <PokeBasicInfo pkm={ctxPokedex.selectedPokemon} />
       </div>
       <div id="detail-data">
         <section>
           <h2>Pokedex entry</h2>
           <div>{pkmSpecies ? pokeEntry() : undefined}</div>
         </section>
-        <Stat pkm={ctxPokedex.selectedPkm} />
+        <Stat pkm={ctxPokedex.selectedPokemon} />
         <Evolution pokemons={ctxPokedex.pokemons} pkmEvolution={pkmEvolution} />
       </div>
     </div>

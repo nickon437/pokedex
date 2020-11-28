@@ -59,12 +59,6 @@ const DetailView = () => {
   return (
     <div id="detail-view" style={{ backgroundColor: ColorUtil.getPrimaryTypeColor(ctxPokedex.selectedPokemon) }}>
       <div id="overview">
-        <button id="previous-pokemon-btn" className="pokemon-detail-nav" type="button" onClick={handleClickPrevPkm}>
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-        </button>
-        <button id="next-pokemon-btn" className="pokemon-detail-nav" type="button" onClick={handleClickNextPkm}>
-          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
-        </button>
         <div className="background-patterns">
           <img src={Pokeball} name="pokeball" alt="" />
           <svg width="154" height="215" name="dots-1"><circle cx="46" cy="108" r="15" /><circle cx="108" cy="108" r="15" /><circle cx="46" cy="169" r="15" /><circle cx="108" cy="169" r="15" /><line x1="46" y1="46" x2="108" y2="46" stroke="currentColor" strokeWidth="30" strokeLinecap="round" /></svg>
@@ -74,6 +68,12 @@ const DetailView = () => {
           </button>
         </div>
         <PokeBasicInfo pkm={ctxPokedex.selectedPokemon} />
+        <button id="previous-pokemon-btn" className="pokemon-detail-nav" type="button" onClick={handleClickPrevPkm}>
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+        </button>
+        <button id="next-pokemon-btn" className="pokemon-detail-nav" type="button" onClick={handleClickNextPkm}>
+          <svg viewBox="0 0 24 24"><path fill="currentColor" d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z" /></svg>
+        </button>
       </div>
       <div id="detail-data">
         <PokeEntry pkmSpecies={pkmSpecies} />

@@ -27,7 +27,7 @@ const App = () => {
 
   useEffect(() => {
     fetchPokemon();
-  }, [fetchPokemon]);
+  }, []);
 
   const mainClasses = [
     ctxPokedex.class.mainView,

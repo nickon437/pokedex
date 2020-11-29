@@ -76,7 +76,6 @@
       right: 10%;
       padding: 5rem;
       padding-right: 8%; // Allows basic data to stay relatively center on iPhone 6 screen
-      z-index: 5;
       
       .pokeTypes {
         min-width: 10.5rem;
@@ -115,7 +114,6 @@
   #detail-data {
     background-color: white;
     border-radius: 20px;
-    z-index: 5;
     padding: 5rem 5%;
     position: relative;
     box-shadow: $std-box-shadow;

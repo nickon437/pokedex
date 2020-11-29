@@ -56,7 +56,6 @@ const PokeEntry = ({ pkmSpecies }) => {
   };
 
   useEffect(() => {
-    console.log('useEffect');
     handleChangeVersion();
   }, [pkmSpecies]);
 

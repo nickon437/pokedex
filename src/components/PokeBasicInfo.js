@@ -15,12 +15,12 @@ const PokeBasicInfo = ({ pkm }) => {
 
   return (
     <>
-      <img src={pkm.sprites.other['official-artwork'].front_default} className="pokemon" alt=""></img>
       <div className="basic-data">
         <div className="pokeId">{StringUtil.formatPokemonId(pkm.id)}</div>
         <div className="pokeName">{StringUtil.makeFirstLetterUpperCase(pkm.name)}</div>
         <div className="pokeTypes">{pokeTypes}</div>
       </div>
+      <img src={pkm.sprites.other['official-artwork'].front_default} className="pokemon" alt=""></img>
     </>
   )
 }

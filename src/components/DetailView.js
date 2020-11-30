@@ -8,6 +8,7 @@ import './DetailView.scss';
 import Evolution from './Evolution';
 import ColorUtil from '../utils/ColorUtil';
 import PokeEntry from './PokeEntry';
+import axios from 'axios';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -18,11 +19,11 @@ const DetailView = () => {
 
   const fetchPkmData = useCallback(async (selectedPokemon) => {
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon.id}`;
-    const pokemonSpecies = await fetch(pokemonSpeciesUrl).then((result) => result.json());
+    const pokemonSpecies = await axios.get(pokemonSpeciesUrl).then((res) => res.data);
     setPkmSpecies(pokemonSpecies);
 
     const evolutionUrl = pokemonSpecies.evolution_chain.url;
-    setPkmEvolution(await fetch(evolutionUrl).then((result) => result.json()));
+    setPkmEvolution(await axios.get(evolutionUrl).then((res) => res.data));
   }, []);
 
   useEffect(() => {

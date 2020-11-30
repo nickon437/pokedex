@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useCallback, useState } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import './Evolution.scss';
 import StringUtil from '../utils/StringUtil';
+import axios from 'axios';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
@@ -24,7 +25,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
     if (evoDetails.item) {
       const evoItemUrl = evoDetails.item.url;
-      const evoItem = await fetch(evoItemUrl).then((result) => result.json());
+      const evoItem = await axios.get(evoItemUrl).then((res) => res.data);
       const evoItemSpriteUrl = evoItem.sprites.default;
       evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItem.name)} /></div>);
     }

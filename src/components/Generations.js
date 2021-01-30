@@ -18,7 +18,7 @@ const Generations = () => {
 
     // Stop generating generationListJsx for undefined pokemons
     if (startPkmIndex + 7 > ctxPokedex.pokemons.length) {
-      return;
+      return null;
     }
 
     return (

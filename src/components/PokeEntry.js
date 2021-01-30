@@ -35,7 +35,7 @@ const PokeEntry = ({ pkmSpecies }) => {
             availableEntries[version] = entry;
             return (<option value={version}>{StringUtil.cleanUpString(version)}</option>);
           }
-          return;
+          return null;
         }).filter((version) => version);
         
         if (optionsJsx.length > 0) {
@@ -45,7 +45,7 @@ const PokeEntry = ({ pkmSpecies }) => {
         }
       }
 
-      return;
+      return null;
     });
 
     return genOptsJsx;

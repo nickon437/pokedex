@@ -3,14 +3,16 @@ import { PokedexContext, ACTION } from '../context/PokedexContext';
 import './Generations.scss';
 import Pokeball from '../resources/img/pokeball.svg';
 import StringUtil from '../utils/StringUtil';
+import Loader from './Loader';
 
-const Generations = () => {
+const Generations = ({ history }) => { // TODO: Check to see if we can avoid pushing manually
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
 
   const handleClick = (genIndex, startPkmIndex) => {
     const selectedGenPokemons = ctxPokedex.pokemons.slice(startPkmIndex, gens[genIndex]);
     dispatch({ type: ACTION.SET_SELECTED_GEN_POKEMON, selectedGenPokemons });
+    history.push(`/gen/${genIndex + 1}`);
   };
 
   const generationListJsx = gens.map((num, genIndex) => {
@@ -40,9 +42,9 @@ const Generations = () => {
   });
 
   return (
-    <div id="generations-section">
-      {generationListJsx}
-    </div>
+    ctxPokedex.class.mainView === 'loading-view' // TODO: Change this to checking if all pokemons are laoded
+    ? <Loader /> 
+    : <div id="generations-section">{generationListJsx}</div>
   )
 }
 

@@ -3,12 +3,14 @@ import PokeBasicInfo from './PokeBasicInfo';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
 import ColorUtil from '../utils/ColorUtil';
+import { withRouter } from 'react-router-dom';
 
-const PokeGridElement = ({ pkm }) => {
+const PokeGridElement = ({ pkm, history }) => { // TODO: Check to avoid pushing with history
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
 
   const handleClickItem = () => {
     dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pkm });
+    history.push(`/pokemon/${pkm.id}`);
   };
 
   return (
@@ -26,4 +28,4 @@ const PokeGridElement = ({ pkm }) => {
   )
 }
 
-export default PokeGridElement;
+export default withRouter(PokeGridElement);

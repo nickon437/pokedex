@@ -38,7 +38,7 @@ export const PokedexProvider = (props) => {
           top: 0,
           behavior: 'smooth',
         });
-        document.getElementById('main').style.backgroundColor = ColorUtil.getPrimaryTypeColor(action.selectedPokemon);
+        document.querySelector('main').style.backgroundColor = ColorUtil.getPrimaryTypeColor(action.selectedPokemon);
         return {
           ...state,
           selectedPokemon: action.selectedPokemon,

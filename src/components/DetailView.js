@@ -9,6 +9,7 @@ import Evolution from './Evolution';
 import ColorUtil from '../utils/ColorUtil';
 import PokeEntry from './PokeEntry';
 import axios from 'axios';
+import PokeList from './PokeList';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -58,6 +59,8 @@ const DetailView = () => {
   }
 
   return (
+    <>
+    <PokeList />
     <div id="detail-view" style={{ backgroundColor: ColorUtil.getPrimaryTypeColor(ctxPokedex.selectedPokemon) }}>
       <div id="overview">
         <div className="background-patterns">
@@ -82,6 +85,7 @@ const DetailView = () => {
         <Evolution pokemons={ctxPokedex.pokemons} pkmEvolution={pkmEvolution} />
       </div>
     </div>
+    </>
   )
 }
 

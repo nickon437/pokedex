@@ -5,12 +5,13 @@ import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
 import './PokeGrid.scss';
 
-const PokeGrid = () => {
+const PokeGrid = ({ history }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm} />);
 
   const handleClick = () => {
     dispatch({ type: ACTION.BACK_TO_GENERATION_VIEW });
+    history.push('/');
   }
 
   return (

@@ -1,5 +1,4 @@
 @import '../variables';
-@import '../keyframes';
 
 #poke-list {
   list-style-type: none;
@@ -16,10 +15,7 @@
   width: 3.5rem;
   box-shadow: 0 5px 5px #2a2a2a;
   z-index: 20;
-  // transform: translateX(-100%);
-  // visibility: hidden;
   transition: width 0.3s ease-in-out;  
-  // @include flex($center: false, $direction: column, $gap: 0);
 
   &:hover, &:focus-within {
     width: $expanded-poke-list;

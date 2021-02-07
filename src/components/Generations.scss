@@ -50,22 +50,22 @@
       }
     }
 
-    img {
+    .starter {
       position: absolute;
       width: 35%;
 
-      &.starter-1 {
+      &:nth-of-type(1) {
         left: 10%;
         bottom: 30%;
       }
 
-      &.starter-2 {
+      &:nth-of-type(2) {
         position: relative;
         align-self: center;
         z-index: 5;
       }
 
-      &.starter-3 {
+      &:nth-of-type(3) {
         right: 10%;
         bottom: 30%;
       }

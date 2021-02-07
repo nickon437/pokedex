@@ -1,5 +1,4 @@
 @import '../variables';
-@import '../keyframes';
 
 #detail-view {
   padding: 5vh 10vw;
@@ -11,8 +10,6 @@
   left: 3rem;
   overflow-y: auto;
   overflow-x: hidden;
-  // transform: translateX(100%);
-  // visibility: hidden;
 
   #overview {
     height: 20rem;

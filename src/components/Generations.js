@@ -7,7 +7,7 @@ import { ReactComponent as Dots1 } from '../resources/img/dots.svg';
 import { getFrontSprite } from '../utils/PokemonUtil';
 import { Link } from 'react-router-dom';
 
-const Generations = () => { // TODO: Check to see if we can avoid pushing manually
+const Generations = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
 
@@ -26,9 +26,9 @@ const Generations = () => { // TODO: Check to see if we can avoid pushing manual
           <img src={Pokeball} name="pokeball" alt="" />
           <Dots1 />
         </div>
-        <img className="starter-1" src={getFrontSprite(ctxPokedex.pokemons[startPkmId - 1])} alt="" />
-        <img className="starter-2" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 2])} alt="" />
-        <img className="starter-3" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 5])} alt="" />
+        <img className="starter" src={getFrontSprite(ctxPokedex.pokemons[startPkmId - 1])} alt="" />
+        <img className="starter" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 2])} alt="" />
+        <img className="starter" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 5])} alt="" />
         <div className="generation-heading">GENERATION {StringUtil.convertToRoman(genIndex + 1)}</div>
       </Link>
     )

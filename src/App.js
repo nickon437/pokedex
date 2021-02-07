@@ -7,6 +7,7 @@ import Generations from './components/Generations';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { fetchPokemons } from './actions/apiCall';
 import Loader from './components/Loader';
+import ProgressBar from './components/ProgressBar';
 
 const App = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);

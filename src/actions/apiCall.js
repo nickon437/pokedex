@@ -16,9 +16,22 @@ const fetchPokemons = async (dispatch) => {
       const pokemonPromise = axios.get(pokemonUrl);
       promises.push(pokemonPromise);
     }
-    
-    const pokemons = (await Promise.all(promises)).map((res) => res.data);
-    
+
+    let doneCount = 0;
+    const overallCount = promises.length;
+    const loadedSection = document.querySelector('.loaded-section');
+
+    const handleProgress = (result) => {
+      doneCount++;
+      const percentageDone = (doneCount / overallCount) * 100;
+      loadedSection.style.width = `${percentageDone}%`;
+      return result;
+    };
+
+    const pokemons = (
+      await Promise.all(promises.map((p) => p.then(handleProgress)))
+    ).map((res) => res.data);
+
     dispatch({
       type: ACTION.FETCH_ALL_POKEMONS_SUCCEED,
       payload: pokemons,

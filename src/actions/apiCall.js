@@ -1,7 +1,7 @@
 import { ACTION } from '../context/PokedexContext';
 import axios from 'axios';
 
-export const fetchPokemons = async (dispatch) => {
+const fetchPokemons = async (dispatch) => {
   const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
   // const NUM_OF_POKEMON = 386;
   // const NUM_OF_POKEMON = 251;
@@ -17,3 +17,16 @@ export const fetchPokemons = async (dispatch) => {
 
   dispatch({ type: ACTION.COMPLETE_FETCH_POKEMONS, pokemons });
 };
+
+const fetchPkmData = async (id, setPkmSpecies, setPkmEvolution) => {
+  const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
+  const pokemonSpecies = await axios
+    .get(pokemonSpeciesUrl)
+    .then((res) => res.data);
+  setPkmSpecies(pokemonSpecies);
+
+  const evolutionUrl = pokemonSpecies.evolution_chain.url;
+  setPkmEvolution(await axios.get(evolutionUrl).then((res) => res.data));
+};
+
+export { fetchPokemons, fetchPkmData };

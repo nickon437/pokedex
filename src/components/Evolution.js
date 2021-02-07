@@ -1,15 +1,15 @@
 import React, { useContext, useEffect, useCallback, useState } from 'react';
-import { PokedexContext, ACTION } from '../context/PokedexContext';
+import { PokedexContext } from '../context/PokedexContext';
 import './Evolution.scss';
 import StringUtil from '../utils/StringUtil';
 import axios from 'axios';
 
-const Evolution = ({ pokemons, pkmEvolution }) => {
+const Evolution = ({ history, pokemons, pkmEvolution }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
 
   const handleClick = (pokemon) => {
-    dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pokemon });
+    history.push(`/pokemon/${pokemon.id}`) // TODO: Use Link
   }
 
   const getEvoConditions = async (evoDetails) => {

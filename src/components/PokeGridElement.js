@@ -1,16 +1,12 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PokeBasicInfo from './PokeBasicInfo';
-import { PokedexContext, ACTION } from '../context/PokedexContext';
 import Pokeball from '../resources/img/pokeball.svg';
 import ColorUtil from '../utils/ColorUtil';
 import { withRouter } from 'react-router-dom';
 import { ReactComponent as Dots1 } from '../resources/img/dots.svg';
 
 const PokeGridElement = ({ pkm, history }) => { // TODO: Check to avoid pushing with history
-  const [ctxPokedex, dispatch] = useContext(PokedexContext);
-
-  const handleClickItem = () => {
-    dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pkm });
+  const handleClickItem = () => { // TODO: Use <Link>
     history.push(`/pokemon/${pkm.id}`);
   };
 

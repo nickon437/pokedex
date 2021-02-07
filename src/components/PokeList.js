@@ -3,13 +3,14 @@ import { PokedexContext, ACTION } from '../context/PokedexContext';
 import SearchBar from './SearchBar';
 import './PokeList.scss';
 import StringUtil from '../utils/StringUtil';
+import { withRouter } from 'react-router-dom';
 
-const PokeList = () => {
+const PokeList = ({ history, activeId }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
 
   const pokeListHtml = ctxPokedex.filteredPokemons.map((pkm) => {
     const handleClickItem = () => {
-      dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pkm });
+      history.push(`/pokemon/${pkm.id}`); // TODO: Use Link
     };
 
     return (
@@ -17,7 +18,7 @@ const PokeList = () => {
         name="info-container"
         key={pkm.id}
         onClick={handleClickItem}
-        className={ctxPokedex.selectedPokemon?.id === pkm.id ? "selected" : undefined}
+        className={activeId === pkm.id ? "selected" : undefined}
       >
         <img src={pkm.sprites.versions['generation-vii'].icons.front_default} className="pokemon" alt="" />
         <div className="pokeOverview">
@@ -36,4 +37,4 @@ const PokeList = () => {
   );
 }
 
-export default PokeList;
+export default withRouter(PokeList);

@@ -1,6 +1,5 @@
 import { ACTION } from '../context/PokedexContext';
 import axios from 'axios';
-import ColorUtil from '../utils/ColorUtil';
 
 const fetchPokemons = async (dispatch) => {
   try {
@@ -14,7 +13,8 @@ const fetchPokemons = async (dispatch) => {
     const promises = [];
     for (let i = 1; i <= NUM_OF_POKEMON; i++) {
       const pokemonUrl = BASE_URL + i;
-      promises.push(axios.get(pokemonUrl).then((res) => res.data));
+      const pokemonData = (await axios.get(pokemonUrl)).data;
+      promises.push(pokemonData);
     }
     const pokemons = await Promise.all(promises);
 
@@ -32,13 +32,12 @@ const fetchPokemons = async (dispatch) => {
 
 const fetchPkmData = async (id, setPkmSpecies, setPkmEvolution) => {
   const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${id}`;
-  const pokemonSpecies = await axios
-    .get(pokemonSpeciesUrl)
-    .then((res) => res.data);
-  setPkmSpecies(pokemonSpecies);
+  const pokemonSpeciesData = (await axios.get(pokemonSpeciesUrl)).data;
+  setPkmSpecies(pokemonSpeciesData);
 
-  const evolutionUrl = pokemonSpecies.evolution_chain.url;
-  setPkmEvolution(await axios.get(evolutionUrl).then((res) => res.data));
+  const evolutionUrl = pokemonSpeciesData.evolution_chain.url;
+  const evolutionData = (await axios.get(evolutionUrl)).data;
+  setPkmEvolution(evolutionData);
 };
 
 export { fetchPokemons, fetchPkmData };

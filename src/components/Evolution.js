@@ -20,9 +20,9 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
     if (evoDetails.item) {
       const evoItemUrl = evoDetails.item.url;
-      const evoItem = await axios.get(evoItemUrl).then((res) => res.data);
-      const evoItemSpriteUrl = evoItem.sprites.default;
-      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItem.name)} /></div>);
+      const evoItemData = (await axios.get(evoItemUrl)).data;
+      const evoItemSpriteUrl = evoItemData.sprites.default;
+      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItemData.name)} /></div>);
     }
 
     if (evoDetails.known_move) {

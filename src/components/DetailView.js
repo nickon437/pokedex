@@ -27,12 +27,6 @@ const DetailView = ({ history, match }) => {
   const id = Number(match.params.id);
 
   useEffect(() => {
-    if (ctxPokedex.pokemons.length === 0) {
-      fetchPokemons(dispatch);
-    }
-  }, []);
-
-  useEffect(() => {
     console.log('useEffect [ctxPokedex.pokemons, id]');
     // TODO: Check if pokemonId is still within current gen before updating the gen
     dispatch({

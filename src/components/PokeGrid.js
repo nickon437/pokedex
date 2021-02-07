@@ -19,12 +19,6 @@ const PokeGrid = ({ history, match }) => {
     });
   }, [match.params.id, ctxPokedex.pokemons]);
 
-  useEffect(() => {
-    if (ctxPokedex.pokemons.length === 0) {
-      fetchPokemons(dispatch);
-    }
-  }, []);
-
   const handleClick = () => {
     dispatch({ type: ACTION.BACK_TO_GENERATION_VIEW });
     history.push('/');

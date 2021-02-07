@@ -5,7 +5,6 @@ import StringUtil from '../utils/StringUtil';
 import axios from 'axios';
 
 const Evolution = ({ history, pokemons, pkmEvolution }) => {
-  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
 
   const handleClick = (pokemon) => {

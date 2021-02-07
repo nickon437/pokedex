@@ -4,6 +4,7 @@ import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
 import { fetchPokemons } from '../actions/apiCall';
 import { getPokemonsByGenIndex } from '../utils/PokemonUtil';
+import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
 import './PokeGrid.scss';
 
 const PokeGrid = ({ history, match }) => {
@@ -32,8 +33,7 @@ const PokeGrid = ({ history, match }) => {
   return (
     <div id="poke-grid-container">
       <button type="button" name="back-btn" onClick={handleClick}>
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
-        GENERATIONS
+        <LeftArrow />GENERATIONS
       </button>
       <SearchBar searchBarID="poke-grid-search-bar" />
       <ol id="poke-grid">

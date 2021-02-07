@@ -9,9 +9,17 @@ const getPokemonsByGenIndex = (pokemons, genIndex) => {
 
 const getGenPokemonsById = (pokemons, id) => {
   console.log('getGenPokemonsById');
-  const gen = gens.find((gen) => id <= gen);
-  const genIndex = gens.indexOf(gen);
+  const genIndex = getGenIndexById(id)
   return getPokemonsByGenIndex(pokemons, genIndex);
 };
 
-export { getPokemonsByGenIndex, getGenPokemonsById };
+const getGenIndexById = (id) => {
+  const gen = gens.find((gen) => id <= gen);
+  return gens.indexOf(gen);
+}
+
+const getFrontSprite = (pokemons, id) => {
+  return pokemons[id -1].sprites.other['official-artwork'].front_default;
+}
+
+export { getPokemonsByGenIndex, getGenPokemonsById, getGenIndexById, getFrontSprite };

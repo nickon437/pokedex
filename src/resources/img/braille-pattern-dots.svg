@@ -1,0 +1,7 @@
+<svg width="154" height="215" name="braille-dots" fill="currentColor">
+  <circle cx="46" cy="108" r="15"/>
+  <circle cx="108" cy="108" r="15"/>
+  <circle cx="46" cy="169" r="15"/>
+  <circle cx="108" cy="169" r="15"/>
+  <line x1="46" y1="46" x2="108" y2="46" stroke="currentColor" stroke-width="30" stroke-linecap="round"/>
+</svg>

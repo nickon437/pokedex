@@ -28,11 +28,16 @@ const DetailView = ({ history, match }) => {
     // TODO: Check if pokemonId is still within current gen before updating the gen
     dispatch({
       type: ACTION.SET_SELECTED_GEN_POKEMON,
-      selectedGenPokemons: getGenPokemonsById(ctxPokedex.pokemons, id),
+      payload: getGenPokemonsById(ctxPokedex.pokemons, id),
     });
     
     if (id <= ctxPokedex.pokemons.length) {
       fetchPkmData(id, setPkmSpecies, setPkmEvolution);
+      document.querySelector('#root').style.backgroundColor = ColorUtil.getPrimaryTypeColor(ctxPokedex.pokemons[id - 1]);
+    }
+    
+    return () => {
+      document.querySelector('#root').style.backgroundColor = null;
     }
   }, [ctxPokedex.pokemons, id]);
 

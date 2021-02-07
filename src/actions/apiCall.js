@@ -1,5 +1,6 @@
 import { ACTION } from '../context/PokedexContext';
 import axios from 'axios';
+import ColorUtil from '../utils/ColorUtil';
 
 const fetchPokemons = async (dispatch) => {
   try {
@@ -17,11 +18,14 @@ const fetchPokemons = async (dispatch) => {
     }
     const pokemons = await Promise.all(promises);
 
-    dispatch({ type: ACTION.FETCH_ALL_POKEMONS_SUCCEED, pokemons });
+    dispatch({
+      type: ACTION.FETCH_ALL_POKEMONS_SUCCEED,
+      payload: pokemons,
+    });
   } catch (e) {
     dispatch({
       type: ACTION.FETCH_ALL_POKEMONS_FAIL,
-      error: e.response?.data.message ?? e.message,
+      payload: e.response?.data.message ?? e.message,
     });
   }
 };

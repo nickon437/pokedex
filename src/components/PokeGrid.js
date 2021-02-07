@@ -15,12 +15,11 @@ const PokeGrid = ({ history, match }) => {
     const genIndex = match.params.id;
     dispatch({
       type: ACTION.SET_SELECTED_GEN_POKEMON,
-      selectedGenPokemons: getPokemonsByGenIndex(ctxPokedex.pokemons, genIndex),
+      payload: getPokemonsByGenIndex(ctxPokedex.pokemons, genIndex),
     });
   }, [match.params.id, ctxPokedex.pokemons]);
 
   const handleClick = () => {
-    dispatch({ type: ACTION.BACK_TO_GENERATION_VIEW });
     history.push('/');
   }
 

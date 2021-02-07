@@ -12,7 +12,14 @@ const SearchBar = ({ searchBarID }) => {
       const idRegex = new RegExp(`#?0*(${pokemon.id.toString()})`);
       return pokemon.name.includes(e.target.value) || e.target.value.match(idRegex)
     });
-    dispatch({ type: ACTION.SET_FILTERED_POKEMONS, filteredPokemons, searchKeyword: e.target.value });
+    
+    dispatch({
+      type: ACTION.SET_FILTERED_POKEMONS,
+      payload: {
+        filteredPokemons,
+        searchKeyword: e.target.value
+      }
+    });
   };
 
   if (searchBarRef.current && searchBarRef.current.value !== ctxPokedex.searchKeyword) {

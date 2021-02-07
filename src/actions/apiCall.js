@@ -13,11 +13,12 @@ const fetchPokemons = async (dispatch) => {
     const promises = [];
     for (let i = 1; i <= NUM_OF_POKEMON; i++) {
       const pokemonUrl = BASE_URL + i;
-      const pokemonData = (await axios.get(pokemonUrl)).data;
-      promises.push(pokemonData);
+      const pokemonPromise = axios.get(pokemonUrl);
+      promises.push(pokemonPromise);
     }
-    const pokemons = await Promise.all(promises);
-
+    
+    const pokemons = (await Promise.all(promises)).map((res) => res.data);
+    
     dispatch({
       type: ACTION.FETCH_ALL_POKEMONS_SUCCEED,
       payload: pokemons,

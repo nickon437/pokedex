@@ -6,6 +6,7 @@ import DetailView from './components/DetailView';
 import Generations from './components/Generations';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { fetchPokemons } from './actions/apiCall';
+import Loader from './components/Loader';
 
 const App = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
@@ -19,11 +20,15 @@ const App = () => {
       <header>
         <div>POKEDEX</div>
       </header>
-      <main>
-        <Route path='/' component={Generations} exact />
-        <Route path='/gen/:id' component={PokeGrid} />
-        <Route path='/pokemon/:id' component={DetailView} />
-      </main>
+      {ctxPokedex.isLoadingPage ? (
+        <Loader />
+      ) : (
+        <main>
+          <Route path='/' component={Generations} exact />
+          <Route path='/gen/:id' component={PokeGrid} />
+          <Route path='/pokemon/:id' component={DetailView} />
+        </main>
+      )}
     </Router>
   );
 };

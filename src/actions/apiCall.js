@@ -2,20 +2,28 @@ import { ACTION } from '../context/PokedexContext';
 import axios from 'axios';
 
 const fetchPokemons = async (dispatch) => {
-  const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-  // const NUM_OF_POKEMON = 386;
-  // const NUM_OF_POKEMON = 251;
-  // const NUM_OF_POKEMON = 151;
-  const NUM_OF_POKEMON = 12;
-  // const NUM_OF_POKEMON = 3;
-  const promises = [];
-  for (let i = 1; i <= NUM_OF_POKEMON; i++) {
-    const pokemonUrl = BASE_URL + i;
-    promises.push(axios.get(pokemonUrl).then((res) => res.data));
-  }
-  const pokemons = await Promise.all(promises);
+  try {
+    dispatch({ type: ACTION.FETCH_ALL_POKEMONS_REQUEST });
+    const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
+    // const NUM_OF_POKEMON = 386;
+    // const NUM_OF_POKEMON = 251;
+    // const NUM_OF_POKEMON = 151;
+    const NUM_OF_POKEMON = 12;
+    // const NUM_OF_POKEMON = 3;
+    const promises = [];
+    for (let i = 1; i <= NUM_OF_POKEMON; i++) {
+      const pokemonUrl = BASE_URL + i;
+      promises.push(axios.get(pokemonUrl).then((res) => res.data));
+    }
+    const pokemons = await Promise.all(promises);
 
-  dispatch({ type: ACTION.COMPLETE_FETCH_POKEMONS, pokemons });
+    dispatch({ type: ACTION.FETCH_ALL_POKEMONS_SUCCEED, pokemons });
+  } catch (e) {
+    dispatch({
+      type: ACTION.FETCH_ALL_POKEMONS_FAIL,
+      error: e.response?.data.message ?? e.message,
+    });
+  }
 };
 
 const fetchPkmData = async (id, setPkmSpecies, setPkmEvolution) => {

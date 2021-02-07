@@ -17,8 +17,6 @@ import { ReactComponent as BrailleDots } from '../resources/img/braille-pattern-
 import { ReactComponent as ArrowDots } from '../resources/img/arrow-dots.svg';
 import { ReactComponent as Times } from '../resources/img/times.svg';
 
-const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 const DetailView = ({ history, match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [pkmSpecies, setPkmSpecies] = useState(null);
@@ -27,7 +25,6 @@ const DetailView = ({ history, match }) => {
   const id = Number(match.params.id);
 
   useEffect(() => {
-    console.log('useEffect [ctxPokedex.pokemons, id]');
     // TODO: Check if pokemonId is still within current gen before updating the gen
     dispatch({
       type: ACTION.SET_SELECTED_GEN_POKEMON,
@@ -39,7 +36,7 @@ const DetailView = ({ history, match }) => {
     }
   }, [ctxPokedex.pokemons, id]);
 
-  const handleClickCancel = async () => {
+  const handleClickCancel = () => {
     history.push(`/gen/${getGenIndexById(id)}`);
   };
 

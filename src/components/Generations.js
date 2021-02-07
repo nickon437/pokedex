@@ -3,7 +3,6 @@ import { PokedexContext } from '../context/PokedexContext';
 import './Generations.scss';
 import Pokeball from '../resources/img/pokeball.svg';
 import StringUtil from '../utils/StringUtil';
-import Loader from './Loader';
 import { ReactComponent as Dots1 } from '../resources/img/dots.svg';
 import { getFrontSprite } from '../utils/PokemonUtil';
 
@@ -39,9 +38,7 @@ const Generations = ({ history }) => { // TODO: Check to see if we can avoid pus
   });
 
   return (
-    ctxPokedex.class.mainView === 'loading-view' // TODO: Change this to checking if all pokemons are laoded
-    ? <Loader /> 
-    : <div id="generations-section">{generationListJsx}</div>
+    <div id="generations-section">{generationListJsx}</div>
   )
 }
 

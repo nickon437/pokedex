@@ -6,6 +6,30 @@ export const PokedexContext = React.createContext();
 export const PokedexProvider = (props) => {
   const reducer = (state, action) => {
     switch (action.type) {
+      case ACTION.FETCH_ALL_POKEMONS_REQUEST:
+        return {
+          ...state,
+          isLoadingPage: true,
+          class: { ...state.class }, // TODO: Remove later
+        }
+
+      case ACTION.FETCH_ALL_POKEMONS_SUCCEED:
+        return {
+          ...state,
+          isLoadingPage: false,
+          pokemons: action.pokemons,
+          class: { ...state.class }, // TODO: Remove later
+        }
+        
+      case ACTION.FETCH_ALL_POKEMONS_FAIL:
+        return {
+          ...state,
+          isLoadingPage: false,
+          errorMessage: action.error,
+          class: { ...state.class }, // TODO: Remove later
+        }
+
+
       case ACTION.COMPLETE_FETCH_POKEMONS:
         return {
           ...state,
@@ -76,6 +100,7 @@ export const PokedexProvider = (props) => {
   }
 
   const [ctxPokedex, dispatch] = useReducer(reducer, {
+    isLoadingPage: true,
     pokemons: [],
     selectedGenPokemons: [],
     filteredPokemons: [],
@@ -96,6 +121,10 @@ export const PokedexProvider = (props) => {
 }
 
 export const ACTION = {
+  FETCH_ALL_POKEMONS_REQUEST: 'FETCH_ALL_POKEMONS_REQUEST',
+  FETCH_ALL_POKEMONS_SUCCEED: 'FETCH_ALL_POKEMONS_SUCCEED',
+  FETCH_ALL_POKEMONS_FAIL: 'FETCH_ALL_POKEMONS_FAIL',
+
   COMPLETE_FETCH_POKEMONS: 'completeFetchPokemons',
   SET_FILTERED_POKEMONS: 'setFilteredPokemons',
   SET_SELECTED_GEN_POKEMON: 'setSelectedGenPokemon',

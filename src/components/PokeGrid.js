@@ -1,13 +1,28 @@
-
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
+import { fetchPokemons } from '../actions/apiCall';
+import { getPokemonsByGenIndex } from '../utils/PokemonUtil';
 import './PokeGrid.scss';
 
-const PokeGrid = ({ history }) => {
+const PokeGrid = ({ history, match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm} />);
+
+  useEffect(() => {
+    const genIndex = match.params.id;
+    dispatch({
+      type: ACTION.SET_SELECTED_GEN_POKEMON,
+      selectedGenPokemons: getPokemonsByGenIndex(ctxPokedex.pokemons, genIndex),
+    });
+  }, [match.params.id, ctxPokedex.pokemons]);
+
+  useEffect(() => {
+    if (ctxPokedex.pokemons.length === 0) {
+      fetchPokemons(dispatch);
+    }
+  }, []);
 
   const handleClick = () => {
     dispatch({ type: ACTION.BACK_TO_GENERATION_VIEW });

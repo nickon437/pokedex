@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { PokedexContext, ACTION } from '../context/PokedexContext';
+import { PokedexContext } from '../context/PokedexContext';
 import './Generations.scss';
 import Pokeball from '../resources/img/pokeball.svg';
 import StringUtil from '../utils/StringUtil';
@@ -9,10 +9,8 @@ const Generations = ({ history }) => { // TODO: Check to see if we can avoid pus
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
 
-  const handleClick = (genIndex, startPkmIndex) => {
-    const selectedGenPokemons = ctxPokedex.pokemons.slice(startPkmIndex, gens[genIndex]);
-    dispatch({ type: ACTION.SET_SELECTED_GEN_POKEMON, selectedGenPokemons });
-    history.push(`/gen/${genIndex + 1}`);
+  const handleClick = (genIndex) => {
+    history.push(`/gen/${genIndex}`);
   };
 
   const generationListJsx = gens.map((num, genIndex) => {
@@ -24,7 +22,7 @@ const Generations = ({ history }) => { // TODO: Check to see if we can avoid pus
     }
 
     return (
-      <div className="generation-box" onClick={() => handleClick(genIndex, startPkmIndex)} key={genIndex}>
+      <div className="generation-box" onClick={() => handleClick(genIndex)} key={genIndex}>
         <div className="background-patterns" name="background-patterns">
           <img src={Pokeball} name="pokeball" alt="" />
           <svg name="dots-1" viewBox="0 0 45.767 45.767">

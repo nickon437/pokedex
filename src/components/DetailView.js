@@ -10,17 +10,21 @@ import ColorUtil from '../utils/ColorUtil';
 import PokeEntry from './PokeEntry';
 import axios from 'axios';
 import PokeList from './PokeList';
+import { fetchPokemons } from '../actions/apiCall';
+import { getGenPokemonsById } from '../utils/PokemonUtil';
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const DetailView = ({ history }) => {
+const DetailView = ({ history, match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [pkmSpecies, setPkmSpecies] = useState(null);
   const [pkmEvolution, setPkmEvolution] = useState(null);
 
   const fetchPkmData = useCallback(async (selectedPokemon) => {
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${selectedPokemon.id}`;
-    const pokemonSpecies = await axios.get(pokemonSpeciesUrl).then((res) => res.data);
+    const pokemonSpecies = await axios
+      .get(pokemonSpeciesUrl)
+      .then((res) => res.data);
     setPkmSpecies(pokemonSpecies);
 
     const evolutionUrl = pokemonSpecies.evolution_chain.url;
@@ -32,6 +36,25 @@ const DetailView = ({ history }) => {
       fetchPkmData(ctxPokedex.selectedPokemon);
     }
   }, [ctxPokedex.selectedPokemon]);
+
+  useEffect(() => {
+    if (ctxPokedex.pokemons.length === 0) {
+      fetchPokemons(dispatch);
+    }
+  }, []);
+
+  useEffect(() => {
+    // TODO: Check if pokemonId is still within current gen before updating the gen
+    dispatch({
+      type: ACTION.SET_SELECTED_GEN_POKEMON,
+      selectedGenPokemons: getGenPokemonsById(ctxPokedex.pokemons, match.params.id),
+    });
+    
+    dispatch({
+      type: ACTION.SHOW_DETAIL_VIEW,
+      selectedPokemon: ctxPokedex.pokemons[match.params.id - 1],
+    });
+  }, [ctxPokedex.pokemons, match.params.id]);
 
   const handleClickCancel = async () => {
     dispatch({ type: ACTION.TRANSITION_CLOSE_DETAIL_VIEW });
@@ -47,18 +70,18 @@ const DetailView = ({ history }) => {
   const handleClickPrevPkm = () => {
     const pokemonIndex = ctxPokedex.selectedPokemon.id - 1;
     if (pokemonIndex > 0) {
-      const prevPkm = ctxPokedex.pokemons[pokemonIndex - 1];  
+      const prevPkm = ctxPokedex.pokemons[pokemonIndex - 1];
       dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: prevPkm });
     }
-  }
-  
+  };
+
   const handleClickNextPkm = () => {
     const pokemonIndex = ctxPokedex.selectedPokemon.id - 1;
     if (pokemonIndex < ctxPokedex.pokemons.length - 1) {
-      const nextPkm = ctxPokedex.pokemons[pokemonIndex + 1];  
+      const nextPkm = ctxPokedex.pokemons[pokemonIndex + 1];
       dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: nextPkm });
     }
-  }
+  };
 
   return (
     <>

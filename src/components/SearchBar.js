@@ -12,12 +12,12 @@ const SearchBar = ({ searchBarID }) => {
       const idRegex = new RegExp(`#?0*(${pokemon.id.toString()})`);
       return pokemon.name.includes(e.target.value) || e.target.value.match(idRegex)
     });
-    
+
     dispatch({
       type: ACTION.SET_FILTERED_POKEMONS,
       payload: {
         filteredPokemons,
-        searchKeyword: e.target.value
+        searchKeyword: e.target.value,
       }
     });
   };

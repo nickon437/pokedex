@@ -2,12 +2,12 @@ import React, { useContext, useEffect } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
-import { fetchPokemons } from '../actions/apiCall';
 import { getPokemonsByGenIndex } from '../utils/PokemonUtil';
 import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
+import { Link } from 'react-router-dom';
 import './PokeGrid.scss';
 
-const PokeGrid = ({ history, match }) => {
+const PokeGrid = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm} />);
 
@@ -19,15 +19,11 @@ const PokeGrid = ({ history, match }) => {
     });
   }, [match.params.id, ctxPokedex.pokemons]);
 
-  const handleClick = () => {
-    history.push('/');
-  }
-
   return (
     <div id="poke-grid-container">
-      <button type="button" name="back-btn" onClick={handleClick}>
+      <Link to='/' name="back-btn" className='button unstyled'>
         <LeftArrow />GENERATIONS
-      </button>
+      </Link>
       <SearchBar searchBarID="poke-grid-search-bar" />
       <ol id="poke-grid">
         {pokeData}

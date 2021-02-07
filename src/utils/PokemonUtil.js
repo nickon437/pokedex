@@ -18,8 +18,12 @@ const getGenIndexById = (id) => {
   return gens.indexOf(gen);
 }
 
-const getFrontSprite = (pokemons, id) => {
-  return pokemons[id -1].sprites.other['official-artwork'].front_default;
+const getFrontSprite = (pokemon) => {
+  return pokemon.sprites.other['official-artwork'].front_default;
 }
 
-export { getPokemonsByGenIndex, getGenPokemonsById, getGenIndexById, getFrontSprite };
+const getFrontIcon = (pokemon) => {
+  return pokemon.sprites.versions['generation-vii'].icons.front_default;
+}
+
+export { getPokemonsByGenIndex, getGenPokemonsById, getGenIndexById, getFrontSprite, getFrontIcon };

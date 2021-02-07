@@ -5,14 +5,11 @@ import Pokeball from '../resources/img/pokeball.svg';
 import StringUtil from '../utils/StringUtil';
 import { ReactComponent as Dots1 } from '../resources/img/dots.svg';
 import { getFrontSprite } from '../utils/PokemonUtil';
+import { Link } from 'react-router-dom';
 
-const Generations = ({ history }) => { // TODO: Check to see if we can avoid pushing manually
+const Generations = () => { // TODO: Check to see if we can avoid pushing manually
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
-
-  const handleClick = (genIndex) => {
-    history.push(`/gen/${genIndex}`);
-  };
 
   const generationListJsx = gens.map((num, genIndex) => {
     const startPkmIndex = genIndex === 0 ? 0 : gens[genIndex - 1];
@@ -24,16 +21,16 @@ const Generations = ({ history }) => { // TODO: Check to see if we can avoid pus
     }
 
     return (
-      <div className="generation-box" onClick={() => handleClick(genIndex)} key={genIndex}>
+      <Link to={`/gen/${genIndex}`} className="generation-box" key={genIndex}>
         <div className="background-patterns" name="background-patterns">
           <img src={Pokeball} name="pokeball" alt="" />
           <Dots1 />
         </div>
-        <img className="starter-1" src={getFrontSprite(ctxPokedex.pokemons, startPkmId)} alt="" />
-        <img className="starter-2" src={getFrontSprite(ctxPokedex.pokemons, startPkmId + 3)} alt="" />
-        <img className="starter-3" src={getFrontSprite(ctxPokedex.pokemons, startPkmId + 6)} alt="" />
+        <img className="starter-1" src={getFrontSprite(ctxPokedex.pokemons[startPkmId - 1])} alt="" />
+        <img className="starter-2" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 2])} alt="" />
+        <img className="starter-3" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 5])} alt="" />
         <div className="generation-heading">GENERATION {StringUtil.convertToRoman(genIndex + 1)}</div>
-      </div>
+      </Link>
     )
   });
 

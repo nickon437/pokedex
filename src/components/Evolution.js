@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useCallback, useState } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
+import React, { useEffect, useCallback, useState } from 'react';
 import './Evolution.scss';
 import StringUtil from '../utils/StringUtil';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
-const Evolution = ({ history, pokemons, pkmEvolution }) => {
+const Evolution = ({ pokemons, pkmEvolution }) => {
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
-
-  const handleClick = (pokemon) => {
-    history.push(`/pokemon/${pokemon.id}`) // TODO: Use Link
-  }
 
   const getEvoConditions = async (evoDetails) => {
     const evoConditions = [];
@@ -110,12 +106,12 @@ const Evolution = ({ history, pokemons, pkmEvolution }) => {
       // Generate img of pokemon
       const pokemon = pokemons[pokemonId - 1];
       const pokemonImgJsx = (
-        <div className="pokemon-evolution" onClick={() => handleClick(pokemon)}>
+        <Link to={`/pokemon/${pokemon.id}`} className="pokemon-evolution" >
           <img
             src={pokemon.sprites.other['official-artwork'].front_default}
             alt={pokemon.name}
           />
-        </div>
+        </Link>
       );
       evoChainJsx.push(pokemonImgJsx);
     }

@@ -154,7 +154,7 @@ main {
   }
 }
 
-button, select {
+button, select, .button {
   font-weight: bold;
   width: fit-content;
   border: none;
@@ -177,7 +177,7 @@ button, select {
   }
 }
 
-button {
+button, .button {
   @include flex(true, null, 0);
 }
 
@@ -204,4 +204,9 @@ select {
     font-family: inherit;
     background-color: white;
   }
+}
+
+a.unstyled {
+  color: inherit;
+  text-decoration: none;
 }

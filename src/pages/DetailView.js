@@ -1,22 +1,21 @@
 import React, { useContext, useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Stat from './Stat';
-import PokeBasicInfo from './PokeBasicInfo';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
+import { Link } from 'react-router-dom';
+import Stat from '../components/Stat';
+import PokeBasicInfo from '../components/PokeBasicInfo';
+import Evolution from '../components/Evolution';
+import PokeEntry from '../components/PokeEntry';
+import PokeList from '../components/PokeList';
+import { fetchPkmData } from '../helpers/apiHelper';
+import { getPrimaryTypeColor } from '../helpers/colorHelper';
+import { getGenPokemonsById, getGenIndexById } from '../helpers/pokemonHelper';
 import Pokeball from '../resources/img/pokeball.svg';
-import './DetailView.scss';
-import Evolution from './Evolution';
-import ColorUtil from '../utils/ColorUtil';
-import PokeEntry from './PokeEntry';
-import PokeList from './PokeList';
-import { fetchPkmData } from '../actions/apiCall';
-import { getGenPokemonsById, getGenIndexById } from '../utils/PokemonUtil';
 import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
 import { ReactComponent as RightArrow } from '../resources/img/right-arrow.svg';
 import { ReactComponent as BrailleDots } from '../resources/img/braille-pattern-dots.svg';
 import { ReactComponent as ArrowDots } from '../resources/img/arrow-dots.svg';
 import { ReactComponent as Times } from '../resources/img/times.svg';
-import { Link } from 'react-router-dom';
+import '../styles/DetailView.scss';
 
 const DetailView = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
@@ -28,6 +27,8 @@ const DetailView = ({ match }) => {
   const curPokemon = pokemons[id - 1];
 
   useEffect(() => {
+    const root = document.querySelector('#root');
+
     if (!selectedGenPokemons.includes(curPokemon)) {
       dispatch({
         type: ACTION.SET_SELECTED_GEN_POKEMON,
@@ -37,13 +38,11 @@ const DetailView = ({ match }) => {
 
     if (id <= pokemons.length) {
       fetchPkmData(id, setPkmSpecies, setPkmEvolution);
-      document.querySelector(
-        '#root'
-      ).style.backgroundColor = ColorUtil.getPrimaryTypeColor(curPokemon);
+      root.style.backgroundColor = getPrimaryTypeColor(curPokemon);
     }
 
     return () => {
-      document.querySelector('#root').style.backgroundColor = null;
+      root.style.backgroundColor = null;
     };
   }, [pokemons, id]);
 
@@ -52,7 +51,7 @@ const DetailView = ({ match }) => {
       <PokeList activeId={id} />
       <div
         id='detail-view'
-        style={{ backgroundColor: ColorUtil.getPrimaryTypeColor(curPokemon) }}
+        style={{ backgroundColor: getPrimaryTypeColor(curPokemon) }}
       >
         <div id='overview'>
           <div className='background-patterns'>
@@ -94,7 +93,5 @@ const DetailView = ({ match }) => {
     </>
   );
 };
-
-DetailView.propTypes = {};
 
 export default DetailView;

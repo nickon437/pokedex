@@ -1,11 +1,11 @@
 import React, { useContext } from 'react';
-import { PokedexContext } from '../context/PokedexContext';
-import './Generations.scss';
-import Pokeball from '../resources/img/pokeball.svg';
-import StringUtil from '../utils/StringUtil';
-import { ReactComponent as Dots1 } from '../resources/img/dots.svg';
-import { getFrontSprite } from '../utils/PokemonUtil';
 import { Link } from 'react-router-dom';
+import { PokedexContext } from '../context/PokedexContext';
+import Pokeball from '../resources/img/pokeball.svg';
+import { convertToRoman } from '../helpers/stringHelper';
+import { getFrontSprite } from '../helpers/pokemonHelper';
+import { ReactComponent as Dots1 } from '../resources/img/dots.svg';
+import '../styles/Generations.scss';
 
 const Generations = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
@@ -18,7 +18,7 @@ const Generations = () => {
     const startPkmId = startPkmIndex + 1;
 
     // Stop generating generationListJsx for undefined pokemons
-    if (startPkmId + 6 > ctxPokedex.pokemons.length) {
+    if (startPkmId + 6 > pokemons.length) {
       return null;
     }
 
@@ -44,7 +44,7 @@ const Generations = () => {
           alt=''
         />
         <div className='generation-heading'>
-          GENERATION {StringUtil.convertToRoman(genIndex + 1)}
+          GENERATION {convertToRoman(genIndex + 1)}
         </div>
       </Link>
     );

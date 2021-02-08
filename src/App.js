@@ -1,12 +1,12 @@
 import React, { useContext, useEffect } from 'react';
-import './App.scss';
-import { PokedexContext } from './context/PokedexContext';
-import PokeGrid from './components/PokeGrid';
-import DetailView from './components/DetailView';
-import Generations from './components/Generations';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { fetchPokemons } from './actions/apiCall';
+import { PokedexContext } from './context/PokedexContext';
+import PokeGrid from './pages/PokeGrid';
+import DetailView from './pages/DetailView';
+import Generations from './pages/Generations';
 import Loader from './components/Loader';
+import { fetchPokemons } from './helpers/apiHelper';
+import './App.scss';
 
 const App = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);

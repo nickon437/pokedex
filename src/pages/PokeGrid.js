@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from 'react';
-import { PokedexContext, ACTION } from '../context/PokedexContext';
-import PokeGridElement from './PokeGridElement';
-import SearchBar from './SearchBar';
-import { getPokemonsByGenIndex } from '../utils/PokemonUtil';
-import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
 import { Link } from 'react-router-dom';
-import './PokeGrid.scss';
+import { PokedexContext, ACTION } from '../context/PokedexContext';
+import PokeGridElement from '../components/PokeGridElement';
+import SearchBar from '../components/SearchBar';
+import { getPokemonsByGenIndex } from '../helpers/pokemonHelper';
+import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
+import '../styles/PokeGrid.scss';
 
 const PokeGrid = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);

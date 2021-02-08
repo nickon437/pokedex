@@ -1,8 +1,8 @@
 import React, { useEffect, useCallback, useState } from 'react';
-import './Evolution.scss';
-import StringUtil from '../utils/StringUtil';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { cleanUpString } from '../helpers/stringHelper';
+import axios from 'axios';
+import '../styles/Evolution.scss';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
@@ -15,14 +15,14 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.held_item) {
-      evoConditions.push(<div>Hold {StringUtil.cleanUpString(evoDetails.held_item.name, false)}</div>);
+      evoConditions.push(<div>Hold {cleanUpString(evoDetails.held_item.name, false)}</div>);
     }
 
     if (evoDetails.item) {
       const evoItemUrl = evoDetails.item.url;
       const evoItemData = (await axios.get(evoItemUrl)).data;
       const evoItemSpriteUrl = evoItemData.sprites.default;
-      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItemData.name)} /></div>);
+      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={cleanUpString(evoItemData.name)} /></div>);
     }
 
     if (evoDetails.known_move) {
@@ -70,7 +70,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.time_of_day) {
-      evoConditions.push(<div>{StringUtil.cleanUpString(evoDetails.time_of_day)}</div>);
+      evoConditions.push(<div>{cleanUpString(evoDetails.time_of_day)}</div>);
     }
 
     if (evoDetails.trade_species) {
@@ -80,7 +80,7 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     if (evoDetails.trigger
       && evoDetails.trigger.name !== 'level-up'
       && evoDetails.trigger.name !== 'use-item') {
-      evoConditions.push(<div>{StringUtil.cleanUpString(evoDetails.trigger.name)}</div>);
+      evoConditions.push(<div>{cleanUpString(evoDetails.trigger.name)}</div>);
     }
 
     if (evoDetails.turn_upside_down) {

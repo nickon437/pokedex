@@ -1,7 +1,7 @@
 import React, { useContext, useRef } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import magnify from '../resources/img/magnify.png';
-import './SearchBar.scss';
+import '../styles/SearchBar.scss';
 
 const SearchBar = ({ searchBarID }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);

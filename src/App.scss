@@ -3,7 +3,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&display=swap');
 
 @import './variables';
-@import './keyframes';
 
 html {
   box-sizing: border-box;
@@ -79,7 +78,6 @@ header {
 
 .basic-data {
   position: relative;
-  z-index: 5;
 
   .pokeId {
     font-size: 1.5rem;
@@ -108,103 +106,11 @@ header {
   }
 }
 
-#main {
+main {
   position: relative;
   display: flex;
   height: calc(100vh - #{$header-height});
   top: $header-height;  
-}
-
-#main.loading-view {
-  .lds-facebook {
-    @include flex(true, null, null);
-    position: relative;
-    width: 100%;
-    height: 100%;
-
-    div {
-      width: 16px;
-      background-color: $heavy-light-grey;
-      animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite;
-      
-      &:nth-child(1) {
-        left: 8px;
-        animation-delay: -0.24s;
-      }
-
-      &:nth-child(2) {
-        left: 32px;
-        animation-delay: -0.12s;
-      }
-
-      &:nth-child(3) {
-        left: 56px;
-        animation-delay: 0;
-      }
-    }
-  }
-
-  #generations-section,
-  #poke-grid-container,
-  #poke-list-container,
-  #detail-view {
-    display: none;
-  }
-}
-
-#main.generation-view {
-  #poke-grid-container,
-  #poke-list-container,
-  #detail-view {
-    display: none;
-  }
-}
-
-#main.pokemon-list-view {
-  .lds-facebook,
-  #generations-section {
-    display: none;
-  }
-}
-
-#main.split-view {
-  animation: delayed-background-fade-in $page-transition-time forwards;
-
-  #detail-view {
-    animation: slide-in-right-to-left $page-transition-time linear forwards;
-  }
-
-  #poke-grid-container {
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: transform 0s linear $page-transition-time, opacity $page-transition-time linear, visibility $page-transition-time linear;
-  }
-
-  #poke-list {
-    animation: slide-in-left-to-right $page-transition-time linear forwards;
-  }
-}
-
-#main.split-view.reverse-split-view {
-  background-color: white;
-  transition: background-color 0s linear;
-  animation: none;
-
-  #detail-view {
-    animation: slide-out-left-to-right $page-transition-time linear forwards;
-  }
-  
-  #poke-grid-container {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-    transition: opacity $page-transition-time linear;
-  }
-
-  #poke-list {
-    animation: slide-out-right-to-left $page-transition-time linear forwards;
-  }
 }
 
 .background-patterns {
@@ -219,7 +125,7 @@ header {
   }
 }
 
-button, select {
+button, select, .button {
   font-weight: bold;
   width: fit-content;
   border: none;
@@ -242,7 +148,7 @@ button, select {
   }
 }
 
-button {
+button, .button {
   @include flex(true, null, 0);
 }
 
@@ -269,4 +175,9 @@ select {
     font-family: inherit;
     background-color: white;
   }
+}
+
+a.unstyled {
+  color: inherit;
+  text-decoration: none;
 }

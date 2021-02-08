@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useCallback, useState } from 'react';
-import { PokedexContext, ACTION } from '../context/PokedexContext';
+import React, { useEffect, useCallback, useState } from 'react';
 import './Evolution.scss';
 import StringUtil from '../utils/StringUtil';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Evolution = ({ pokemons, pkmEvolution }) => {
-  const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [multiEvoChainsJsx, setMultiEvoChainsJsx] = useState([]);
-
-  const handleClick = (pokemon) => {
-    dispatch({ type: ACTION.SHOW_DETAIL_VIEW, selectedPokemon: pokemon });
-  }
 
   const getEvoConditions = async (evoDetails) => {
     const evoConditions = [];
@@ -24,9 +20,9 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
 
     if (evoDetails.item) {
       const evoItemUrl = evoDetails.item.url;
-      const evoItem = await fetch(evoItemUrl).then((result) => result.json());
-      const evoItemSpriteUrl = evoItem.sprites.default;
-      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItem.name)} /></div>);
+      const evoItemData = (await axios.get(evoItemUrl)).data;
+      const evoItemSpriteUrl = evoItemData.sprites.default;
+      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={StringUtil.cleanUpString(evoItemData.name)} /></div>);
     }
 
     if (evoDetails.known_move) {
@@ -110,12 +106,12 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
       // Generate img of pokemon
       const pokemon = pokemons[pokemonId - 1];
       const pokemonImgJsx = (
-        <div className="pokemon-evolution" onClick={() => handleClick(pokemon)}>
+        <Link to={`/pokemon/${pokemon.id}`} className="pokemon-evolution" >
           <img
             src={pokemon.sprites.other['official-artwork'].front_default}
             alt={pokemon.name}
           />
-        </div>
+        </Link>
       );
       evoChainJsx.push(pokemonImgJsx);
     }

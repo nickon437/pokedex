@@ -33,7 +33,7 @@ const Stat = ({ pkm }) => {
         <div className="label">{codifyStatName(curStat.stat.name)}</div>
         <div className="figure">{baseStat}</div>
         <div className="progress-bar">
-          <div style={{'width': `${(baseStat / 255) * 100}%`}}></div>
+          <div style={{width: `${(baseStat / 255) * 100}%`}}></div>
         </div>
       </div>
     )

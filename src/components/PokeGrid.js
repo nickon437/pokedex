@@ -1,30 +1,38 @@
-
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import PokeGridElement from './PokeGridElement';
 import SearchBar from './SearchBar';
+import { getPokemonsByGenIndex } from '../utils/PokemonUtil';
+import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
+import { Link } from 'react-router-dom';
 import './PokeGrid.scss';
 
-const PokeGrid = () => {
+const PokeGrid = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
-  const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm} />);
+  const { pokemons } = ctxPokedex;
+  const genIndex = match.params.id;
 
-  const handleClick = () => {
-    dispatch({ type: ACTION.BACK_TO_GENERATION_VIEW });
-  }
+  const pokeData = ctxPokedex.filteredPokemons.map((pkm) => (
+    <PokeGridElement key={pkm.id} pkm={pkm} />
+  ));
+
+  useEffect(() => {
+    dispatch({
+      type: ACTION.SET_SELECTED_GEN_POKEMON,
+      payload: getPokemonsByGenIndex(pokemons, genIndex),
+    });
+  }, [genIndex, pokemons]);
 
   return (
-    <div id="poke-grid-container">
-      <button type="button" name="back-btn" onClick={handleClick}>
-        <svg viewBox="0 0 24 24"><path fill="currentColor" d="M15.41,16.58L10.83,12L15.41,7.41L14,6L8,12L14,18L15.41,16.58Z" /></svg>
+    <div id='poke-grid-container'>
+      <Link to='/' name='back-btn' className='button unstyled'>
+        <LeftArrow />
         GENERATIONS
-      </button>
-      <SearchBar searchBarID="poke-grid-search-bar" />
-      <ol id="poke-grid">
-        {pokeData}
-      </ol>
+      </Link>
+      <SearchBar searchBarID='poke-grid-search-bar' />
+      <ol id='poke-grid'>{pokeData}</ol>
     </div>
-  )
+  );
 };
 
 export default PokeGrid;

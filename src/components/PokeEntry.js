@@ -33,19 +33,24 @@ const PokeEntry = ({ pkmSpecies }) => {
           let entry = pkmSpecies.flavor_text_entries.find((entry) => (entry.language.name === 'en' && entry.version.name === version));
           if (entry) {
             availableEntries[version] = entry;
-            return (<option value={version}>{StringUtil.cleanUpString(version)}</option>);
+            return (<option value={version} key={version}>{StringUtil.cleanUpString(version)}</option>);
           }
-          return;
+          return null;
         }).filter((version) => version);
         
         if (optionsJsx.length > 0) {
-          return (<optgroup label={`GENERATION ${StringUtil.convertToRoman(index + 1)}`}>
-            {optionsJsx}
-          </optgroup>);
+          return (
+            <optgroup
+              label={`GENERATION ${StringUtil.convertToRoman(index + 1)}`}
+              key={index}
+            >
+              {optionsJsx}
+            </optgroup>
+          );
         }
       }
 
-      return;
+      return null;
     });
 
     return genOptsJsx;
@@ -56,7 +61,6 @@ const PokeEntry = ({ pkmSpecies }) => {
   };
 
   useEffect(() => {
-    console.log('useEffect');
     handleChangeVersion();
   }, [pkmSpecies]);
 

@@ -11,6 +11,8 @@ const Generations = () => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const gens = [151, 251, 386, 493, 649, 721, 809, 898];
 
+  const { pokemons } = ctxPokedex;
+
   const generationListJsx = gens.map((num, genIndex) => {
     const startPkmIndex = genIndex === 0 ? 0 : gens[genIndex - 1];
     const startPkmId = startPkmIndex + 1;
@@ -21,22 +23,34 @@ const Generations = () => {
     }
 
     return (
-      <Link to={`/gen/${genIndex}`} className="generation-box" key={genIndex}>
-        <div className="background-patterns" name="background-patterns">
-          <img src={Pokeball} name="pokeball" alt="" />
+      <Link to={`/gen/${genIndex}`} className='generation-box' key={genIndex}>
+        <div className='background-patterns' name='background-patterns'>
+          <img src={Pokeball} name='pokeball' alt='' />
           <Dots1 />
         </div>
-        <img className="starter" src={getFrontSprite(ctxPokedex.pokemons[startPkmId - 1])} alt="" />
-        <img className="starter" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 2])} alt="" />
-        <img className="starter" src={getFrontSprite(ctxPokedex.pokemons[startPkmId + 5])} alt="" />
-        <div className="generation-heading">GENERATION {StringUtil.convertToRoman(genIndex + 1)}</div>
+        <img
+          className='starter'
+          src={getFrontSprite(pokemons[startPkmId - 1])}
+          alt=''
+        />
+        <img
+          className='starter'
+          src={getFrontSprite(pokemons[startPkmId + 2])}
+          alt=''
+        />
+        <img
+          className='starter'
+          src={getFrontSprite(pokemons[startPkmId + 5])}
+          alt=''
+        />
+        <div className='generation-heading'>
+          GENERATION {StringUtil.convertToRoman(genIndex + 1)}
+        </div>
       </Link>
-    )
+    );
   });
 
-  return (
-    <div id="generations-section">{generationListJsx}</div>
-  )
-}
+  return <div id='generations-section'>{generationListJsx}</div>;
+};
 
 export default Generations;

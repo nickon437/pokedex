@@ -9,27 +9,30 @@ import './PokeGrid.scss';
 
 const PokeGrid = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
-  const pokeData = ctxPokedex.filteredPokemons.map((pkm) => <PokeGridElement key={pkm.id} pkm={pkm} />);
+  const { pokemons } = ctxPokedex;
+  const genIndex = match.params.id;
+
+  const pokeData = ctxPokedex.filteredPokemons.map((pkm) => (
+    <PokeGridElement key={pkm.id} pkm={pkm} />
+  ));
 
   useEffect(() => {
-    const genIndex = match.params.id;
     dispatch({
       type: ACTION.SET_SELECTED_GEN_POKEMON,
-      payload: getPokemonsByGenIndex(ctxPokedex.pokemons, genIndex),
+      payload: getPokemonsByGenIndex(pokemons, genIndex),
     });
-  }, [match.params.id, ctxPokedex.pokemons]);
+  }, [genIndex, pokemons]);
 
   return (
-    <div id="poke-grid-container">
-      <Link to='/' name="back-btn" className='button unstyled'>
-        <LeftArrow />GENERATIONS
+    <div id='poke-grid-container'>
+      <Link to='/' name='back-btn' className='button unstyled'>
+        <LeftArrow />
+        GENERATIONS
       </Link>
-      <SearchBar searchBarID="poke-grid-search-bar" />
-      <ol id="poke-grid">
-        {pokeData}
-      </ol>
+      <SearchBar searchBarID='poke-grid-search-bar' />
+      <ol id='poke-grid'>{pokeData}</ol>
     </div>
-  )
+  );
 };
 
 export default PokeGrid;

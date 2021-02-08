@@ -1,6 +1,7 @@
 import React from 'react';
 import ColorUtil from '../utils/ColorUtil';
 import StringUtil from '../utils/StringUtil';
+import { getFrontSprite } from '../utils/PokemonUtil';
 
 const PokeBasicInfo = ({ pkm }) => {
   if (!pkm) {
@@ -20,7 +21,7 @@ const PokeBasicInfo = ({ pkm }) => {
         <div className="pokeName">{StringUtil.makeFirstLetterUpperCase(pkm.name)}</div>
         <div className="pokeTypes">{pokeTypes}</div>
       </div>
-      <img src={pkm.sprites.other['official-artwork'].front_default} className="pokemon" alt=""></img>
+      <img src={getFrontSprite(pkm)} className="pokemon" alt=""></img>
     </>
   )
 }

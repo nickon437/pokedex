@@ -23,68 +23,78 @@ const DetailView = ({ match }) => {
   const [pkmSpecies, setPkmSpecies] = useState(null);
   const [pkmEvolution, setPkmEvolution] = useState(null);
 
+  const { pokemons, selectedGenPokemons } = ctxPokedex;
   const id = Number(match.params.id);
+  const curPokemon = pokemons[id - 1];
 
   useEffect(() => {
-    // TODO: Check if pokemonId is still within current gen before updating the gen
-    dispatch({
-      type: ACTION.SET_SELECTED_GEN_POKEMON,
-      payload: getGenPokemonsById(ctxPokedex.pokemons, id),
-    });
-    
-    if (id <= ctxPokedex.pokemons.length) {
-      fetchPkmData(id, setPkmSpecies, setPkmEvolution);
-      document.querySelector('#root').style.backgroundColor = ColorUtil.getPrimaryTypeColor(ctxPokedex.pokemons[id - 1]);
+    if (!selectedGenPokemons.includes(curPokemon)) {
+      dispatch({
+        type: ACTION.SET_SELECTED_GEN_POKEMON,
+        payload: getGenPokemonsById(pokemons, id),
+      });
     }
-    
+
+    if (id <= pokemons.length) {
+      fetchPkmData(id, setPkmSpecies, setPkmEvolution);
+      document.querySelector(
+        '#root'
+      ).style.backgroundColor = ColorUtil.getPrimaryTypeColor(curPokemon);
+    }
+
     return () => {
       document.querySelector('#root').style.backgroundColor = null;
-    }
-  }, [ctxPokedex.pokemons, id]);
+    };
+  }, [pokemons, id]);
 
   return (
     <>
       <PokeList activeId={id} />
-      <div id="detail-view" style={{ backgroundColor: ColorUtil.getPrimaryTypeColor(ctxPokedex.pokemons[id - 1]) }}>
-        <div id="overview">
-          <div className="background-patterns">
-            <img src={Pokeball} name="pokeball" alt="" />
+      <div
+        id='detail-view'
+        style={{ backgroundColor: ColorUtil.getPrimaryTypeColor(curPokemon) }}
+      >
+        <div id='overview'>
+          <div className='background-patterns'>
+            <img src={Pokeball} name='pokeball' alt='' />
             <BrailleDots />
             <ArrowDots />
-            <Link to={`/gen/${getGenIndexById(id)}`} name="close-btn" className="button">
+            <Link
+              to={`/gen/${getGenIndexById(id)}`}
+              name='close-btn'
+              className='button'
+            >
               <Times />
             </Link>
           </div>
-          <PokeBasicInfo pkm={ctxPokedex.pokemons[id - 1]} />
+          <PokeBasicInfo pkm={curPokemon} />
           <Link
             to={`/pokemon/${id - 1}`}
-            id="previous-pokemon-btn"
-            className="button pokemon-detail-nav"
+            id='previous-pokemon-btn'
+            className='button pokemon-detail-nav'
             style={{ visibility: id <= 1 ? 'hidden' : 'visible' }}
           >
             <LeftArrow />
           </Link>
           <Link
             to={`/pokemon/${id + 1}`}
-            id="next-pokemon-btn"
-            className="button pokemon-detail-nav"
-            style={{ visibility: id >= ctxPokedex.pokemons.length ? 'hidden' : 'visible' }}
+            id='next-pokemon-btn'
+            className='button pokemon-detail-nav'
+            style={{ visibility: id >= pokemons.length ? 'hidden' : 'visible' }}
           >
             <RightArrow />
           </Link>
         </div>
-        <div id="detail-data">
+        <div id='detail-data'>
           <PokeEntry pkmSpecies={pkmSpecies} />
-          <Stat pkm={ctxPokedex.selectedPokemon} />
-          <Evolution pokemons={ctxPokedex.pokemons} pkmEvolution={pkmEvolution} />
+          <Stat pkm={curPokemon} />
+          <Evolution pokemons={pokemons} pkmEvolution={pkmEvolution} />
         </div>
       </div>
     </>
-  )
-}
+  );
+};
 
-DetailView.propTypes = {
-
-}
+DetailView.propTypes = {};
 
 export default DetailView;

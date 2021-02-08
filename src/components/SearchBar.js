@@ -5,10 +5,11 @@ import './SearchBar.scss';
 
 const SearchBar = ({ searchBarID }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
+  const { selectedGenPokemons, searchKeyword } = ctxPokedex
   const searchBarRef = useRef(null);
 
   const handleChange = (e) => {
-    const filteredPokemons = ctxPokedex.selectedGenPokemons.filter((pokemon) => {
+    const filteredPokemons = selectedGenPokemons.filter((pokemon) => {
       const idRegex = new RegExp(`#?0*(${pokemon.id.toString()})`);
       return pokemon.name.includes(e.target.value) || e.target.value.match(idRegex)
     });
@@ -22,8 +23,8 @@ const SearchBar = ({ searchBarID }) => {
     });
   };
 
-  if (searchBarRef.current && searchBarRef.current.value !== ctxPokedex.searchKeyword) {
-    searchBarRef.current.value = ctxPokedex.searchKeyword;
+  if (searchBarRef.current && searchBarRef.current.value !== searchKeyword) {
+    searchBarRef.current.value = searchKeyword;
   }
   
   return (

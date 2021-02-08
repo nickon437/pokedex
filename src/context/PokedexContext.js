@@ -37,10 +37,22 @@ export const PokedexProvider = (props) => {
         };
 
       case ACTION.SET_FILTERED_POKEMONS:
+        const searchInput = action.payload;
+        const filteredPokemons = refreshedState.selectedGenPokemons.filter(
+          (pokemon) => {
+            const cleanedInput = searchInput.replace(/^#?0*/g, '');
+            return (
+              pokemon.name.includes(searchInput) ||
+              Number(cleanedInput) === pokemon.id ||
+              searchInput.match(/^#?0*$/)
+            );
+          }
+        );
+
         return {
           ...refreshedState,
-          filteredPokemons: action.payload.filteredPokemons,
-          searchKeyword: action.payload.searchKeyword,
+          filteredPokemons,
+          searchInput,
         };
 
       default:
@@ -54,7 +66,7 @@ export const PokedexProvider = (props) => {
     selectedGenPokemons: [],
     filteredPokemons: [],
     selectedPokemon: null,
-    searchKeyword: '',
+    searchInput: '',
     error: null,
   });
 

@@ -5,36 +5,37 @@ import '../styles/SearchBar.scss';
 
 const SearchBar = ({ searchBarID }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
-  const { selectedGenPokemons, searchKeyword } = ctxPokedex
+  const { searchInput } = ctxPokedex;
   const searchBarRef = useRef(null);
 
   const handleChange = (e) => {
-    const filteredPokemons = selectedGenPokemons.filter((pokemon) => {
-      const idRegex = new RegExp(`#?0*(${pokemon.id.toString()})`);
-      return pokemon.name.includes(e.target.value) || e.target.value.match(idRegex)
-    });
+    const searchInput = e.target.value;
 
     dispatch({
       type: ACTION.SET_FILTERED_POKEMONS,
-      payload: {
-        filteredPokemons,
-        searchKeyword: e.target.value,
-      }
+      payload: searchInput,
     });
   };
 
-  if (searchBarRef.current && searchBarRef.current.value !== searchKeyword) {
-    searchBarRef.current.value = searchKeyword;
+  if (searchBarRef.current && searchBarRef.current.value !== searchInput) {
+    searchBarRef.current.value = searchInput;
   }
-  
+
   return (
-    <div className="search-bar">
+    <div className='search-bar'>
       <label htmlFor={searchBarID}>
-        <img src={magnify} alt="search" />
+        <img src={magnify} alt='search' />
       </label>
-      <input ref={searchBarRef} id={searchBarID} name="search-input" type="search" placeholder="Search for ID and name" onChange={handleChange} />
+      <input
+        ref={searchBarRef}
+        id={searchBarID}
+        name='search-input'
+        type='search'
+        placeholder='Search for ID and name'
+        onChange={handleChange}
+      />
     </div>
-  )
-}
+  );
+};
 
 export default SearchBar;

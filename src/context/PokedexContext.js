@@ -1,4 +1,5 @@
 import React, { useReducer } from 'react';
+import { getPokemonsByGenIndex } from '../helpers/pokemonHelper';
 
 export const PokedexContext = React.createContext();
 
@@ -30,10 +31,13 @@ export const PokedexProvider = (props) => {
         };
 
       case ACTION.SET_SELECTED_GEN_POKEMON:
+        const selectedGenPokemons = getPokemonsByGenIndex(refreshedState.pokemons, action.payload);
         return {
           ...refreshedState,
-          selectedGenPokemons: action.payload,
-          filteredPokemons: action.payload,
+          genIndex: action.payload,
+          selectedGenPokemons,
+          filteredPokemons: selectedGenPokemons,
+          searchInput: '',
         };
 
       case ACTION.SET_FILTERED_POKEMONS:

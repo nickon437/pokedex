@@ -2,8 +2,6 @@ const gens = [151, 251, 386, 493, 649, 721, 809, 898];
 
 const getPokemonsByGenIndex = (pokemons, genIndex) => {
   const startPkmIndex = genIndex === 0 ? 0 : gens[genIndex - 1];
-  console.log('pokemons', pokemons);
-  console.log('getPokemonsByGenIndex', pokemons.slice(startPkmIndex, gens[genIndex]));
   return pokemons.slice(startPkmIndex, gens[genIndex]);
 };
 

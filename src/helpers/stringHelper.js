@@ -8,7 +8,7 @@ const cleanUpString = (string, shouldFirstLetterUpperCase = true) => {
     : string.replace(/-/g, ' ');
 };
 
-const formatPokemonId = (number) => {
+const formatPkmId = (number) => {
   let zeros = '';
   for (let i = 0; i < 3 - number.toString().length; i++) {
     zeros += '0';
@@ -43,9 +43,4 @@ const convertToRoman = (number) => {
   return str;
 };
 
-export {
-  makeFirstLetterUpperCase,
-  cleanUpString,
-  formatPokemonId,
-  convertToRoman,
-};
+export { makeFirstLetterUpperCase, cleanUpString, formatPkmId, convertToRoman };

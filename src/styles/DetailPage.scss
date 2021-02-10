@@ -10,6 +10,7 @@
   left: 3rem;
   overflow-y: auto;
   overflow-x: hidden;
+  transition: all 0.3s ease-in-out;
 
   #overview {
     height: 20rem;
@@ -48,6 +49,7 @@
       bottom: -5rem;
       left: 10%;
       z-index: 10;
+      transition: all 0.3s ease-in-out;
     }
 
     img[name='pokeball'] {
@@ -77,6 +79,10 @@
 
       .pokeTypes {
         min-width: 10.5rem;
+
+        div {
+          transition: all 0.3s ease-in-out;
+        }
       }
     }
 
@@ -143,6 +149,7 @@
             background-color: cornflowerblue;
             height: 100%;
             border-radius: inherit;
+            transition: width 0.3s ease-in-out;
           }
         }
       }

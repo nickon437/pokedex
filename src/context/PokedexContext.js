@@ -30,7 +30,7 @@ export const PokedexProvider = (props) => {
           error: action.payload,
         };
 
-      case ACTION.SET_SELECTED_GEN_POKEMON:
+      case ACTION.SET_SELECTED_GEN:
         const selectedGenPokemons = getPokemonsByGenIndex(refreshedState.pokemons, action.payload);
         return {
           ...refreshedState,
@@ -85,6 +85,6 @@ export const ACTION = {
   FETCH_ALL_POKEMONS_REQUEST: 'FETCH_ALL_POKEMONS_REQUEST',
   FETCH_ALL_POKEMONS_SUCCEED: 'FETCH_ALL_POKEMONS_SUCCEED',
   FETCH_ALL_POKEMONS_FAIL: 'FETCH_ALL_POKEMONS_FAIL',
-  SET_FILTERED_POKEMONS: 'setFilteredPokemons',
-  SET_SELECTED_GEN_POKEMON: 'setSelectedGenPokemon',
+  SET_FILTERED_POKEMONS: 'SET_FILTERED_POKEMONS',
+  SET_SELECTED_GEN: 'SET_SELECTED_GEN',
 };

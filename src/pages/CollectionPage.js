@@ -1,24 +1,24 @@
 import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
-import PokeGridElement from '../components/PokeGridElement';
+import Card from '../components/Card';
 import SearchBar from '../components/SearchBar';
 import { ReactComponent as LeftArrow } from '../resources/img/left-arrow.svg';
-import '../styles/PokeGrid.scss';
+import '../styles/CollectionPage.scss';
 
-const PokeGrid = ({ match }) => {
+const CollectionPage = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const { pokemons, genIndex } = ctxPokedex;
   const curGenIndex = match.params.id;
 
   const pokeData = ctxPokedex.filteredPokemons.map((pkm) => (
-    <PokeGridElement key={pkm.id} pkm={pkm} />
+    <Card key={pkm.id} pkm={pkm} />
   ));
 
   useEffect(() => {
     if (genIndex !== curGenIndex) {
       dispatch({
-        type: ACTION.SET_SELECTED_GEN_POKEMON,
+        type: ACTION.SET_SELECTED_GEN,
         payload: curGenIndex,
       });
     }
@@ -36,4 +36,4 @@ const PokeGrid = ({ match }) => {
   );
 };
 
-export default PokeGrid;
+export default CollectionPage;

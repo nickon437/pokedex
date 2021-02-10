@@ -15,14 +15,20 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.held_item) {
-      evoConditions.push(<div>Hold {cleanUpString(evoDetails.held_item.name, false)}</div>);
+      evoConditions.push(
+        <div>Hold {cleanUpString(evoDetails.held_item.name, false)}</div>
+      );
     }
 
     if (evoDetails.item) {
       const evoItemUrl = evoDetails.item.url;
       const evoItemData = (await axios.get(evoItemUrl)).data;
       const evoItemSpriteUrl = evoItemData.sprites.default;
-      evoConditions.push(<div><img src={evoItemSpriteUrl} alt={cleanUpString(evoItemData.name)} /></div>);
+      evoConditions.push(
+        <div>
+          <img src={evoItemSpriteUrl} alt={cleanUpString(evoItemData.name)} />
+        </div>
+      );
     }
 
     if (evoDetails.known_move) {
@@ -30,7 +36,9 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.known_move_type) {
-      evoConditions.push(<div>Known move type: {evoDetails.known_move_type}</div>);
+      evoConditions.push(
+        <div>Known move type: {evoDetails.known_move_type}</div>
+      );
     }
 
     if (evoDetails.location) {
@@ -66,7 +74,9 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (evoDetails.relative_physical_stats) {
-      evoConditions.push(<div>Relative physical stat: {evoDetails.relative_physical_stats}</div>);
+      evoConditions.push(
+        <div>Relative physical stat: {evoDetails.relative_physical_stats}</div>
+      );
     }
 
     if (evoDetails.time_of_day) {
@@ -77,9 +87,11 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
       evoConditions.push(<div>Trade: {evoDetails.trade_species}</div>);
     }
 
-    if (evoDetails.trigger
-      && evoDetails.trigger.name !== 'level-up'
-      && evoDetails.trigger.name !== 'use-item') {
+    if (
+      evoDetails.trigger &&
+      evoDetails.trigger.name !== 'level-up' &&
+      evoDetails.trigger.name !== 'use-item'
+    ) {
       evoConditions.push(<div>{cleanUpString(evoDetails.trigger.name)}</div>);
     }
 
@@ -88,64 +100,81 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     return evoConditions;
-  }
+  };
 
-  const buildEvolutionChain = useCallback(async (evolution, evoChainJsx, pokemons, currentBranchIndex) => {
-    const pokemonId = parseInt(evolution.species.url.match(/\/\d+\//)[0].slice(1, -1));
-
-    if (pokemonId > pokemons.length) {
-      // Skip alternative evolution branch with undefined post-evolution form
-      if (currentBranchIndex > 0) {
-        return;
-      // Stop build evolution branch and return it once there is undefined form
-      } else if (evoChainJsx.length !== 0) {
-        setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx.slice(0, -1)}</div>]);
-        return;
-      }
-    } else {
-      // Generate img of pokemon
-      const pokemon = pokemons[pokemonId - 1];
-      const pokemonImgJsx = (
-        <Link to={`/pokemon/${pokemon.id}`} className="pokemon-evolution" >
-          <img
-            src={pokemon.sprites.other['official-artwork'].front_default}
-            alt={pokemon.name}
-          />
-        </Link>
+  const buildEvolutionChain = useCallback(
+    async (evolution, evoChainJsx, pokemons, currentBranchIndex) => {
+      const pkmId = parseInt(
+        evolution.species.url.match(/\/\d+\//)[0].slice(1, -1)
       );
-      evoChainJsx.push(pokemonImgJsx);
-    }
 
-    // Stop build evolution chain when it reaches at the end of the chain
-    if (evolution.evolves_to.length <= 0) {
-      setMultiEvoChainsJsx((prev) => [...prev, <div className="evolution-chain">{evoChainJsx}</div>]);
-    } else {
-      let nextBranchIndex = 0;
-      // Explore and build evolution chain of multiple branches
-      while (nextBranchIndex < evolution.evolves_to.length) {
-        // Generate copy of evoChain to reuse of different branches
-        const currentEvoChain = [...evoChainJsx];
-        const nextEvolution = evolution.evolves_to[nextBranchIndex.toString()];
-
-        // Skip evolution trigger if there is undefined baby form
-        if (currentEvoChain.length > 0) {
-          const evoTriggerJsx = (
-            <div className="evolution-trigger">
-              <div className="evolution-condition">
-                {await getEvoConditions(nextEvolution.evolution_details["0"])}
-              </div>
-              <div className="arrow" />
-            </div>
-          );
-          currentEvoChain.push(evoTriggerJsx);
+      if (pkmId > pokemons.length) {
+        // Skip alternative evolution branch with undefined post-evolution form
+        if (currentBranchIndex > 0) {
+          return;
+          // Stop build evolution branch and return it once there is undefined form
+        } else if (evoChainJsx.length !== 0) {
+          setMultiEvoChainsJsx((prev) => [
+            ...prev,
+            <div className='evolution-chain'>{evoChainJsx.slice(0, -1)}</div>,
+          ]);
+          return;
         }
-
-        buildEvolutionChain(nextEvolution, currentEvoChain, pokemons, nextBranchIndex);
-        nextBranchIndex++;
+      } else {
+        // Generate img of pokemon
+        const pkm = pokemons[pkmId - 1];
+        const pokemonImgJsx = (
+          <Link to={`/pokemon/${pkm.id}`} className='pokemon-evolution'>
+            <img
+              src={pkm.sprites.other['official-artwork'].front_default}
+              alt={pkm.name}
+            />
+          </Link>
+        );
+        evoChainJsx.push(pokemonImgJsx);
       }
-    }
-    return;
-  }, []);
+
+      // Stop build evolution chain when it reaches at the end of the chain
+      if (evolution.evolves_to.length <= 0) {
+        setMultiEvoChainsJsx((prev) => [
+          ...prev,
+          <div className='evolution-chain'>{evoChainJsx}</div>,
+        ]);
+      } else {
+        let nextBranchIndex = 0;
+        // Explore and build evolution chain of multiple branches
+        while (nextBranchIndex < evolution.evolves_to.length) {
+          // Generate copy of evoChain to reuse of different branches
+          const currentEvoChain = [...evoChainJsx];
+          const nextEvolution =
+            evolution.evolves_to[nextBranchIndex.toString()];
+
+          // Skip evolution trigger if there is undefined baby form
+          if (currentEvoChain.length > 0) {
+            const evoTriggerJsx = (
+              <div className='evolution-trigger'>
+                <div className='evolution-condition'>
+                  {await getEvoConditions(nextEvolution.evolution_details['0'])}
+                </div>
+                <div className='arrow' />
+              </div>
+            );
+            currentEvoChain.push(evoTriggerJsx);
+          }
+
+          buildEvolutionChain(
+            nextEvolution,
+            currentEvoChain,
+            pokemons,
+            nextBranchIndex
+          );
+          nextBranchIndex++;
+        }
+      }
+      return;
+    },
+    []
+  );
 
   useEffect(() => {
     if (pkmEvolution) {
@@ -156,13 +185,11 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
   }, [pkmEvolution]);
 
   return (
-    <section id="evolution-section">
+    <section id='evolution-section'>
       <h2>Evolution</h2>
-      <div id="evolution-chain-list">
-        {multiEvoChainsJsx}
-      </div>
+      <div id='evolution-chain-list'>{multiEvoChainsJsx}</div>
     </section>
-  )
-}
+  );
+};
 
 export default Evolution;

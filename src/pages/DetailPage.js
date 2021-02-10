@@ -2,10 +2,10 @@ import React, { useContext, useEffect, useState } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import { Link } from 'react-router-dom';
 import Stat from '../components/Stat';
-import PokeBasicInfo from '../components/PokeBasicInfo';
+import BasicInfo from '../components/BasicInfo';
 import Evolution from '../components/Evolution';
-import PokeEntry from '../components/PokeEntry';
-import PokeList from '../components/PokeList';
+import Entry from '../components/Entry';
+import SideList from '../components/SideList';
 import { fetchPkmData } from '../helpers/apiHelper';
 import { getPrimaryTypeColor } from '../helpers/colorHelper';
 import { getGenPokemonsById, getGenIndexById } from '../helpers/pokemonHelper';
@@ -15,9 +15,9 @@ import { ReactComponent as RightArrow } from '../resources/img/right-arrow.svg';
 import { ReactComponent as BrailleDots } from '../resources/img/braille-pattern-dots.svg';
 import { ReactComponent as ArrowDots } from '../resources/img/arrow-dots.svg';
 import { ReactComponent as Times } from '../resources/img/times.svg';
-import '../styles/DetailView.scss';
+import '../styles/DetailPage.scss';
 
-const DetailView = ({ match }) => {
+const DetailPage = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
   const [pkmSpecies, setPkmSpecies] = useState(null);
   const [pkmEvolution, setPkmEvolution] = useState(null);
@@ -31,7 +31,7 @@ const DetailView = ({ match }) => {
 
     if (!selectedGenPokemons.includes(curPokemon)) {
       dispatch({
-        type: ACTION.SET_SELECTED_GEN_POKEMON,
+        type: ACTION.SET_SELECTED_GEN,
         payload: getGenPokemonsById(pokemons, id),
       });
     }
@@ -48,16 +48,16 @@ const DetailView = ({ match }) => {
 
   return (
     <>
-      <PokeList activeId={id} />
+      <SideList activeId={id} />
       <div
         id='detail-view'
         style={{ backgroundColor: getPrimaryTypeColor(curPokemon) }}
       >
         <div id='overview'>
           <div className='background-patterns'>
-            <img src={Pokeball} name='pokeball' alt='' />
-            <BrailleDots />
-            <ArrowDots />
+            <img src={Pokeball} name='pokeball' alt='' aria-hidden='true'/>
+            <BrailleDots aria-hidden='true'/>
+            <ArrowDots aria-hidden='true'/>
             <Link
               to={`/gen/${getGenIndexById(id)}`}
               name='close-btn'
@@ -66,7 +66,7 @@ const DetailView = ({ match }) => {
               <Times />
             </Link>
           </div>
-          <PokeBasicInfo pkm={curPokemon} />
+          <BasicInfo pkm={curPokemon} />
           <Link
             to={`/pokemon/${id - 1}`}
             id='previous-pokemon-btn'
@@ -85,7 +85,7 @@ const DetailView = ({ match }) => {
           </Link>
         </div>
         <div id='detail-data'>
-          <PokeEntry pkmSpecies={pkmSpecies} />
+          <Entry pkmSpecies={pkmSpecies} />
           <Stat pkm={curPokemon} />
           <Evolution pokemons={pokemons} pkmEvolution={pkmEvolution} />
         </div>
@@ -94,4 +94,4 @@ const DetailView = ({ match }) => {
   );
 };
 
-export default DetailView;
+export default DetailPage;

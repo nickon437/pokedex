@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { cleanUpString, convertToRoman } from '../helpers/stringHelper';
 
-const PokeEntry = ({ pkmSpecies }) => {
-  const [pokeEntry, setPokeEntry] = useState(null);
+const Entry = ({ pkmSpecies }) => {
+  const [entry, setEntry] = useState(null);
   const versionSelectRef = useRef(null);
   const availableEntries = useRef({});
   const optionsDropdownJsx = useRef();
@@ -26,7 +26,7 @@ const PokeEntry = ({ pkmSpecies }) => {
   ];
 
   const handleChangeVersion = () => {
-    setPokeEntry(
+    setEntry(
       availableEntries.current[
         versionSelectRef.current.value
       ]?.flavor_text.replace('', ' ')
@@ -87,9 +87,9 @@ const PokeEntry = ({ pkmSpecies }) => {
           {optionsDropdownJsx.current}
         </select>
       </h2>
-      <div>{pokeEntry}</div>
+      <p>{entry}</p>
     </section>
   );
 };
 
-export default PokeEntry;
+export default Entry;

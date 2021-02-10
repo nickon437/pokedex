@@ -15,9 +15,10 @@
   width: 3.5rem;
   box-shadow: 0 5px 5px #2a2a2a;
   z-index: 20;
-  transition: width 0.3s ease-in-out;  
+  transition: width 0.3s ease-in-out;
 
-  &:hover, &:focus-within {
+  &:hover,
+  &:focus-within {
     width: $expanded-poke-list;
   }
 
@@ -25,21 +26,21 @@
     margin: 0.25rem 0;
     gap: 1rem;
   }
-  
+
   li {
     font-size: 1rem;
     cursor: pointer;
     @include flex($center: false, $direction: null, $gap: 0.75rem);
     align-items: center;
-    transition: background-color $short-animation-time linear;
-    height: 2.5rem;  
+    transition: all $medium-animation-time linear;
+    height: 2.5rem;
     width: 100%;
     border-top: 1px solid $light-grey;
-    
+
     &:hover {
       background-color: rgba($color: $light-grey, $alpha: 1);
     }
-    
+
     &:first-child {
       border: none;
       background-color: transparent;
@@ -49,12 +50,12 @@
       background-color: $primary-red;
       border-radius: 10px;
       color: white;
-      
+
       &:hover {
         background-color: $dark-red;
       }
     }
-    
+
     a {
       @include flex($center: false, $direction: null, $gap: 0.75rem);
       align-items: center;
@@ -63,8 +64,9 @@
     .pokeOverview {
       @include flex($center: false, $direction: null, $gap: null);
       white-space: nowrap;
-      
-      .pokeName, .pokeId {
+
+      .pokeName,
+      .pkmId {
         font-size: 1rem;
         font-weight: normal;
         font-family: 'Nova Mono';

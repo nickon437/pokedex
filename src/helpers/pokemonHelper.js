@@ -6,7 +6,6 @@ const getPokemonsByGenIndex = (pokemons, genIndex) => {
 };
 
 const getGenPokemonsById = (pokemons, id) => {
-  console.log('getGenPokemonsById');
   const genIndex = getGenIndexById(id)
   return getPokemonsByGenIndex(pokemons, genIndex);
 };

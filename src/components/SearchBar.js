@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useRef, useEffect } from 'react';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import magnify from '../resources/img/magnify.png';
 import '../styles/SearchBar.scss';
@@ -17,9 +17,9 @@ const SearchBar = ({ searchBarID }) => {
     });
   };
 
-  if (searchBarRef.current && searchBarRef.current.value !== searchInput) {
+  useEffect(() => {
     searchBarRef.current.value = searchInput;
-  }
+  }, []);
 
   return (
     <div className='search-bar'>

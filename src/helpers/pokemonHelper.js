@@ -23,4 +23,4 @@ const getFrontIcon = (pokemon) => {
   return pokemon.sprites.versions['generation-vii'].icons.front_default;
 }
 
-export { getPokemonsByGenIndex, getGenPokemonsById, getGenIndexById, getFrontSprite, getFrontIcon };
+export { gens, getPokemonsByGenIndex, getGenPokemonsById, getGenIndexById, getFrontSprite, getFrontIcon };

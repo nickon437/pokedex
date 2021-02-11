@@ -5,10 +5,10 @@ const fetchPokemons = async (dispatch) => {
   try {
     dispatch({ type: ACTION.FETCH_ALL_POKEMONS_REQUEST });
     const BASE_URL = 'https://pokeapi.co/api/v2/pokemon/';
-    const NUM_OF_POKEMON = 386;
+    // const NUM_OF_POKEMON = 386;
     // const NUM_OF_POKEMON = 251;
     // const NUM_OF_POKEMON = 151;
-    // const NUM_OF_POKEMON = 12;
+    const NUM_OF_POKEMON = 12;
     // const NUM_OF_POKEMON = 3;
     const promises = [];
     for (let i = 1; i <= NUM_OF_POKEMON; i++) {

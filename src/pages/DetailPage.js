@@ -55,9 +55,9 @@ const DetailPage = ({ match }) => {
       >
         <div id='overview'>
           <div className='background-patterns'>
-            <img src={Pokeball} name='pokeball' alt='' aria-hidden='true'/>
-            <BrailleDots aria-hidden='true'/>
-            <ArrowDots aria-hidden='true'/>
+            <img src={Pokeball} name='pokeball' alt='' aria-hidden='true' />
+            <BrailleDots aria-hidden='true' />
+            <ArrowDots aria-hidden='true' />
             <Link
               to={`/gen/${getGenIndexById(id)}`}
               name='close-btn'
@@ -84,11 +84,13 @@ const DetailPage = ({ match }) => {
             <RightArrow />
           </Link>
         </div>
-        <div id='detail-data'>
-          <Entry pkmSpecies={pkmSpecies} />
-          <Stat pkm={curPokemon} />
-          <Evolution pokemons={pokemons} pkmEvolution={pkmEvolution} />
-        </div>
+        {pkmSpecies && pkmEvolution && (
+          <div id='detail-data'>
+            <Entry pkmSpecies={pkmSpecies} />
+            <Stat pkm={curPokemon} />
+            <Evolution pokemons={pokemons} pkmEvolution={pkmEvolution} />
+          </div>
+        )}
       </div>
     </>
   );

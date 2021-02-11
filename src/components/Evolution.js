@@ -88,9 +88,8 @@ const Evolution = ({ pokemons, pkmEvolution }) => {
     }
 
     if (
-      evoDetails.trigger &&
-      evoDetails.trigger.name !== 'level-up' &&
-      evoDetails.trigger.name !== 'use-item'
+      evoDetails.trigger?.name !== 'level-up' &&
+      evoDetails.trigger?.name !== 'use-item'
     ) {
       evoConditions.push(<div>{cleanUpString(evoDetails.trigger.name)}</div>);
     }

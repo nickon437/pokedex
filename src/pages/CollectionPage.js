@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { PokedexContext, ACTION } from '../context/PokedexContext';
 import Card from '../components/Card';
@@ -8,12 +8,13 @@ import '../styles/CollectionPage.scss';
 
 const CollectionPage = ({ match }) => {
   const [ctxPokedex, dispatch] = useContext(PokedexContext);
-  const { pokemons, genIndex } = ctxPokedex;
+  const { pokemons, genIndex, filteredPokemons } = ctxPokedex;
+  const [cardsJsx, setCardJsx] = useState();
   const curGenIndex = match.params.id;
 
-  const pokeData = ctxPokedex.filteredPokemons.map((pkm) => (
-    <Card key={pkm.id} pkm={pkm} />
-  ));
+  useEffect(() => {
+    setCardJsx(filteredPokemons.map((pkm) => <Card key={pkm.id} pkm={pkm} />));
+  }, [filteredPokemons]);
 
   useEffect(() => {
     if (genIndex !== curGenIndex) {
@@ -31,7 +32,7 @@ const CollectionPage = ({ match }) => {
         GENERATIONS
       </Link>
       <SearchBar searchBarID='poke-grid-search-bar' />
-      <ol id='poke-grid'>{pokeData}</ol>
+      <ol id='poke-grid'>{cardsJsx}</ol>
     </div>
   );
 };
